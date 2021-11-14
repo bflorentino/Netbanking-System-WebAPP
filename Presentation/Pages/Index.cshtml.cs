@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Views_Layer.Pages
+namespace Presentation.Pages
 {
     public class IndexModel : PageModel
     {
