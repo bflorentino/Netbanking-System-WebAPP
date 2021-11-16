@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -13,6 +14,7 @@ namespace Data
             HistorialDepositos = new HashSet<HistorialDeposito>();
             HistorialRetiros = new HashSet<HistorialRetiro>();
         }
+
 
         public string NumeroTarjeta { get; set; }
         public int ValorDeValidacion { get; set; }
