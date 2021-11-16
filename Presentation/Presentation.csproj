@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bussiness\Bussiness.csproj" />
-    <ProjectReference Include="..\Entity\Entity.csproj" />
   </ItemGroup>
 
 </Project>

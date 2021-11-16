@@ -12,8 +12,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Entity\Entity.csproj" />
-  </ItemGroup>
-
 </Project>
