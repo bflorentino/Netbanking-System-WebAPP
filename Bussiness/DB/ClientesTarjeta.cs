@@ -13,4 +13,3 @@ namespace Bussiness.DB
         public virtual Tarjeta NumeroTarjetaNavigation { get; set; }
     }
 }
-}
