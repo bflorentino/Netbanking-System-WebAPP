@@ -1,0 +1,25 @@
+﻿@model Bussiness.Model.BindingModel.ClientCreateBindingModel
+
+@{
+    ViewBag.Title = "Agregar un nuevo cliente";
+}
+
+<h1>Registrar nuevo cliente</h1>
+
+
+<form action="" method = "post">
+
+    @Html.LabelFor(cliente => cliente.Cedula);
+    @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
+
+
+@*    @Html.LabelFor(m => m.Nombre);
+    
+    @Html.LabelFor(m => m.Apellido);
+    
+    @Html.LabelFor(m => m.Edad);
+    
+    @Html.LabelFor(m => m.Cedula);*@
+
+</form>

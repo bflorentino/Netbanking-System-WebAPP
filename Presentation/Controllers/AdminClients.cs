@@ -13,5 +13,15 @@ namespace Presentation.Controllers
         {
             return View();
         }
+
+        public IActionResult EditCliente()
+        {
+            return View();
+        }
+
+        public IActionResult ViewClientes()
+        {
+            return View();
+        }
     }
 }
