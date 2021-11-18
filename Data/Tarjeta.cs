@@ -14,8 +14,6 @@ namespace Data
             HistorialDepositos = new HashSet<HistorialDeposito>();
             HistorialRetiros = new HashSet<HistorialRetiro>();
         }
-
-
         public string NumeroTarjeta { get; set; }
         public int ValorDeValidacion { get; set; }
         public DateTime FechaVencimiento { get; set; }
