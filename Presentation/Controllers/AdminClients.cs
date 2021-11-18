@@ -2,17 +2,16 @@
 
 namespace Presentation.Controllers
 {
-    public class AdminController : Controller
+    public class AdminClients : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult CreateClient() { 
-        
+        public IActionResult CreateClient()
+        {
             return View();
         }
-
     }
 }
