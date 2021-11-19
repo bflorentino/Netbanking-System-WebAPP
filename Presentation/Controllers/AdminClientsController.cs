@@ -3,7 +3,7 @@ using Bussiness.Model.BindingModel;
 
 namespace Presentation.Controllers
 {
-    public class AdminClients : Controller
+    public class AdminClientsController : Controller
     {
         public IActionResult Index()
         {

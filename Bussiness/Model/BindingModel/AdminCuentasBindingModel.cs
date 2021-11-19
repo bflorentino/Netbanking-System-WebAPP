@@ -13,8 +13,7 @@ namespace Bussiness.Model.BindingModel
         [RegularExpression("[0-9]{20}", ErrorMessage ="Dato invalido, se deben ingresar 20 digitos numericos")]
         public string NumeroCuenta { get; set; }
 
-        [Display(Name = "Fecha de creación")]
-        public DateTime FechaCreacion { get; set; }
+        public decimal Balance{ get; set; }
 
         [Required(ErrorMessage = "Ingrese la cedula del cliente")]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "El numero de cedula debe de ser de 11 numeros")]
