@@ -8,8 +8,4 @@
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BussinesLogic\" />
-  </ItemGroup>
-
 </Project>

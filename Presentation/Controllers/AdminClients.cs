@@ -20,7 +20,8 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                //
+                Bussiness.BussinesLogic.AdmClientes.CreateCliente(model) ;
+                return RedirectToAction("CreateClient");
             }
 
             return View(model);

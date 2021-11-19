@@ -28,6 +28,10 @@
     @Html.EditorFor(cliente => cliente.Direccion, new {htmlAttributes = new {@class="input-texto"} })
     @Html.ValidationMessageFor(cliente => cliente.Direccion, "", new {@class = "error-message"})
 
+        @Html.LabelFor(cliente => cliente.Telefono);
+    @Html.EditorFor(cliente => cliente.Telefono, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(cliente => cliente.Telefono, "", new {@class = "error-message"})
+
     @Html.LabelFor(cliente => cliente.CorreoElectronico);
     @Html.EditorFor(cliente => cliente.CorreoElectronico, new {htmlAttributes = new {@class="input-texto"} })
     @Html.ValidationMessageFor(cliente => cliente.CorreoElectronico, "", new {@class = "error-message"})
