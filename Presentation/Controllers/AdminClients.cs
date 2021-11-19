@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Bussiness.Model.BindingModel;
 
 namespace Presentation.Controllers
 {
@@ -12,6 +13,17 @@ namespace Presentation.Controllers
         public IActionResult CreateClient()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateClient(ClientCreateBindingModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //
+            }
+
+            return View(model);
         }
 
         public IActionResult EditCliente()

@@ -6,20 +6,32 @@
 
 <h1>Registrar nuevo cliente</h1>
 
-
 <form action="" method = "post">
 
     @Html.LabelFor(cliente => cliente.Cedula);
     @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto"} })
     @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
 
+    @Html.LabelFor(cliente => cliente.Nombre);
+    @Html.EditorFor(cliente => cliente.Nombre, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(cliente => cliente.Nombre, "", new {@class = "error-message"})
 
-@*    @Html.LabelFor(m => m.Nombre);
-    
-    @Html.LabelFor(m => m.Apellido);
-    
-    @Html.LabelFor(m => m.Edad);
-    
-    @Html.LabelFor(m => m.Cedula);*@
+    @Html.LabelFor(cliente => cliente.Apellido);
+    @Html.EditorFor(cliente => cliente.Apellido, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(cliente => cliente.Apellido, "", new {@class = "error-message"})
+
+    @Html.LabelFor(cliente => cliente.FechaNacimiento);
+    @Html.EditorFor(cliente => cliente.FechaNacimiento, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(cliente => cliente.FechaNacimiento, "", new {@class = "error-message"})
+
+    @Html.LabelFor(cliente => cliente.Direccion);
+    @Html.EditorFor(cliente => cliente.Direccion, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(cliente => cliente.Direccion, "", new {@class = "error-message"})
+
+    @Html.LabelFor(cliente => cliente.CorreoElectronico);
+    @Html.EditorFor(cliente => cliente.CorreoElectronico, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(cliente => cliente.CorreoElectronico, "", new {@class = "error-message"})
+
+    <input type="submit" value="Registrar empleado" class="submit-button" />
 
 </form>
