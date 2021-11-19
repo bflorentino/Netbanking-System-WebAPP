@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data;
+using Data;
 
 namespace Bussiness.BussinesLogic
 {
@@ -9,9 +9,9 @@ namespace Bussiness.BussinesLogic
     {
         public static void CreateCliente(Model.BindingModel.ClientCreateBindingModel cliente) 
         {
-            Data.NetBanking_Sys_WebAppContext dbContext = new Data.NetBanking_Sys_WebAppContext();
+            NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
 
-            dbContext.Add(new Data.Cliente
+            dbContext.Add(new Cliente
             {
                 Cedula = cliente.Cedula,
                 Nombre = cliente.Nombre,

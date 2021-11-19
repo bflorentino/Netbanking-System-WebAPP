@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Entities;
 
 #nullable disable
 
@@ -15,6 +16,7 @@ namespace Data
         public NetBanking_Sys_WebAppContext(DbContextOptions<NetBanking_Sys_WebAppContext> options)
             : base(options)
         {
+           
         }
 
         public virtual DbSet<Cliente> Clientes { get; set; }

@@ -23,7 +23,6 @@ namespace Presentation.Controllers
                 Bussiness.BussinesLogic.AdmClientes.CreateCliente(model) ;
                 return RedirectToAction("CreateClient");
             }
-
             return View(model);
         }
 
