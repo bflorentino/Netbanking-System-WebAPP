@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Bussiness;
 
 namespace Presentation.Controllers
 {
@@ -7,6 +8,22 @@ namespace Presentation.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult CreatePrestamo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreatePrestamo(Bussiness.Model.BindingModel.PrestamoCreateBindingModel prestamo)
+        {
+            if (ModelState.IsValid)
+            {
+               Bussiness.BussinesLogic.AdmPrestamos.CreatePrestamo(prestamo);
+                return View();
+            }
+            return View(prestamo);
         }
     }
 }

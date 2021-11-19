@@ -9,6 +9,8 @@ namespace Bussiness.Model.BindingModel
     {
         [Display(Name = "Numero de tarjeta")]
         [Required (ErrorMessage ="Ingrese un numero para la tarjeta")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = "El numero de cedula debe de ser de 16 numeros")]
+        [RegularExpression("[0-9]{16}", ErrorMessage = "Dato invalido, se deben ingresar 16 digitos numericos")]
         public string NumeroTarjeta { get; set; }
 
         [Display(Name = "Validacion")]

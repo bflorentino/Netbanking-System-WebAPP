@@ -1,0 +1,32 @@
+﻿@model Bussiness.Model.BindingModel.PrestamoCreateBindingModel;
+
+<form action="CreatePrestamo" method = "post">
+
+    @Html.LabelFor(prestamo => prestamo.CodigoPrestamo);
+    @Html.EditorFor(prestamo => prestamo.CodigoPrestamo, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(prestamo => prestamo.CodigoPrestamo, "", new {@class = "error-message"})
+
+    @Html.LabelFor(prestamo => prestamo.MontoPrestado);
+    @Html.EditorFor(prestamo => prestamo.MontoPrestado, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(prestamo => prestamo.MontoPrestado, "", new {@class = "error-message"})
+
+    @Html.LabelFor(prestamo => prestamo.CuotasTotalesAPagar);
+    @Html.EditorFor(prestamo => prestamo.CuotasTotalesAPagar, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(prestamo => prestamo.CuotasTotalesAPagar, "", new {@class = "error-message"})
+
+    @Html.LabelFor(prestamo => prestamo.PagoPorCuota);
+    @Html.EditorFor(prestamo => prestamo.PagoPorCuota, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(prestamo => prestamo.PagoPorCuota, "", new {@class = "error-message"})
+
+    @Html.LabelFor(prestamo => prestamo.TasaInteres);
+    @Html.EditorFor(prestamo => prestamo.TasaInteres, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(prestamo => prestamo.TasaInteres, "", new {@class = "error-message"})
+
+    @Html.LabelFor(prestamo => prestamo.Cedula);
+    @Html.EditorFor(prestamo => prestamo.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(prestamo => prestamo.Cedula, "", new {@class = "error-message"})
+
+
+    <input type="submit" value="Crear Prestamo" class="submit-button" />
+
+</form>
