@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.Cliente>
+
+<table class="table table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(cliente => cliente.Cedula)
+        </td>
+        <td>
+            @Html.DisplayNameFor(cliente => cliente.Nombre)
+        </td>
+        <td>
+            @Html.DisplayNameFor(cliente => cliente.Apellido)
+        </td>
+        <td>
+            @Html.DisplayNameFor(cliente => cliente.FechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayNameFor(cliente => cliente.Direccion)
+        </td>
+        <td>
+            @Html.DisplayNameFor(cliente => cliente.Telefono)
+        </td>
+         <td>
+            @Html.DisplayNameFor(cliente => cliente.CorreoElectronico)
+        </td>
+    </tr>
+ 
+    @{
+        foreach(var cliente in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(client => cliente.Cedula)</td>
+                <td>@Html.DisplayFor(client => cliente.Nombre)</td>
+                <td>@Html.DisplayFor(client => cliente.Apellido)</td>
+                <td>@Html.DisplayFor(client => cliente.FechaNacimiento)</td>
+                <td>@Html.DisplayFor(client => cliente.Direccion)</td>
+                <td>@Html.DisplayFor(client => cliente.Telefono)</td>
+                <td>@Html.DisplayFor(client => cliente.CorreoElectronico)</td>
+            </tr>
+        }
+    }
+</table>

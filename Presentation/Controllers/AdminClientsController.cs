@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Bussiness.Model.BindingModel;
+using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
@@ -21,7 +22,7 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 Bussiness.BussinesLogic.AdmClientes.CreateCliente(model) ;
-                return RedirectToAction("CreateClient");
+                return RedirectToAction("ViewClientes");
             }
             return View(model);
         }
@@ -33,7 +34,9 @@ namespace Presentation.Controllers
 
         public IActionResult ViewClientes()
         {
-            return View();
+            var clientes =  Bussiness.BussinesLogic.AdmClientes.GetClientes();
+    
+            return  View(clientes);
         }
     }
 }
