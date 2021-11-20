@@ -26,5 +26,12 @@ namespace Presentation.Controllers
 
             return View(tarjeta);
         }
+
+        public IActionResult ViewTarjetas()
+        {
+            var tarjetas = Bussiness.BussinesLogic.AdmTarjetas.GetTarjetas();
+
+            return View(tarjetas);
+        }
     }
 }

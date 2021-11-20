@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Data;
+using System.Linq;
 
 namespace Bussiness.BussinesLogic
 {
@@ -27,6 +28,25 @@ namespace Bussiness.BussinesLogic
             });
 
             dbContext.SaveChanges();    
+        }
+
+        public static List<Model.ViewModel.Tarjeta> GetTarjetas()
+        {
+            var tarjetas = (from tarjeta in dbContext.Tarjetas
+                                 join clienteCard in dbContext.ClientesTarjetas
+                                 on tarjeta.NumeroTarjeta equals clienteCard.NumeroTarjeta                           
+                                 select new Model.ViewModel.Tarjeta
+                                {
+                                   NumeroTarjeta = tarjeta.NumeroTarjeta,
+                                   ValorDeValidacion = tarjeta.ValorDeValidacion,
+                                   FechaVencimiento = tarjeta.FechaVencimiento,
+                                   FechaExpedicion=tarjeta.FechaExpedicion,
+                                   BalanceDisponible = tarjeta.BalanceDisponible,
+                                   BalanceConsumido = tarjeta.BalanceConsumido,
+                                   Cedula = clienteCard.Cedula,
+                            }).ToList(); 
+
+            return tarjetas;
         }
     }
 }

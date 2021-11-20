@@ -10,6 +10,8 @@ namespace Bussiness.Model.ViewModel
         [Display(Name = "Numero de tarjeta")]
         public string NumeroTarjeta { get; set; }
 
+        public string Cedula { get; set; }  
+
         [Display(Name = "Validacion")]
         public int ValorDeValidacion { get; set; }
 

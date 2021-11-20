@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.Tarjeta>
+
+<table class="table table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(tarjeta => tarjeta.NumeroTarjeta)
+        </td>
+        <td>
+            @Html.DisplayNameFor(tarjeta => tarjeta.Cedula)
+        </td>  
+        <td>
+            @Html.DisplayNameFor(tarjeta => tarjeta.ValorDeValidacion)
+        </td>
+        <td>
+            @Html.DisplayNameFor(tarjeta => tarjeta.FechaVencimiento)
+        </td>
+        <td>
+            @Html.DisplayNameFor(tarjeta => tarjeta.FechaExpedicion)
+        </td>
+        <td>
+            @Html.DisplayNameFor(tarjeta => tarjeta.BalanceDisponible)
+        </td>
+        <td>
+            @Html.DisplayNameFor(tarjeta => tarjeta.BalanceConsumido)
+        </td>
+    </tr>
+ 
+    @{
+        foreach(var tarjeta in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(card => tarjeta.NumeroTarjeta)
+                </td>
+                <td>
+                    @Html.DisplayFor(card => tarjeta.Cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(card => tarjeta.ValorDeValidacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(card => tarjeta.FechaVencimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(card => tarjeta.FechaExpedicion)
+                </td>
+                <td>
+                    @Html.DisplayFor(card => tarjeta.BalanceDisponible)
+                </td>
+                <td>
+                    @Html.DisplayFor(card => tarjeta.BalanceConsumido)
+                </td>
+            </tr>
+        }
+    }
+</table>
