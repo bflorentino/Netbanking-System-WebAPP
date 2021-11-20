@@ -25,5 +25,12 @@ namespace Presentation.Controllers
             }
             return View(cuenta);
         }
+
+        public IActionResult ViewCuentas()
+        {
+            var cuentas = Bussiness.BussinesLogic.AdmCuentas.GetCuentas();
+
+             return View(cuentas);
+        }
     }
 }

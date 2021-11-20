@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.Cuenta>
+
+<table class="table table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(cuenta => cuenta.NumeroCuenta)
+        </td>
+         <td>
+            @Html.DisplayNameFor(cuenta => cuenta.Cedula)
+        </td>
+        <td>
+            @Html.DisplayNameFor(cuenta => cuenta.Balance)
+        </td>
+          <td>
+            @Html.DisplayNameFor(cuenta => cuenta.FechaCreacion)
+        </td>
+    </tr>
+ 
+    @{
+        foreach(var cuenta in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(item => cuenta.NumeroCuenta)</td>
+                <td>@Html.DisplayFor(item => cuenta.Cedula)</td>
+                <td>@Html.DisplayFor(item => cuenta.Balance)</td>
+                 <td>@Html.DisplayFor(item=> cuenta.FechaCreacion)</td>
+            </tr>
+        }
+    }
+</table>
