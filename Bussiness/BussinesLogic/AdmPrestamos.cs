@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Data;
+using System.Linq;
 
 namespace Bussiness.BussinesLogic
 {
@@ -30,6 +31,26 @@ namespace Bussiness.BussinesLogic
             });
 
            dbContext.SaveChanges();
+        }
+
+        public static List<Model.ViewModel.Prestamo> GetPrestamos()
+        {
+            var prestamos = (from prestamo in dbContext.Prestamos
+                                    join cPrestamo in dbContext.ClientesPrestamos
+                                    on prestamo.CodigoPrestamo equals cPrestamo.CodigoPrestamo
+                                    select new Model.ViewModel.Prestamo
+                                    {
+                                        CodigoPrestamo = prestamo.CodigoPrestamo,
+                                        Cedula= cPrestamo.Cedula,
+                                        FechaInicio = prestamo.FechaInicio,
+                                        MontoPrestado = prestamo.MontoPrestado,
+                                        CuotasTotalesAPagar = prestamo.CuotasTotalesAPagar,
+                                        CuotasPagadas = prestamo.CuotasPagadas,
+                                        PagoPorCuota = prestamo.PagoPorCuota,
+                                        Activo = prestamo.Activo
+                                    }).ToList();
+
+            return prestamos;
         }
     }
 }

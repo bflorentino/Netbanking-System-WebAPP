@@ -9,6 +9,8 @@ namespace Bussiness.Model.ViewModel
     {
         [Display(Name="Codigo del prestamo")]
         public string CodigoPrestamo { get; set; }
+
+        public string Cedula { get; set; }
         
         [Display(Name="Fecha de inicio")]
         public DateTime FechaInicio { get; set; }

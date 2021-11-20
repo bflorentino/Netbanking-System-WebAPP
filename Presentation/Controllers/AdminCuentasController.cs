@@ -21,7 +21,7 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 Bussiness.BussinesLogic.AdmCuentas.CreateCuenta(cuenta);
-                return View("CreateCuenta");
+                return View("ViewCuentas");
             }
             return View(cuenta);
         }

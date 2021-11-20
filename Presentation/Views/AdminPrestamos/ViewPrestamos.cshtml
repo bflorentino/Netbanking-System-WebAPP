@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.Prestamo>
+
+<table class="table table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.CodigoPrestamo)
+        </td>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.Cedula)
+        </td>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.FechaInicio)
+        </td>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.MontoPrestado)
+        </td>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.CuotasTotalesAPagar)
+        </td>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.PagoPorCuota)
+        </td>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.CuotasPagadas)
+        </td>
+        <td>
+            @Html.DisplayNameFor(prestamo => prestamo.Activo)
+        </td>
+    </tr>
+ 
+    @{
+        foreach(var prestamo in Model)
+        {
+            <tr>
+            <td>
+            @Html.DisplayFor(pres => prestamo.CodigoPrestamo)
+        </td>
+        <td>
+            @Html.DisplayFor(pres => prestamo.Cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(pres => prestamo.FechaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(pres => prestamo.MontoPrestado)
+        </td>
+        <td>
+            @Html.DisplayFor(pres=> prestamo.CuotasTotalesAPagar)
+        </td>
+        <td>
+            @Html.DisplayFor(pres => prestamo.PagoPorCuota)
+        </td>
+        <td>
+            @Html.DisplayFor(pres => prestamo.CuotasPagadas)
+        </td>
+        <td>
+            @Html.DisplayFor(pres => prestamo.Activo)
+        </td>
+            </tr>
+        }
+    }
+</table>

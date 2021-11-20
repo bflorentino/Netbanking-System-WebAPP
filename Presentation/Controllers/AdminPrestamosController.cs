@@ -25,5 +25,12 @@ namespace Presentation.Controllers
             }
             return View(prestamo);
         }
+
+        public IActionResult ViewPrestamos()
+        {
+            var prestamos = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamos();
+
+            return View(prestamos);
+        }
     }
 }
