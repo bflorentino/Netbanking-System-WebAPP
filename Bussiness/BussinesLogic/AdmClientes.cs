@@ -28,7 +28,7 @@ namespace Bussiness.BussinesLogic
             dbContext.SaveChanges();
         }
 
-        public static List<Model.ViewModel.Cliente> GetClientes()
+        public static List<Model.ViewModel.Cliente> GetClientes() // Retorna todos los clientes registrados (Reporte de clientes)
         {
             var clientes = (from cliente in dbContext.Clientes
                                 select cliente).ToList();
@@ -49,6 +49,42 @@ namespace Bussiness.BussinesLogic
                 });
             }
             return listaClientesViewModel;
+        }
+
+        public static Model.BindingModel.ClientEditBindingModel getCliente(string cedula)
+        {
+            // Retorna un unico cliente especificado por cedula
+            
+            var cliente = (from client in dbContext.Clientes
+                                 where client.Cedula == cedula
+                                 select new Model.BindingModel.ClientEditBindingModel
+                                 {
+                                     Cedula = client.Cedula,
+                                     Nombre = client.Nombre,
+                                     Apellido= client.Apellido,
+                                     FechaNacimiento = client.FechaNacimiento,
+                                     Direccion= client.Direccion,
+                                     Telefono= client.Telefono,
+                                     CorreoElectronico = client.CorreoElectronico
+                                 }).FirstOrDefault();
+
+            return cliente;
+        }
+
+        public static void updateCliente(Model.BindingModel.ClientEditBindingModel cliente)
+        {
+            // Actualiza la informacion del cliente recibido por parametro
+
+            var project = dbContext.Clientes.Where(c => c.Cedula == cliente.Cedula).FirstOrDefault();
+           
+            project.Nombre = cliente.Nombre;
+            project.Apellido = cliente.Apellido;
+            project.FechaNacimiento = cliente.FechaNacimiento;
+            project.Direccion= cliente.Direccion;
+            project.Telefono = cliente.Telefono;
+            project.CorreoElectronico = cliente.CorreoElectronico;
+
+            dbContext.SaveChanges();
         }
     }
 }

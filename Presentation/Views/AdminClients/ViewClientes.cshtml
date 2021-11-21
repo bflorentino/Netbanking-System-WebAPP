@@ -10,7 +10,10 @@
         </td>
         <td>
             @Html.DisplayNameFor(cliente => cliente.Apellido)
-va          </td>
+        </td>
+        <td>
+            @Html.DisplayNameFor(cliente => cliente.FechaNacimiento)
+        </td>
         <td>
             @Html.DisplayNameFor(cliente => cliente.Direccion)
         </td>
@@ -20,6 +23,7 @@ va          </td>
          <td>
             @Html.DisplayNameFor(cliente => cliente.CorreoElectronico)
         </td>
+        <td>Edicion</td>
     </tr>
  
     @{
@@ -30,9 +34,10 @@ va          </td>
                 <td>@Html.DisplayFor(client => cliente.Nombre)</td>
                 <td>@Html.DisplayFor(client => cliente.Apellido)</td>
                 <td>@Html.DisplayFor(client => cliente.FechaNacimiento)</td>
-                <td>@Html.DisplayFor(client => cliente.Direccion)</td>
+                <td>@Html.DisplayFor(client => cliente.Direccion)</td>  
                 <td>@Html.DisplayFor(client => cliente.Telefono)</td>
                 <td>@Html.DisplayFor(client => cliente.CorreoElectronico)</td>
+                <td>@Html.ActionLink("Editar", "EditCliente", "AdminClients", new {cedula = cliente.Cedula},new {@class = "btn-btn-primary btn-sm"})</td>
             </tr>
         }
     }

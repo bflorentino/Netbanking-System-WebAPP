@@ -27,9 +27,21 @@ namespace Presentation.Controllers
             return View(model);
         }
 
-        public IActionResult EditCliente()
+        public IActionResult EditCliente(string cedula)
         {
-            return View();
+            var cliente = Bussiness.BussinesLogic.AdmClientes.getCliente(cedula);
+            return View(cliente);
+        }
+
+        [HttpPost]
+        public IActionResult EditCliente(ClientEditBindingModel cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                Bussiness.BussinesLogic.AdmClientes.updateCliente(cliente);
+                return RedirectToAction("ViewClientes");
+            }
+            return View(cliente);
         }
 
         public IActionResult ViewClientes()
