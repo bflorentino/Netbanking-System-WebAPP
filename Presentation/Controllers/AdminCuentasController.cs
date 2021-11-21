@@ -32,5 +32,25 @@ namespace Presentation.Controllers
 
              return View(cuentas);
         }
+
+        [HttpPut]
+        public IActionResult EditCuenta(string cuentaToUpdate)
+        {
+            var cuenta = Bussiness.BussinesLogic.AdmCuentas.GetCuenta(cuentaToUpdate);
+
+            return View(cuenta);
+        }
+
+        [HttpPost]
+        public IActionResult EditCuenta(Bussiness.Model.BindingModel.CuentaEditBindingModel cuenta)
+        {
+            if (ModelState.IsValid)
+            {
+                Bussiness.BussinesLogic.AdmCuentas.UpdateCuenta(cuenta);
+                return RedirectToAction("ViewCuentas");
+            }
+            
+            return View(cuenta);
+        }
     }
 }

@@ -53,5 +53,33 @@ namespace Bussiness.BussinesLogic
 
              return cuentasViewModel;
             }
+
+        public static Model.BindingModel.CuentaEditBindingModel GetCuenta(string numeroCuenta)
+        {
+            // Retorna una unica cuenta bancaria especificado por el numero de cuenta
+
+            var cuenta = (from cuentas in dbContext.Cuentas
+                              join clienteCuenta in dbContext.ClientesCuentas on cuentas.NumeroCuenta equals clienteCuenta.NumeroCuenta
+                              where cuentas.NumeroCuenta == numeroCuenta
+                              select new Model.BindingModel.CuentaEditBindingModel
+                              {
+                                 NumeroCuenta = cuentas.NumeroCuenta,
+                                 FechaCreacion = cuentas.FechaCreacion,
+                                 Balance = cuentas.Balance,
+                                 Cedula = clienteCuenta.Cedula
+                              }).FirstOrDefault();
+
+            return cuenta;
+        }
+
+        public static void UpdateCuenta(Model.BindingModel.CuentaEditBindingModel cuenta)
+        {
+           var account = dbContext.Cuentas.Where(c => c.NumeroCuenta == cuenta.NumeroCuenta).FirstOrDefault();
+
+            // Edicion de la cuenta
+            account.Balance = cuenta.Balance;
+
+            dbContext.SaveChanges();
         }
     }
+ }
