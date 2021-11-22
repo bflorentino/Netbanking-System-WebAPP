@@ -52,5 +52,42 @@ namespace Bussiness.BussinesLogic
 
             return prestamos;
         }
+
+        public static Model.BindingModel.PrestamoEditBindingModel GetPrestamo(string codigoPrestamo)
+        {
+            // Recupera un prestamo segun el codigo de prestamo recibido
+
+            var loan = (from prestamos in dbContext.Prestamos
+                           join clientesPrestamos in dbContext.ClientesPrestamos
+                           on prestamos.CodigoPrestamo equals clientesPrestamos.CodigoPrestamo
+                           where prestamos.CodigoPrestamo == codigoPrestamo
+                           select new Model.BindingModel.PrestamoEditBindingModel
+                         {
+                             CodigoPrestamo = prestamos.CodigoPrestamo,
+                             Cedula = clientesPrestamos.Cedula,
+                             FechaInicio = prestamos.FechaInicio,
+                             MontoPrestado = prestamos.MontoPrestado,
+                             CuotasTotalesAPagar = prestamos.CuotasTotalesAPagar,
+                             CuotasPagadas = prestamos.CuotasPagadas,
+                             PagoPorCuota = prestamos.PagoPorCuota,
+                             TasaInteres = prestamos.TasaInteres,
+                             Activo = prestamos.Activo,
+                         }).FirstOrDefault();
+
+            return loan;
+        }
+
+        public static void UpdatePrestamo(Model.BindingModel.PrestamoEditBindingModel prestamo)
+        {
+            var loan = dbContext.Prestamos.Where(x => x.CodigoPrestamo == prestamo.CodigoPrestamo).FirstOrDefault();
+
+            loan.MontoPrestado = prestamo.MontoPrestado;
+            loan.CuotasTotalesAPagar = prestamo.CuotasTotalesAPagar;
+            loan.CuotasPagadas = prestamo.CuotasPagadas;
+            loan.PagoPorCuota = prestamo.PagoPorCuota;
+            loan.TasaInteres = prestamo.TasaInteres;
+
+            dbContext.SaveChanges();
+        }
     }
 }

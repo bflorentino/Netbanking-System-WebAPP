@@ -27,7 +27,7 @@
                 <td>@Html.DisplayFor(item => cuenta.Cedula)</td>
                 <td>@Html.DisplayFor(item => cuenta.Balance)</td>
                  <td>@Html.DisplayFor(item=> cuenta.FechaCreacion)</td>
-   <td>@Html.ActionLink("Editar", "EditCuenta", "AdminCuentas", new {cuentaToUpdate = cuenta.NumeroCuenta},new {@class = "btn-btn-primary btn-sm"})</td>
+                <td>@Html.ActionLink("Editar", "EditCuenta", "AdminCuentas", new {cuentaToUpdate = cuenta.NumeroCuenta},new {@class = "btn-btn-primary btn-sm"})</td>
             </tr>
         }
     }

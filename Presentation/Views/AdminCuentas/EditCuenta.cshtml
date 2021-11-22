@@ -12,11 +12,10 @@
 
         @Html.EditorFor(cuenta => cuenta.FechaCreacion, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
 
+        @Html.LabelFor(cuenta => cuenta.Cedula);
+        @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
 
-    @Html.LabelFor(cuenta => cuenta.Cedula);
-    @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
-    @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
-
-    <input type="submit" value="Registrar Cuenta" class="submit-button" />
+    <input type="submit" value="Editar Cuenta" class="submit-button" />
 
 </form>

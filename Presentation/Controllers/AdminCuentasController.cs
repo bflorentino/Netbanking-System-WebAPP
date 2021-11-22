@@ -33,7 +33,7 @@ namespace Presentation.Controllers
              return View(cuentas);
         }
 
-        [HttpPut]
+ 
         public IActionResult EditCuenta(string cuentaToUpdate)
         {
             var cuenta = Bussiness.BussinesLogic.AdmCuentas.GetCuenta(cuentaToUpdate);
@@ -49,7 +49,6 @@ namespace Presentation.Controllers
                 Bussiness.BussinesLogic.AdmCuentas.UpdateCuenta(cuenta);
                 return RedirectToAction("ViewCuentas");
             }
-            
             return View(cuenta);
         }
     }

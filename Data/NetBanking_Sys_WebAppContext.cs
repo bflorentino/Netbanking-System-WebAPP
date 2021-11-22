@@ -332,7 +332,7 @@ namespace Data
 
                 entity.Property(e => e.PagoPorCuota).HasColumnType("decimal(11, 2)");
 
-                entity.Property(e => e.TasaInteres).HasColumnType("decimal(2, 2)");
+                entity.Property(e => e.TasaInteres).HasColumnType("decimal(5, 2)");
             });
 
             modelBuilder.Entity<Role>(entity =>

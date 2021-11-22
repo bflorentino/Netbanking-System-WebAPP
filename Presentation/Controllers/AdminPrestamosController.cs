@@ -26,6 +26,24 @@ namespace Presentation.Controllers
             return View(prestamo);
         }
 
+        public IActionResult EditPrestamo(string prestamoToUpdate)
+        {
+            var prestamo = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamo(prestamoToUpdate);
+
+            return View(prestamo);
+        }
+
+        [HttpPost]
+        public IActionResult EditPrestamo(Bussiness.Model.BindingModel.PrestamoEditBindingModel prestamo)
+        {
+            if (ModelState.IsValid)
+            {
+                Bussiness.BussinesLogic.AdmPrestamos.UpdatePrestamo(prestamo);
+                return RedirectToAction("ViewPrestamos");
+            }
+            return View(prestamo);
+        }
+
         public IActionResult ViewPrestamos()
         {
             var prestamos = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamos();

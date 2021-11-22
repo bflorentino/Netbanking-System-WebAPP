@@ -10,10 +10,10 @@
         @Html.EditorFor(cliente => cliente.Balance, new {htmlAttributes = new {@class="input-texto"} })
         @Html.ValidationMessageFor(cliente => cliente.Balance, "", new {@class = "error-message"})
 
-    @Html.LabelFor(cuenta => cuenta.Cedula);
-    @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto"} })
-    @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
+        @Html.LabelFor(cuenta => cuenta.Cedula);
+        @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+        @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
 
-    <input type="submit" value="Registrar Cuenta" class="submit-button" />
+        <input type="submit" value="Registrar Cuenta" class="submit-button" />
 
 </form>

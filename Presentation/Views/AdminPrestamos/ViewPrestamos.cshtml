@@ -26,8 +26,10 @@
         <td>
             @Html.DisplayNameFor(prestamo => prestamo.Activo)
         </td>
+        <td>
+            Edicion
+        </td>
     </tr>
- 
     @{
         foreach(var prestamo in Model)
         {
@@ -56,6 +58,7 @@
         <td>
             @Html.DisplayFor(pres => prestamo.Activo)
         </td>
+          <td>@Html.ActionLink("Editar", "EditPrestamo", "AdminPrestamos", new {prestamoToUpdate = prestamo.CodigoPrestamo},new {@class = "btn-btn-primary btn-sm"})</td>
             </tr>
         }
     }
