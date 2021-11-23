@@ -26,5 +26,16 @@ namespace Bussiness.BussinesLogic
            ); 
             dbContext.SaveChanges();
         }
+
+        public static bool IsUserValid(Model.BindingModel.LoginUsuarioBindingModel usuario)
+        {
+            // Validad que un usuario exista dentro de la base de datos
+            Usuario User = (from user in dbContext.Usuarios
+                           where usuario.NombreUsuario == user.NombreUsuario 
+                           && user.PasswordHashed== PasswordEncrypter.Compute256Hash(usuario.Password)
+                           select user).FirstOrDefault();
+
+            return User != null;
+        }
     }
 }

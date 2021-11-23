@@ -1,1 +1,15 @@
-﻿
+﻿@model Bussiness.Model.BindingModel.LoginUsuarioBindingModel
+
+<form action="Login" method = "post">
+
+    @Html.LabelFor(usuario => usuario.NombreUsuario);
+    @Html.EditorFor(usuario => usuario.NombreUsuario, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(usuario => usuario.NombreUsuario, "", new {@class = "error-message"})
+    
+    @Html.LabelFor(usuario => usuario.Password);
+    @Html.PasswordFor(usuario => usuario.Password, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(usuario => usuario.Password, "", new {@class = "error-message"})
+
+    <input type="submit" value="LogIn" class="submit-button" />
+
+</form>

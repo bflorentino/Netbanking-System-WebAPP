@@ -55,5 +55,17 @@ namespace Presentation.Controllers
             return View();
         }
 
+       [HttpPost]
+       public IActionResult Login(Bussiness.Model.BindingModel.LoginUsuarioBindingModel usuario)
+        {
+           bool validar =  Bussiness.BussinesLogic.ManageUsers.IsUserValid(usuario);
+
+            if (validar)
+            {
+                return RedirectToAction("RegistroUsuario");
+            }
+
+            return View(usuario);
+        }
     }
 }
