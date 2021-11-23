@@ -45,7 +45,15 @@ namespace Presentation.Controllers
                 usuario.RutaFoto = ruta;
             }
 
+            Bussiness.BussinesLogic.ManageUsers.AddNewUser(usuario);
+
             return RedirectToAction("RegistroUsuario");
-        } 
+        }
+        
+        public IActionResult Login()
+        {
+            return View();
+        }
+
     }
 }

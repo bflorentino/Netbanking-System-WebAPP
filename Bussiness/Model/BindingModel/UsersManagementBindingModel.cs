@@ -20,6 +20,6 @@ namespace Bussiness.Model.BindingModel
         [RegularExpression("[0-9]{11}", ErrorMessage = "Dato invalido, se deben ingresar 11 digitos numericos")]
         public string Cedula { get; set; }
 
-        public string RutaFoto { get; set; }
+        public string? RutaFoto { get; set; }
     }
 }
