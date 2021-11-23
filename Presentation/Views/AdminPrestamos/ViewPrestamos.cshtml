@@ -58,7 +58,9 @@
         <td>
             @Html.DisplayFor(pres => prestamo.Activo)
         </td>
-          <td>@Html.ActionLink("Editar", "EditPrestamo", "AdminPrestamos", new {prestamoToUpdate = prestamo.CodigoPrestamo},new {@class = "btn-btn-primary btn-sm"})</td>
+          <td>
+          @Html.ActionLink("Editar", "EditPrestamo", "AdminPrestamos", new {prestamoToUpdate = prestamo.CodigoPrestamo},new {@class = "btn-btn-primary btn-sm"})
+          </td>
             </tr>
         }
     }

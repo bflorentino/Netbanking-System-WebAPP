@@ -1,0 +1,35 @@
+﻿@model Bussiness.Model.BindingModel.CreditCardEditBindingModel
+
+<form action="EditTarjeta" method = "post">
+
+    @Html.LabelFor(tarjeta => tarjeta.NumeroTarjeta);
+    @Html.EditorFor(tarjeta => tarjeta.NumeroTarjeta, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+    @Html.ValidationMessageFor(tarjeta => tarjeta.NumeroTarjeta, "", new {@class = "error-message"})
+
+    @Html.LabelFor(tarjeta => tarjeta.Cedula);
+    @Html.EditorFor(tarjeta => tarjeta.Cedula, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+    @Html.ValidationMessageFor(tarjeta => tarjeta.Cedula, "", new {@class = "error-message"})
+
+    @Html.LabelFor(tarjeta => tarjeta.FechaExpedicion);
+    @Html.EditorFor(tarjeta => tarjeta.FechaExpedicion, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+    @Html.ValidationMessageFor(tarjeta => tarjeta.FechaExpedicion, "", new {@class = "error-message"})
+
+    @Html.LabelFor(tarjeta => tarjeta.ValorDeValidacion);
+    @Html.EditorFor(tarjeta => tarjeta.ValorDeValidacion, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+    @Html.ValidationMessageFor(tarjeta => tarjeta.ValorDeValidacion, "", new {@class = "error-message"})
+
+    @Html.LabelFor(tarjeta => tarjeta.BalanceDisponible);
+    @Html.EditorFor(tarjeta => tarjeta.BalanceDisponible, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(tarjeta => tarjeta.BalanceDisponible, "", new {@class = "error-message"})
+
+    @Html.LabelFor(tarjeta => tarjeta.BalanceConsumido);
+    @Html.EditorFor(tarjeta => tarjeta.BalanceConsumido, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+    @Html.ValidationMessageFor(tarjeta => tarjeta.BalanceConsumido, "", new {@class = "error-message"})
+
+    @Html.LabelFor(tarjeta => tarjeta.FechaVencimiento);
+    @Html.EditorFor(tarjeta => tarjeta.FechaVencimiento, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+    @Html.ValidationMessageFor(tarjeta => tarjeta.FechaVencimiento, "", new {@class = "error-message"})
+
+    <input type="submit" value="Editar Tarjeta" class="submit-button" />
+
+</form>

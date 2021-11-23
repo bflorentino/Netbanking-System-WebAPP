@@ -8,7 +8,7 @@ namespace Bussiness.BussinesLogic
 {
     public class AdmTarjetas
     {
-        static NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
         public static void CreateTarjeta(Model.BindingModel.CreditCardCreateBindingModel tarjeta)
         {
             dbContext.Add(new Tarjeta
@@ -30,7 +30,7 @@ namespace Bussiness.BussinesLogic
             dbContext.SaveChanges();    
         }
 
-        public static List<Model.ViewModel.Tarjeta> GetTarjetas()
+       public static List<Model.ViewModel.Tarjeta> GetTarjetas()
         {
             var tarjetas = (from tarjeta in dbContext.Tarjetas
                                  join clienteCard in dbContext.ClientesTarjetas
@@ -47,6 +47,35 @@ namespace Bussiness.BussinesLogic
                             }).ToList(); 
 
             return tarjetas;
+        }
+
+       public static Model.BindingModel.CreditCardEditBindingModel GetTarjeta(string numeroTarjeta)
+        {
+            // Obtiene la tarjeta especificada por parametro
+
+            var tarjeta = (from tarjetas in dbContext.Tarjetas
+                           join clientestarjetas in dbContext.ClientesTarjetas
+                           on tarjetas.NumeroTarjeta equals clientestarjetas.NumeroTarjeta
+                           where tarjetas.NumeroTarjeta == numeroTarjeta
+                           select new Model.BindingModel.CreditCardEditBindingModel
+                           {
+                               NumeroTarjeta = tarjetas.NumeroTarjeta,
+                               ValorDeValidacion = tarjetas.ValorDeValidacion,
+                               FechaExpedicion = tarjetas.FechaExpedicion,
+                               FechaVencimiento = tarjetas.FechaVencimiento,
+                               BalanceDisponible = tarjetas.BalanceDisponible,
+                               BalanceConsumido = tarjetas.BalanceConsumido,
+                               Cedula = clientestarjetas.Cedula
+                           }).FirstOrDefault();
+
+            return tarjeta;
+        }
+        
+        public static void UpdateTarjeta(Model.BindingModel.CreditCardEditBindingModel tarjeta)
+        {
+            var card = dbContext.Tarjetas.Where(x => x.NumeroTarjeta == tarjeta.NumeroTarjeta).FirstOrDefault();
+            card.BalanceDisponible = tarjeta.BalanceDisponible;
+            dbContext.SaveChanges();
         }
     }
 }

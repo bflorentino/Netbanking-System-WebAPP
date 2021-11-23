@@ -1,0 +1,21 @@
+﻿@model Bussiness.Model.BindingModel.UsersCreateBindingModel
+
+<form action="RegistroUsuario" method = "post" enctype="multipart/form-data">
+
+    @Html.LabelFor(usuario => usuario.Cedula);
+    @Html.EditorFor(usuario => usuario.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(usuario => usuario.Cedula, "", new {@class = "error-message"})
+
+    @Html.LabelFor(usuario => usuario.NombreUsuario);
+    @Html.EditorFor(usuario => usuario.NombreUsuario, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(usuario => usuario.NombreUsuario, "", new {@class = "error-message"})
+    
+    @Html.LabelFor(usuario => usuario.PasswordHashed);
+    @Html.PasswordFor(usuario => usuario.PasswordHashed, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.ValidationMessageFor(usuario => usuario.PasswordHashed, "", new {@class = "error-message"})
+
+    <input type="file" name="Foto" class = "input-texto" >
+
+    <input type="submit" value="Registrarme" class="submit-button" />
+
+</form>

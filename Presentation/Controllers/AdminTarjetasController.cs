@@ -27,6 +27,24 @@ namespace Presentation.Controllers
             return View(tarjeta);
         }
 
+        public IActionResult EditTarjeta(string tarjetaToUpdate)
+        {
+            var tarjeta = Bussiness.BussinesLogic.AdmTarjetas.GetTarjeta(tarjetaToUpdate);
+
+            return View(tarjeta);
+        }
+        
+        [HttpPost]
+        public IActionResult EditTarjeta(Bussiness.Model.BindingModel.CreditCardEditBindingModel tarjeta)
+        {
+            if (ModelState.IsValid)
+            {
+                Bussiness.BussinesLogic.AdmTarjetas.UpdateTarjeta(tarjeta);
+                return RedirectToAction("ViewTarjetas");
+            }
+            return View(tarjeta);
+        }
+
         public IActionResult ViewTarjetas()
         {
             var tarjetas = Bussiness.BussinesLogic.AdmTarjetas.GetTarjetas();

@@ -391,6 +391,10 @@ namespace Data
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Cedula)
+                    .HasMaxLength(11)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.IdRol).HasColumnName("idRol");
 
                 entity.Property(e => e.PasswordHashed)
@@ -405,6 +409,12 @@ namespace Data
                     .HasForeignKey(d => d.IdRol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__USUARIOS__RutaFo__2B0A656D");
+
+                     entity.HasOne(d => d.CedulaNavigation)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.Cedula)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__USUARIOS__Cedula__3A4CA8FD");
             });
 
             OnModelCreatingPartial(modelBuilder);
