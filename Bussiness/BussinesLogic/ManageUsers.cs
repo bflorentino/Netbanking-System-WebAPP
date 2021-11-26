@@ -9,6 +9,7 @@ namespace Bussiness.BussinesLogic
     public class ManageUsers
     {
         static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        public static Usuario UserOnline { get; set; }
  
         public static void AddNewUser(Model.BindingModel.UsersCreateBindingModel usuario)
         {
@@ -27,15 +28,26 @@ namespace Bussiness.BussinesLogic
             dbContext.SaveChanges();
         }
 
-        public static bool IsUserValid(Model.BindingModel.LoginUsuarioBindingModel usuario)
+       public static bool IsUserValid(Model.BindingModel.LoginUsuarioBindingModel usuario)
         {
             // Validad que un usuario exista dentro de la base de datos
-            Usuario User = (from user in dbContext.Usuarios
-                           where usuario.NombreUsuario == user.NombreUsuario 
-                           && user.PasswordHashed== PasswordEncrypter.Compute256Hash(usuario.Password)
-                           select user).FirstOrDefault();
+            return GetUser(usuario) != null;
+        }
 
-            return User != null;
+        public static Usuario GetUser(Model.BindingModel.LoginUsuarioBindingModel usuario)
+        {
+            Usuario User = (from user in dbContext.Usuarios
+                            where usuario.NombreUsuario == user.NombreUsuario
+                            && user.PasswordHashed == PasswordEncrypter.Compute256Hash(usuario.Password)
+                            select user).FirstOrDefault();
+
+            return User;
+        }
+
+        public static void SetUserOnline(Model.BindingModel.LoginUsuarioBindingModel usuario)
+        {
+            Usuario user = GetUser(usuario);
+            UserOnline = user;
         }
     }
 }

@@ -52,19 +52,27 @@ namespace Presentation.Controllers
         
         public IActionResult Login()
         {
+            ViewBag.Message = "";
             return View();
         }
 
        [HttpPost]
        public IActionResult Login(Bussiness.Model.BindingModel.LoginUsuarioBindingModel usuario)
         {
-           bool validar =  Bussiness.BussinesLogic.ManageUsers.IsUserValid(usuario);
-
-            if (validar)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("RegistroUsuario");
-            }
+               bool validarUsuario =  Bussiness.BussinesLogic.ManageUsers.IsUserValid(usuario);
 
+                if (validarUsuario)
+                {
+                    Bussiness.BussinesLogic.ManageUsers.SetUserOnline(usuario);                
+                    return RedirectToAction("RegistroUsuario");
+                }
+                else
+                {
+                    ViewBag.Message = "Usuario invalido. El nombre de usuario ingresado o la contraseña ingresada son invalidos";
+                }
+            }
             return View(usuario);
         }
     }
