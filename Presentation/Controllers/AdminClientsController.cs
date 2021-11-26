@@ -8,12 +8,28 @@ namespace Presentation.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult CreateClient()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
@@ -29,8 +45,16 @@ namespace Presentation.Controllers
 
         public IActionResult EditCliente(string cedula)
         {
-            var cliente = Bussiness.BussinesLogic.AdmClientes.getCliente(cedula);
-            return View(cliente);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    var cliente = Bussiness.BussinesLogic.AdmClientes.getCliente(cedula);
+                    return View(cliente);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
@@ -46,9 +70,16 @@ namespace Presentation.Controllers
 
         public IActionResult ViewClientes()
         {
-            var clientes =  Bussiness.BussinesLogic.AdmClientes.GetClientes();
-    
-            return  View(clientes);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                   var clientes =  Bussiness.BussinesLogic.AdmClientes.GetClientes();
+                    return View(clientes);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
     }
 }

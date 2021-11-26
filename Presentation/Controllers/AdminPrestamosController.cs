@@ -7,12 +7,28 @@ namespace Presentation.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult CreatePrestamo()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
@@ -28,9 +44,16 @@ namespace Presentation.Controllers
 
         public IActionResult EditPrestamo(string prestamoToUpdate)
         {
-            var prestamo = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamo(prestamoToUpdate);
-
-            return View(prestamo);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    var prestamo = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamo(prestamoToUpdate);
+                    return View(prestamo);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
@@ -46,9 +69,16 @@ namespace Presentation.Controllers
 
         public IActionResult ViewPrestamos()
         {
-            var prestamos = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamos();
-
-            return View(prestamos);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    var prestamos = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamos();
+                    return View(prestamos);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Presentation
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=AdminClients}/{action=Index}/{id?}");
+                    pattern: "{controller=FreeSite}/{action=Index}/{id?}");
             });
         }
     }

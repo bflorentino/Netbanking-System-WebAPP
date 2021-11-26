@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
-using Bussiness.Model;
+using Bussiness;
 
 namespace Presentation.Controllers
 {

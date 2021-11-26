@@ -7,12 +7,28 @@ namespace Presentation.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult CreateCuenta()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
@@ -28,17 +44,30 @@ namespace Presentation.Controllers
 
         public IActionResult ViewCuentas()
         {
-            var cuentas = Bussiness.BussinesLogic.AdmCuentas.GetCuentas();
-
-             return View(cuentas);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    var cuentas = Bussiness.BussinesLogic.AdmCuentas.GetCuentas();
+                    return View(cuentas);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
- 
         public IActionResult EditCuenta(string cuentaToUpdate)
         {
-            var cuenta = Bussiness.BussinesLogic.AdmCuentas.GetCuenta(cuentaToUpdate);
-
-            return View(cuenta);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    var cuenta = Bussiness.BussinesLogic.AdmCuentas.GetCuenta(cuentaToUpdate);
+                    return View(cuenta);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]

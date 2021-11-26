@@ -7,12 +7,28 @@ namespace Presentation.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if(Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if(Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult CreateTarjeta()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
@@ -29,9 +45,16 @@ namespace Presentation.Controllers
 
         public IActionResult EditTarjeta(string tarjetaToUpdate)
         {
-            var tarjeta = Bussiness.BussinesLogic.AdmTarjetas.GetTarjeta(tarjetaToUpdate);
-
-            return View(tarjeta);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    var tarjeta = Bussiness.BussinesLogic.AdmTarjetas.GetTarjeta(tarjetaToUpdate);
+                    return View(tarjeta);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
         
         [HttpPost]
@@ -47,9 +70,16 @@ namespace Presentation.Controllers
 
         public IActionResult ViewTarjetas()
         {
-            var tarjetas = Bussiness.BussinesLogic.AdmTarjetas.GetTarjetas();
-
-            return View(tarjetas);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
+                {
+                    var tarjetas = Bussiness.BussinesLogic.AdmTarjetas.GetTarjetas();
+                    return View(tarjetas);
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
     }
 }
