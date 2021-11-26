@@ -410,11 +410,11 @@ namespace Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__USUARIOS__RutaFo__2B0A656D");
 
-                     entity.HasOne(d => d.CedulaNavigation)
-                    .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => d.Cedula)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__USUARIOS__Cedula__3A4CA8FD");
+                    // entity.HasOne(d => d.CedulaNavigation)
+                    //.WithMany(p => p.Usuarios)
+                    //.HasForeignKey(d => d.Cedula)
+                    //.OnDelete(DeleteBehavior.ClientSetNull)
+                    //.HasConstraintName("FK__USUARIOS__Cedula__3A4CA8FD");
             });
 
             OnModelCreatingPartial(modelBuilder);

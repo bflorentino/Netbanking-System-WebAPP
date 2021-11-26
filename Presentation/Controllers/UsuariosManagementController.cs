@@ -65,8 +65,11 @@ namespace Presentation.Controllers
 
                 if (validarUsuario)
                 {
-                    Bussiness.BussinesLogic.ManageUsers.SetUserOnline(usuario);                
-                    return RedirectToAction("RegistroUsuario");
+                    Bussiness.BussinesLogic.ManageUsers.SetUserOnline(usuario);
+
+                    return Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1 ?
+                        RedirectToAction("Index", "Admin") :
+                        RedirectToAction("Index", "Clients");
                 }
                 else
                 {

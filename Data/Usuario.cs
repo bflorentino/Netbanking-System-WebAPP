@@ -12,9 +12,7 @@ namespace Data
         public string Cedula { get; set; }
         public int IdRol { get; set; }
         public string? RutaFoto { get; set; }
-
-
-        public virtual Cliente CedulaNavigation { get; set; }
+ 
         public virtual Role IdRolNavigation { get; set; }
     }
 }

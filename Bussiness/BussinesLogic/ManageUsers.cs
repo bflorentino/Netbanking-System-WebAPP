@@ -21,7 +21,7 @@ namespace Bussiness.BussinesLogic
                 NombreUsuario = usuario.NombreUsuario,
                 PasswordHashed = usuario.PasswordHashed,
                 IdRol = 2,
-               Cedula = usuario.Cedula,
+                Cedula = usuario.Cedula,
                 RutaFoto = usuario.RutaFoto
             }
            ); 
@@ -48,6 +48,11 @@ namespace Bussiness.BussinesLogic
         {
             Usuario user = GetUser(usuario);
             UserOnline = user;
+        }
+
+        public void LogoutApp()
+        {
+            UserOnline = null;
         }
     }
 }

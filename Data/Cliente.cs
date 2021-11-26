@@ -25,6 +25,5 @@ namespace Data
         public virtual ICollection<ClientesCuenta> ClientesCuenta { get; set; }
         public virtual ICollection<ClientesPrestamo> ClientesPrestamos { get; set; }
         public virtual ICollection<ClientesTarjeta> ClientesTarjeta { get; set; }
-        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }
