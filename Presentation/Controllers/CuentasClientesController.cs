@@ -16,5 +16,30 @@ namespace Presentation.Controllers
             var balance = Bussiness.BussinesLogic.OperacionesCuentas.GetBalance(cuenta);
             return Json(balance);
         }
+
+        public IActionResult Transferencia()
+        {
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Clients");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
+        }
+
+        [HttpPost]
+        public IActionResult Transferencia(Bussiness.Model.BindingModel.TransferenciaBindingModel transferencia)
+        {
+            if (ModelState.IsValid)
+            {
+                var transferido = Bussiness.BussinesLogic.OperacionesCuentas.RealizarTransferencia(transferencia);
+                return View();
+            }
+
+            return View(transferencia);
+        } 
     }
 }

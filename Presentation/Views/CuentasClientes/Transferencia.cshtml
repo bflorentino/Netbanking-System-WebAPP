@@ -1,0 +1,19 @@
+﻿@model Bussiness.Model.BindingModel.TransferenciaBindingModel
+
+<form action="Transferencia" method = "post">
+
+        @Html.LabelFor(transf => transf.CuentaOrigen);
+        @Html.EditorFor(transf=> transf.CuentaOrigen, new {htmlAttributes = new {@class="input-texto", id = "cuentaOrigen"} })
+        @Html.ValidationMessageFor(transf => transf.CuentaOrigen, "", new {@class = "error-message"})
+
+        @Html.LabelFor(transf => transf.Cuenta);
+        @Html.EditorFor(transf=> transf.Cuenta, new {htmlAttributes = new {@class="input-texto"} })
+        @Html.ValidationMessageFor(transf => transf.Cuenta, "", new {@class = "error-message"})
+
+        @Html.LabelFor(transf => transf.Cantidad);
+        @Html.EditorFor(transf=> transf.Cantidad, new {htmlAttributes = new {@class="input-texto"} })
+        @Html.ValidationMessageFor(transf => transf.Cantidad, "", new {@class = "error-message"})
+
+        <input type="submit" value="Registrar Cuenta" class="submit-button" />
+
+</form>

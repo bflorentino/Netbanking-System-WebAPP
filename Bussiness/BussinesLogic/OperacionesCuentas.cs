@@ -26,8 +26,27 @@ namespace Bussiness.BussinesLogic
         {
             var cuenta = dbContext.Cuentas.Where(x => x.NumeroCuenta == numeroCuenta).FirstOrDefault();
 
-
             return cuenta.Balance;
+        }
+
+        public static bool RealizarTransferencia(Model.BindingModel.TransferenciaBindingModel transferencia)
+        {
+            // Realizar transferencia bancaria
+            var cuentaOrigen = dbContext.Cuentas.Where(x => x.NumeroCuenta == transferencia.CuentaOrigen).FirstOrDefault();
+
+            if(transferencia.Cantidad <= cuentaOrigen.Balance)
+            {
+                var cuentaDestino = dbContext.Cuentas.Where(x => x.NumeroCuenta == transferencia.Cuenta).FirstOrDefault();
+                cuentaDestino.Balance += transferencia.Cantidad;
+                cuentaOrigen.Balance -= transferencia.Cantidad;
+
+                dbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
