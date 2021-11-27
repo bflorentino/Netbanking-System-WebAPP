@@ -1,0 +1,13 @@
+﻿
+<input name = "BalanceCuenta" class="balance" id="balance" />
+
+<div class = "cuentasContainer">
+    @{
+        foreach(string cuenta in ViewBag.cuentas)
+        {
+            <input type="button" value="@cuenta" onclick="getBalance(this.value);">
+        }
+    } 
+</div>
+
+<script src="~/js/Cuentas.js"></script>

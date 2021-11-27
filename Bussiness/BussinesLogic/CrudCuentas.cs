@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Bussiness.BussinesLogic
 {
-    public class AdmCuentas
+    public class CrudCuentas
     {
         static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
         

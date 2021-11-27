@@ -6,7 +6,7 @@ using Data;
 
 namespace Bussiness.BussinesLogic
 {
-    public class AdmClientes
+    public class CrudClientes
     {
         /// <summary>
         /// 

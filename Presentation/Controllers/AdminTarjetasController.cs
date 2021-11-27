@@ -36,7 +36,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.AdmTarjetas.CreateTarjeta(tarjeta);
+                Bussiness.BussinesLogic.CrudTarjetas.CreateTarjeta(tarjeta);
                 return View();
             }
 
@@ -49,7 +49,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                    var tarjeta = Bussiness.BussinesLogic.AdmTarjetas.GetTarjeta(tarjetaToUpdate);
+                    var tarjeta = Bussiness.BussinesLogic.CrudTarjetas.GetTarjeta(tarjetaToUpdate);
                     return View(tarjeta);
                 }
                 return RedirectToAction("Index", "Clients");
@@ -62,7 +62,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.AdmTarjetas.UpdateTarjeta(tarjeta);
+                Bussiness.BussinesLogic.CrudTarjetas.UpdateTarjeta(tarjeta);
                 return RedirectToAction("ViewTarjetas");
             }
             return View(tarjeta);
@@ -74,7 +74,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                    var tarjetas = Bussiness.BussinesLogic.AdmTarjetas.GetTarjetas();
+                    var tarjetas = Bussiness.BussinesLogic.CrudTarjetas.GetTarjetas();
                     return View(tarjetas);
                 }
                 return RedirectToAction("Index", "Clients");

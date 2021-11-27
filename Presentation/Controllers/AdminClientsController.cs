@@ -37,7 +37,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.AdmClientes.CreateCliente(model) ;
+                Bussiness.BussinesLogic.CrudClientes.CreateCliente(model) ;
                 return RedirectToAction("ViewClientes");
             }
             return View(model);
@@ -49,7 +49,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                    var cliente = Bussiness.BussinesLogic.AdmClientes.getCliente(cedula);
+                    var cliente = Bussiness.BussinesLogic.CrudClientes.getCliente(cedula);
                     return View(cliente);
                 }
                 return RedirectToAction("Index", "Clients");
@@ -62,7 +62,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.AdmClientes.updateCliente(cliente);
+                Bussiness.BussinesLogic.CrudClientes.updateCliente(cliente);
                 return RedirectToAction("ViewClientes");
             }
             return View(cliente);
@@ -74,7 +74,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                   var clientes =  Bussiness.BussinesLogic.AdmClientes.GetClientes();
+                   var clientes =  Bussiness.BussinesLogic.CrudClientes.GetClientes();
                     return View(clientes);
                 }
                 return RedirectToAction("Index", "Clients");

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Bussiness.BussinesLogic
 {
-    public class AdmTarjetas
+    public class CrudTarjetas
     {
         static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
         public static void CreateTarjeta(Model.BindingModel.CreditCardCreateBindingModel tarjeta)

@@ -36,7 +36,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-               Bussiness.BussinesLogic.AdmPrestamos.CreatePrestamo(prestamo);
+               Bussiness.BussinesLogic.CrudPrestamos.CreatePrestamo(prestamo);
                 return View();
             }
             return View(prestamo);
@@ -48,7 +48,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                    var prestamo = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamo(prestamoToUpdate);
+                    var prestamo = Bussiness.BussinesLogic.CrudPrestamos.GetPrestamo(prestamoToUpdate);
                     return View(prestamo);
                 }
                 return RedirectToAction("Index", "Clients");
@@ -61,7 +61,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.AdmPrestamos.UpdatePrestamo(prestamo);
+                Bussiness.BussinesLogic.CrudPrestamos.UpdatePrestamo(prestamo);
                 return RedirectToAction("ViewPrestamos");
             }
             return View(prestamo);
@@ -73,7 +73,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                    var prestamos = Bussiness.BussinesLogic.AdmPrestamos.GetPrestamos();
+                    var prestamos = Bussiness.BussinesLogic.CrudPrestamos.GetPrestamos();
                     return View(prestamos);
                 }
                 return RedirectToAction("Index", "Clients");

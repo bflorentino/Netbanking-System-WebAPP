@@ -36,7 +36,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.AdmCuentas.CreateCuenta(cuenta);
+                Bussiness.BussinesLogic.CrudCuentas.CreateCuenta(cuenta);
                 return View("ViewCuentas");
             }
             return View(cuenta);
@@ -48,7 +48,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                    var cuentas = Bussiness.BussinesLogic.AdmCuentas.GetCuentas();
+                    var cuentas = Bussiness.BussinesLogic.CrudCuentas.GetCuentas();
                     return View(cuentas);
                 }
                 return RedirectToAction("Index", "Clients");
@@ -62,7 +62,7 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
-                    var cuenta = Bussiness.BussinesLogic.AdmCuentas.GetCuenta(cuentaToUpdate);
+                    var cuenta = Bussiness.BussinesLogic.CrudCuentas.GetCuenta(cuentaToUpdate);
                     return View(cuenta);
                 }
                 return RedirectToAction("Index", "Clients");
@@ -75,7 +75,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.AdmCuentas.UpdateCuenta(cuenta);
+                Bussiness.BussinesLogic.CrudCuentas.UpdateCuenta(cuenta);
                 return RedirectToAction("ViewCuentas");
             }
             return View(cuenta);
