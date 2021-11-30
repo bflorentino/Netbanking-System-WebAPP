@@ -3,6 +3,7 @@
 
 <div class = "cuentasContainer">
     @{
+
         foreach(string cuenta in ViewBag.cuentas)
         {
             <input type="button" value="@cuenta" onclick="getBalance(this.value);">

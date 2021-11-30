@@ -23,6 +23,8 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+                    ViewBag.cuentas = cuentasStrings;
                     return View();
                 }
                 return RedirectToAction("Index", "Clients");
@@ -36,9 +38,10 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 var transferido = Bussiness.BussinesLogic.OperacionesCuentas.RealizarTransferencia(transferencia);
+                var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+                ViewBag.cuentas = cuentasStrings;
                 return View();
             }
-
             return View(transferencia);
         } 
     }

@@ -1,9 +1,22 @@
 ﻿@model Bussiness.Model.BindingModel.TransferenciaBindingModel
 
-<form action="Transferencia" method = "post">
+<div class = "cuentasContainer">
+    @{
+        foreach(string cuenta in ViewBag.cuentas)
+        {
+            <input type="button" value="@cuenta" onclick="insertAccount(this.value);">
+        }
+    } 
+</div>
 
+<script>
+    const insertAccount = (cuenta = "") => document.getElementById("cuentaOrigen").value = cuenta;
+</script>
+
+<form action="Transferencia" method = "post">
+    
         @Html.LabelFor(transf => transf.CuentaOrigen);
-        @Html.EditorFor(transf=> transf.CuentaOrigen, new {htmlAttributes = new {@class="input-texto", id = "cuentaOrigen"} })
+        @Html.EditorFor(transf=> transf.CuentaOrigen, new {htmlAttributes = new {@class="input-texto", id = "cuentaOrigen", @readonly = "readonly"} })
         @Html.ValidationMessageFor(transf => transf.CuentaOrigen, "", new {@class = "error-message"})
 
         @Html.LabelFor(transf => transf.Cuenta);
@@ -14,6 +27,7 @@
         @Html.EditorFor(transf=> transf.Cantidad, new {htmlAttributes = new {@class="input-texto"} })
         @Html.ValidationMessageFor(transf => transf.Cantidad, "", new {@class = "error-message"})
 
-        <input type="submit" value="Registrar Cuenta" class="submit-button" />
-
+        <input type="submit" value="Realizar transferencia" class="submit-button" />
 </form>
+
+@*<script src="/js/Cuentas.js"></script>*@
