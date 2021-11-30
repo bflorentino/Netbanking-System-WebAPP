@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.HistDepositos>
+   
+<input type="date" name="fechaInicial"  class="fechaInicial"/>
+<input type="date" name="fechaFinal"  class="fechaFinal"/>
+<input type="button" name="buscar" class="buscar"  value="Buscar"/>
+    
+    <table class="table table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(deposito => deposito.CodigoDeposito)
+        </td>
+         <td>
+            @Html.DisplayNameFor(deposito => deposito.NumeroCuentaDestino)
+        </td>
+        <td>
+            @Html.DisplayNameFor(deposito => deposito.TarjetaOrigen)
+        </td>
+          <td>
+            @Html.DisplayNameFor(deposito => deposito.Monto)
+        </td>
+          <td>
+            @Html.DisplayNameFor(deposito => deposito.Fecha)
+        </td>
+    </tr>
+ 
+    @{
+        foreach(var deposito in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(item => deposito.CodigoDeposito)</td>
+                <td>@Html.DisplayFor(item => deposito.NumeroCuentaDestino)</td>
+                <td>@Html.DisplayFor(item => deposito.TarjetaOrigen)</td>
+                 <td>@Html.DisplayFor(item=> deposito.Monto)</td>
+                 <td>@Html.DisplayFor(item=> deposito.Fecha)</td>
+            </tr>
+        }
+    }
+</table>

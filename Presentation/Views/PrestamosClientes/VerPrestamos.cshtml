@@ -1,0 +1,35 @@
+﻿@model Bussiness.Model.ViewModel.PrestamospC
+
+@* @{
+        if (ViewBag.message != null)
+    {*@
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(prestamo => prestamo.CodigoPrestamo)
+                </td>
+                 <td>
+                    @Html.DisplayNameFor(prestamo => prestamo.MontoPrestado)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(prestamo => prestamo.PagoPorCuota)
+                </td>
+                  <td>
+                    @Html.DisplayNameFor(prestamo => prestamo.PagoRestante)
+                </td>
+            </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(prestamo => prestamo.CodigoPrestamo)</td>
+                        <td>@Html.DisplayFor(prestamo => prestamo.MontoPrestado)</td>
+                        <td>@Html.DisplayFor(prestamo => prestamo.PagoPorCuota)</td>
+                         <td>@Html.DisplayFor(prestamo=> prestamo.PagoRestante)</td>
+                    </tr>
+        </table>
+@*    }*@
+    
+    <p>@ViewBag.message</p>
+
+@*    else
+    {
+    }
+ }*@

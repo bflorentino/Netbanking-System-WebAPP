@@ -9,6 +9,7 @@ namespace Bussiness.Model.BindingModel
     {
         [Display(Name = "Codigo del prestamo")]
         [Required(ErrorMessage ="Se requiere el codigo del prestamo")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "El codigo del prestamo debe de ser de 10 numeros")]
         public string CodigoPrestamo { get; set; }
 
         [Display(Name = "Fecha de inicio")]

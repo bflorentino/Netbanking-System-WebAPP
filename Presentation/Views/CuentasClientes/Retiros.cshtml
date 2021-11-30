@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.HistRetiros>
+
+<input type="date" name="fechaInicial"  class="fechaInicial"/>
+<input type="date" name="fechaFinal"  class="fechaFinal"/>
+<input type="button" name="buscar" class="buscar" value="Buscar"/>
+
+
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(retiro => retiro.CodigoRetiro)
+                </td>
+                 <td>
+                    @Html.DisplayNameFor(retiro => retiro.TarjetaDestino)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(retiro => retiro.MontoRetirado)
+                </td>
+                  <td>
+                    @Html.DisplayNameFor(retiro => retiro.Fecha)
+                </td>
+            </tr>     
+           
+               @{ foreach(var retiro in Model)
+                {
+                   <tr>
+                        <td>@Html.DisplayFor(item => retiro.CodigoRetiro)</td>
+                        <td>@Html.DisplayFor(item => retiro.TarjetaDestino)</td>
+                        <td>@Html.DisplayFor(item => retiro.MontoRetirado)</td>
+                         <td>@Html.DisplayFor(item=> retiro.Fecha)</td>
+                    </tr>
+                    }   
+                }
+            </table>
+    

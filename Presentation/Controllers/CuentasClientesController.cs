@@ -43,6 +43,22 @@ namespace Presentation.Controllers
                 return View();
             }
             return View(transferencia);
-        } 
+        }
+        
+        public IActionResult Retiros()
+        {
+            var retiros = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialRetiros();
+            var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+            ViewBag.cuentas = cuentasStrings;
+            return View(retiros);
+        }
+
+        public IActionResult Depositos()
+        {
+            var depositos = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialDepositos();
+            var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+            ViewBag.cuentas = cuentasStrings;
+            return View(depositos);
+        }
     }
 }
