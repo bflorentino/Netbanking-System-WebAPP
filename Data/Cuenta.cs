@@ -11,6 +11,7 @@ namespace Data
         {
             ClientesCuenta = new HashSet<ClientesCuenta>();
             HistorialDepositos = new HashSet<HistorialDeposito>();
+            HistorialPagosTarjeta = new HashSet<HistorialPagosTarjetum>();
             HistorialRetiros = new HashSet<HistorialRetiro>();
         }
 
@@ -20,6 +21,7 @@ namespace Data
 
         public virtual ICollection<ClientesCuenta> ClientesCuenta { get; set; }
         public virtual ICollection<HistorialDeposito> HistorialDepositos { get; set; }
+        public virtual ICollection<HistorialPagosTarjetum> HistorialPagosTarjeta { get; set; }
         public virtual ICollection<HistorialRetiro> HistorialRetiros { get; set; }
     }
 }

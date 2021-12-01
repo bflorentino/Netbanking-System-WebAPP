@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-
 #nullable disable
 
 namespace Data
@@ -16,7 +15,6 @@ namespace Data
         public NetBanking_Sys_WebAppContext(DbContextOptions<NetBanking_Sys_WebAppContext> options)
             : base(options)
         {
-           
         }
 
         public virtual DbSet<Cliente> Clientes { get; set; }
@@ -26,6 +24,7 @@ namespace Data
         public virtual DbSet<Cuenta> Cuentas { get; set; }
         public virtual DbSet<HistorialDeposito> HistorialDepositos { get; set; }
         public virtual DbSet<HistorialPagosPrestamo> HistorialPagosPrestamos { get; set; }
+        public virtual DbSet<HistorialPagosTarjetum> HistorialPagosTarjeta { get; set; }
         public virtual DbSet<HistorialRetiro> HistorialRetiros { get; set; }
         public virtual DbSet<Prestamo> Prestamos { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -37,7 +36,7 @@ namespace Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("data source=BFLORENTINO\\SQLBRYAN;initial Catalog=NetBanking_Sys_WebApp;integrated security=true");
+                optionsBuilder.UseSqlServer("Server= BFLORENTINO\\SQLBRYAN;Database=NetBanking_Sys_WebApp;Trusted_Connection=True;");
             }
         }
 
@@ -262,6 +261,47 @@ namespace Data
                     .HasConstraintName("FK__HISTORIAL__Fecha__03F0984C");
             });
 
+            modelBuilder.Entity<HistorialPagosTarjetum>(entity =>
+            {
+                entity.HasKey(e => e.CodigoPago)
+                    .HasName("PK__HISTORIA__18E10B918F8D642D");
+
+                entity.ToTable("HISTORIAL_PAGOS_TARJETA");
+
+                entity.Property(e => e.CodigoPago)
+                    .HasMaxLength(7)
+                    .IsUnicode(false)
+                    .HasColumnName("Codigo_Pago");
+
+                entity.Property(e => e.Fecha).HasColumnType("date");
+
+                entity.Property(e => e.MontoPagado).HasColumnType("decimal(13, 2)");
+
+                entity.Property(e => e.NumeroCuentaOrigen)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("Numero_Cuenta_Origen");
+
+                entity.Property(e => e.NumeroTarjeta)
+                    .IsRequired()
+                    .HasMaxLength(16)
+                    .IsUnicode(false)
+                    .HasColumnName("Numero_Tarjeta");
+
+                entity.HasOne(d => d.NumeroCuentaOrigenNavigation)
+                    .WithMany(p => p.HistorialPagosTarjeta)
+                    .HasForeignKey(d => d.NumeroCuentaOrigen)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__HISTORIAL__Numer__57DD0BE4");
+
+                entity.HasOne(d => d.NumeroTarjetaNavigation)
+                    .WithMany(p => p.HistorialPagosTarjeta)
+                    .HasForeignKey(d => d.NumeroTarjeta)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__HISTORIAL__Numer__56E8E7AB");
+            });
+
             modelBuilder.Entity<HistorialRetiro>(entity =>
             {
                 entity.HasKey(e => e.CodigoRetiro)
@@ -392,6 +432,7 @@ namespace Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.Cedula)
+                    .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false);
 
@@ -409,12 +450,6 @@ namespace Data
                     .HasForeignKey(d => d.IdRol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__USUARIOS__RutaFo__2B0A656D");
-
-                    // entity.HasOne(d => d.CedulaNavigation)
-                    //.WithMany(p => p.Usuarios)
-                    //.HasForeignKey(d => d.Cedula)
-                    //.OnDelete(DeleteBehavior.ClientSetNull)
-                    //.HasConstraintName("FK__USUARIOS__Cedula__3A4CA8FD");
             });
 
             OnModelCreatingPartial(modelBuilder);

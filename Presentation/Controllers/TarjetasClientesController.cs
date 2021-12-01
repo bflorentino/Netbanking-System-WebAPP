@@ -4,7 +4,7 @@ namespace Presentation.Controllers
 {
     public class TarjetasClientesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult VerTarjetas()
         {
             return View();
         }

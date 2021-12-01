@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -12,8 +11,10 @@ namespace Data
         {
             ClientesTarjeta = new HashSet<ClientesTarjeta>();
             HistorialDepositos = new HashSet<HistorialDeposito>();
+            HistorialPagosTarjeta = new HashSet<HistorialPagosTarjetum>();
             HistorialRetiros = new HashSet<HistorialRetiro>();
         }
+
         public string NumeroTarjeta { get; set; }
         public int ValorDeValidacion { get; set; }
         public DateTime FechaVencimiento { get; set; }
@@ -23,6 +24,7 @@ namespace Data
 
         public virtual ICollection<ClientesTarjeta> ClientesTarjeta { get; set; }
         public virtual ICollection<HistorialDeposito> HistorialDepositos { get; set; }
+        public virtual ICollection<HistorialPagosTarjetum> HistorialPagosTarjeta { get; set; }
         public virtual ICollection<HistorialRetiro> HistorialRetiros { get; set; }
     }
 }

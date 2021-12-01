@@ -19,7 +19,7 @@ namespace Data
         public int CuotasTotalesAPagar { get; set; }
         public int CuotasPagadas { get; set; }
         public decimal PagoPorCuota { get; set; }
-        public decimal TasaInteres { get; set; }
+        public decimal? TasaInteres { get; set; }
         public string Activo { get; set; }
 
         public virtual ICollection<ClientesPrestamo> ClientesPrestamos { get; set; }

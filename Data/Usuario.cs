@@ -9,10 +9,10 @@ namespace Data
     {
         public string NombreUsuario { get; set; }
         public string PasswordHashed { get; set; }
-        public string Cedula { get; set; }
         public int IdRol { get; set; }
-        public string? RutaFoto { get; set; }
- 
+        public string RutaFoto { get; set; }
+        public string Cedula { get; set; }
+
         public virtual Role IdRolNavigation { get; set; }
     }
 }
