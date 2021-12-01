@@ -4,6 +4,8 @@ const insertAccount = (cuenta = "") => {
     document.getElementById("cuentaOrigen").value = cuenta;
 }
 
+const insertTarjeta = (tarjeta = "") => document.getElementById("tarjetaDestino").value = tarjeta;
+
 // Peticion Fetch para obtener el balance actual de una cuenta particular de un usuario
 const getBalance = (cuenta = "") => {
 
@@ -13,9 +15,23 @@ const getBalance = (cuenta = "") => {
             return res.json();
         })
 
-        .then(function (mijson) {
+        .then(function (balance) {
             document.getElementById("cuentaOrigen").value = cuenta;
-            document.getElementById("balance").value = mijson;
+            document.getElementById("balance").value = balance;
+        })
+}
+
+// Peticion Fetch para obtener el balance de un determinado numero de cuenta
+const getBalanceTarjeta = (tarjeta = "") => {
+    fetch(`https://localhost:44322/TarjetasClientes/GetTarjetaBalance/?tarjeta=${tarjeta}`)
+
+        .then(function (res) {
+            return res.json();
+        })
+
+        .then(function (balance) {
+            document.getElementById("balanceTarjeta").value = balance;
+            document.getElementById("tarjetaDestino").value = tarjeta;
         })
 }
 

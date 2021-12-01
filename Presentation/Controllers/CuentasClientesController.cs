@@ -25,6 +25,11 @@ namespace Presentation.Controllers
                 {
                     var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
                     ViewBag.cuentas = cuentasStrings;
+                   
+                    if(cuentasStrings.Count == 0)
+                    {
+                        return RedirectToAction("SinCuentas");
+                    }
                     return View();
                 }
                 return RedirectToAction("Index", "Clients");
@@ -59,6 +64,11 @@ namespace Presentation.Controllers
             var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
             ViewBag.cuentas = cuentasStrings;
             return View(depositos);
+        }
+
+        public IActionResult SinCuentas()
+        {
+            return View();  
         }
     }
 }

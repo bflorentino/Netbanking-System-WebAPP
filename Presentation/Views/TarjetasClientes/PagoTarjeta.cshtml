@@ -1,0 +1,46 @@
+﻿@model Bussiness.Model.BindingModel.PagoTarjetaBindingModel
+
+<div class = "cuentasContainer">
+    @{
+        foreach(string cuenta in ViewBag.cuentas)
+        {
+            <input type="button" value="@cuenta" onclick="getBalance(this.value);">
+        }
+    } 
+</div>
+
+<div class = "tarjetasContainer">
+    @{
+        foreach(string tarjeta in ViewBag.tarjetas)
+        {
+            <input type="button" value="@tarjeta" onclick="getBalanceTarjeta(this.value);">
+        }
+    } 
+</div>
+
+<form action="PagoTarjeta" method = "post">
+    
+        @Html.LabelFor(card => card.NumeroCuenta);
+        @Html.EditorFor(card => card.NumeroCuenta, new {htmlAttributes = new {@class="input-texto", id = "cuentaOrigen", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(card=> card.NumeroCuenta, "", new {@class = "error-message"})
+
+        @Html.LabelFor(card => card.BalanceCuenta);
+        @Html.EditorFor(card => card.BalanceCuenta, new {htmlAttributes = new {@class="input-texto", id = "balance", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(card=> card.BalanceCuenta, "", new {@class = "error-message"})
+
+        @Html.LabelFor(card => card.NumeroTarjeta);
+        @Html.EditorFor(card => card.NumeroTarjeta, new {htmlAttributes = new {@class="input-texto", id = "tarjetaDestino", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(card=> card.NumeroTarjeta, "", new {@class = "error-message"})
+
+        @Html.LabelFor(card => card.BalanceConsumidoTarjeta);
+        @Html.EditorFor(card => card.BalanceConsumidoTarjeta, new {htmlAttributes = new {@class="input-texto", id = "balanceTarjeta", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(card=> card.BalanceConsumidoTarjeta, "", new {@class = "error-message"})
+
+        @Html.LabelFor(card => card.MontoAPagar);
+        @Html.EditorFor(card => card.MontoAPagar, new {htmlAttributes = new {@class="input-texto", id = "balanceTarjeta"} })
+        @Html.ValidationMessageFor(card=> card.MontoAPagar, "", new {@class = "error-message"})
+
+        <input type="submit" value="Realizar Pago a tarjeta" class="submit-button" />
+</form>
+
+<script src="~/js/Cuentas.js"></script>
