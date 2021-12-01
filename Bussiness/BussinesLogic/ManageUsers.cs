@@ -8,7 +8,7 @@ namespace Bussiness.BussinesLogic
 {
     public class ManageUsers
     {
-        static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        static readonly NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static Usuario UserOnline { get; set; }
  
         public static void AddNewUser(Model.BindingModel.UsersCreateBindingModel usuario)

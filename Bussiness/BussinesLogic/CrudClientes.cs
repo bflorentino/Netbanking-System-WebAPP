@@ -11,7 +11,7 @@ namespace Bussiness.BussinesLogic
         /// <summary>
         /// 
         /// </summary>
-        static NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static void CreateCliente(Model.BindingModel.ClientCreateBindingModel cliente)
         {
             dbContext.Add(new Cliente

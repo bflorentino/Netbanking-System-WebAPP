@@ -8,8 +8,8 @@ namespace Bussiness.BussinesLogic
 {
     public class CrudCuentas
     {
-        static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
-
+        //static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static void CreateCuenta(Model.BindingModel.CuentaCreateBindingModel cuenta)
         {
             dbContext.Add(new Cuenta

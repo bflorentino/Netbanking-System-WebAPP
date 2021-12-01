@@ -8,11 +8,11 @@
         }
     } 
 </div>
-
+@*
 <script>
     const insertAccount = (cuenta = "") => document.getElementById("cuentaOrigen").value = cuenta;
 </script>
-
+*@
 <form action="Transferencia" method = "post">
     
         @Html.LabelFor(transf => transf.CuentaOrigen);
@@ -30,4 +30,4 @@
         <input type="submit" value="Realizar transferencia" class="submit-button" />
 </form>
 
-@*<script src="/js/Cuentas.js"></script>*@
+<script src="/js/Cuentas.js"></script>

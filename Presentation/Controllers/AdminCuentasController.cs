@@ -37,7 +37,7 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 Bussiness.BussinesLogic.CrudCuentas.CreateCuenta(cuenta);
-                return View("ViewCuentas");
+                return View();
             }
             return View(cuenta);
         }

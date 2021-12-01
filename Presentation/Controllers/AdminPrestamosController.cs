@@ -37,7 +37,7 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                Bussiness.BussinesLogic.CrudPrestamos.CreatePrestamo(prestamo);
-                return View();
+                return RedirectToAction("ViewPrestamos");
             }
             return View(prestamo);
         }

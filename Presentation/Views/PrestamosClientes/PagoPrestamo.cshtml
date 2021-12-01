@@ -1,0 +1,34 @@
+﻿@model Bussiness.Model.BindingModel.PagoPrestamoBindingModel
+
+<div class = "cuentasContainer">
+    @{
+
+        foreach(string cuenta in ViewBag.cuentas)
+        {
+            <input type="button" value="@cuenta" onclick="getBalance(this.value);">
+        }
+    } 
+</div>
+
+<form action="PagoPrestamo" method = "post">
+    
+        @Html.LabelFor(pago => pago.NumeroCuentaOrigen);
+        @Html.EditorFor(pago => pago.NumeroCuentaOrigen, new {htmlAttributes = new {@class="input-texto", @id = "cuentaOrigen", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(pago => pago.NumeroCuentaOrigen, "", new {@class = "error-message"})
+
+        @Html.LabelFor(pago => pago.BalanceCuenta);
+        @Html.EditorFor(pago => pago.BalanceCuenta, new {htmlAttributes = new {@class="input-texto", id = "balance", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(pago => pago.BalanceCuenta, "", new {@class = "error-message"})
+
+        @Html.LabelFor(pago => pago.MontoAPagar);
+        @Html.EditorFor(pago => pago.MontoAPagar, new {htmlAttributes = new {@class="input-texto", id = "monto", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(pago => pago.MontoAPagar, "", new {@class = "error-message"})
+
+        @Html.LabelFor(pago => pago.MontoPrestado);
+        @Html.EditorFor(pago => pago.MontoPrestado, new {htmlAttributes = new {@class="input-texto", id = "pago", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(pago => pago.MontoPrestado, "", new {@class = "error-message"})
+
+        <input type="submit" value="Realizar Pago" class="submit-button" />
+</form>
+
+<script src="~/js/Cuentas.js"></script>

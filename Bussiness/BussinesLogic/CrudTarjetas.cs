@@ -8,7 +8,8 @@ namespace Bussiness.BussinesLogic
 {
     public class CrudTarjetas
     {
-        static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        //static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static void CreateTarjeta(Model.BindingModel.CreditCardCreateBindingModel tarjeta)
         {
             dbContext.Add(new Tarjeta

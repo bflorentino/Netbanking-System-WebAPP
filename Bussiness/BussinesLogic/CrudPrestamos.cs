@@ -8,8 +8,8 @@ namespace Bussiness.BussinesLogic
 {
     public class CrudPrestamos
     {
-        static NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
-
+        //static NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static bool CreatePrestamo(Model.BindingModel.PrestamoCreateBindingModel  prestamo)
         {
             if (VerificarPrestamoActivo(prestamo.Cedula))

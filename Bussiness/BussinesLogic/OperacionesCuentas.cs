@@ -8,7 +8,8 @@ namespace Bussiness.BussinesLogic
 {
     public class OperacionesCuentas
     {
-        static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        //static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
+        static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
 
         // Obtener cuentas asociadas al usuario que esta en linea
         public static List<string> GetCuentasAsociadas()
@@ -24,9 +25,14 @@ namespace Bussiness.BussinesLogic
 
         public static decimal GetBalance(string numeroCuenta)
         {
-            var cuenta = dbContext.Cuentas.Where(x => x.NumeroCuenta == numeroCuenta).FirstOrDefault();
-
-            return cuenta.Balance;
+            //var cuenta = dbContext.Cuentas.Where(x => x.NumeroCuenta == numeroCuenta).FirstOrDefault();
+            //dbContext.SaveChanges();
+            //var cuenta = (from c in dbContext.Cuentas
+            //             where c.NumeroCuenta.Equals(numeroCuenta)
+            //             select c).FirstOrDefault();
+            
+            var cuenta = dbContext.Cuentas.Find(numeroCuenta).Balance; 
+            return cuenta;
         }
 
         public static bool RealizarTransferencia(Model.BindingModel.TransferenciaBindingModel transferencia)
