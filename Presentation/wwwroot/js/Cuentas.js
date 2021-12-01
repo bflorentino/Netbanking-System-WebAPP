@@ -49,3 +49,19 @@ const changeList = (prestamo = "") => {
             document.getElementById("contPagos").innerHTML = data
         })
 }
+
+// Peticion Fetch para obtener los pagos asociados a una tarjeta en particular
+const changeListTarjeta = (tarjeta = "") => {
+
+    fetch(`https://localhost:44322/TarjetasClientes/PagosPorTarjeta/?tarjeta=${tarjeta}`)
+
+        .then((res) => {
+            return res.text()
+        })
+
+        .then((data) => {
+            console.log(data)
+            document.getElementById("contPagos").innerHTML = "";
+            document.getElementById("contPagos").innerHTML = data;
+        })
+}

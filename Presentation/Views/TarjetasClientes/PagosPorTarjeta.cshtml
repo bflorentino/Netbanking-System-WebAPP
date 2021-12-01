@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.HistRetiros>
+
+    <div class="contPagos">
+        <table class="table table-bordered">
+            <tr>
+               <td>
+                  Codigo del pago
+                </td>
+                <td>
+                    Fecha
+                </td>
+                 <td>
+                   Cuenta de origen
+                </td>
+                 <td>
+                   Moto Pagado
+                </td>
+            </tr>
+                        @{
+                            foreach(var item in Model){
+                    <tr>
+                      <td>@Html.DisplayFor(pago => item.CodigoRetiro)</td>
+                        <td>@Html.DisplayFor(pago=> item.Fecha)</td>
+                        <td>@Html.DisplayFor(pago => item.CuentaOrigen)</td>
+                        <td>@Html.DisplayFor(pago => item.MontoRetirado)</td>
+                    </tr>
+                            }
+  }
+        </table>
+        </div>

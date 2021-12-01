@@ -24,7 +24,48 @@ namespace Bussiness.BussinesLogic
 
             return tarjetas;
         }
-        
+
+        public static List<Model.ViewModel.HistRetiros> GetHistorialPagos(string tarjeta)
+        {
+            // Busqueda de todos los pagos hechos por el cliente en una determinada tarjeta de credito
+            var pagos = (from historialRet in dbContext.HistorialRetiros
+                           join tarjetas in dbContext.Tarjetas
+                           on historialRet.TarjetaDestinoDeposito equals tarjetas.NumeroTarjeta
+                           join clienteTarjeta in dbContext.ClientesTarjetas
+                           on tarjetas.NumeroTarjeta equals clienteTarjeta.NumeroTarjeta
+                            where tarjetas.NumeroTarjeta== tarjeta
+                           orderby historialRet.Fecha descending
+                           select new Model.ViewModel.HistRetiros
+                           {
+                               CodigoRetiro = historialRet.CodigoRetiro,
+                               CuentaOrigen = historialRet.NumeroCuentaOrigenRetiro,
+                               MontoRetirado = historialRet.MontoRetirado,
+                               Fecha = historialRet.Fecha
+                           }).ToList();
+            return pagos;
+        }
+
+        public static List<Model.ViewModel.HistRetiros> GetHistorialPagos()
+        {
+            // Busqueda de todos los retiros hechos por el cliente sin importar la fecha
+            var pagos = (from historialRet in dbContext.HistorialRetiros
+                           join tarjetas in dbContext.Tarjetas
+                           on historialRet.TarjetaDestinoDeposito equals tarjetas.NumeroTarjeta
+                           join clienteTarjetas in dbContext.ClientesTarjetas
+                           on tarjetas.NumeroTarjeta equals clienteTarjetas.NumeroTarjeta
+                           where clienteTarjetas.Cedula == ManageUsers.UserOnline.Cedula
+                           orderby historialRet.Fecha descending
+                           select new Model.ViewModel.HistRetiros
+                           {
+                               CodigoRetiro = historialRet.CodigoRetiro,
+                               CuentaOrigen = historialRet.NumeroCuentaOrigenRetiro,
+                               MontoRetirado = historialRet.MontoRetirado,
+                               Fecha = historialRet.Fecha
+                           }).ToList();
+
+            return pagos;
+        }
+
         public static decimal GetBalanceConsumido(string tarjeta)
         {
             var card = dbContext.Tarjetas.Where(x => x.NumeroTarjeta == tarjeta).FirstOrDefault();
@@ -62,13 +103,13 @@ namespace Bussiness.BussinesLogic
                 // Agregar pago al historial de retiros
                 dbContext.Add(new HistorialRetiro
                 {
-                    CodigoRetiro = new Random().Next(1000000, 1000000).ToString(),
+                    CodigoRetiro = new Random().Next(1000000, 10000000).ToString(),
                     NumeroCuentaOrigenRetiro = pago.NumeroCuenta,
                     TarjetaDestinoDeposito = pago.NumeroTarjeta,
                     MontoRetirado = pago.MontoAPagar,
                     Fecha = DateTime.Now
                 });
-                
+ 
                 dbContext.SaveChanges();
 
                 return true;

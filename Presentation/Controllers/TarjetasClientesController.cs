@@ -59,5 +59,24 @@ namespace Presentation.Controllers
             }
             return View(pago);
         }
+
+        public IActionResult VerHistPagos()
+        {
+            var pagos = Bussiness.BussinesLogic.OperacionesTarjetas.GetHistorialPagos();
+            ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+            return View(pagos);  
+        }
+
+        public PartialViewResult PagosPorTarjeta(string tarjeta)
+        {
+            var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetHistorialPagos(tarjeta);
+            var hola = tarjetas.Count;
+            return PartialView(tarjetas);
+        }
+
+        public IActionResult SinPagos()
+        {
+            return View();
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace Bussiness.Model.ViewModel
         public string TarjetaDestino { get; set; }
         public decimal MontoRetirado { get; set; }
         public  DateTime Fecha { get; set; }
+        public string CuentaOrigen { get; set; }
     }
 }

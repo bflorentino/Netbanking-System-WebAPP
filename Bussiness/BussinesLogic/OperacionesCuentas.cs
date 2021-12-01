@@ -24,13 +24,7 @@ namespace Bussiness.BussinesLogic
         }
 
         public static decimal GetBalance(string numeroCuenta)
-        {
-            //var cuenta = dbContext.Cuentas.Where(x => x.NumeroCuenta == numeroCuenta).FirstOrDefault();
-            //dbContext.SaveChanges();
-            //var cuenta = (from c in dbContext.Cuentas
-            //             where c.NumeroCuenta.Equals(numeroCuenta)
-            //             select c).FirstOrDefault();
-            
+        {          
             var cuenta = dbContext.Cuentas.Find(numeroCuenta).Balance; 
             return cuenta;
         }
@@ -82,7 +76,7 @@ namespace Bussiness.BussinesLogic
 
         public static List<Model.ViewModel.HistRetiros> GetHistorialRetiros(string numeroCuenta)
         {
-            // Busqueda de todos los retiros hechos por el cliente sin importar la fecha
+            // Busqueda de todos los retiros hechos por el cliente sin importar la fecha en una determinada cuenta
            var retiros = (from historialRet in dbContext.HistorialRetiros
                        join cuentas in dbContext.Cuentas
                        on historialRet.NumeroCuentaOrigenRetiro equals numeroCuenta
