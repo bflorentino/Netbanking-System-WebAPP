@@ -6,6 +6,22 @@ namespace Presentation.Controllers
     {
         public IActionResult VerTarjetas()
         {
+            var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetTarjetas();
+
+            if(tarjetas.Count == 0)
+            {
+                return RedirectToAction("NoTarjeta");
+            }
+            return View(tarjetas);
+        }
+
+        public IActionResult NoTarjeta()
+        {
+            return View();
+        }
+
+        public IActionResult PagoTarjeta()
+        {
             return View();
         }
     }

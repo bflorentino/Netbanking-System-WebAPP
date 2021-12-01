@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Bussiness.Model.ViewModel.VerTarjeta>
+
+<table class="table table-bordered">
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(tarjeta => tarjeta.BalanceConsumido)
+                </td>
+                 <td>
+                    @Html.DisplayNameFor(tarjeta => tarjeta.MontoDisponible)
+                </td>
+
+            </tr>
+            @{
+        foreach(var item in Model)
+        {
+        <tr>
+        <td>@Html.DisplayFor(card=> item.BalanceConsumido)</td>
+        <td>@Html.DisplayFor(card=> item.MontoDisponible)</td>
+         </tr>
+         
+        }
+                }
+        </table>

@@ -91,7 +91,7 @@ namespace Bussiness.BussinesLogic
                              CuotasTotalesAPagar = prestamos.CuotasTotalesAPagar,
                              CuotasPagadas = prestamos.CuotasPagadas,
                              PagoPorCuota = prestamos.PagoPorCuota,
-                             TasaInteres = prestamos.TasaInteres,
+                             TasaInteres = (decimal)prestamos.TasaInteres,
                              Activo = prestamos.Activo,
                          }).FirstOrDefault();
 
