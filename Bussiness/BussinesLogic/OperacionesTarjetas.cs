@@ -72,6 +72,12 @@ namespace Bussiness.BussinesLogic
             return (decimal)card.BalanceConsumido;
         }
 
+        public static decimal GetBalanceDisponible(string tarjeta)
+        {
+            var card = dbContext.Tarjetas.Where(x => x.NumeroTarjeta == tarjeta).FirstOrDefault();
+            return card.BalanceDisponible;
+        }
+
         public static List<string> GetNumeroTarjetas()
         {
             var tarjetas = (from cards in dbContext.Tarjetas
@@ -114,6 +120,35 @@ namespace Bussiness.BussinesLogic
 
                 return true;
             }
+        }
+
+        public static bool PagarDeposito(Model.BindingModel.PagoDepositoBindingModel deposito)
+        {
+            var tarjeta = dbContext.Tarjetas.Find(deposito.TarjetaOrigen);
+
+            if(tarjeta.BalanceDisponible < deposito.MontoAPagar)
+            {
+                return false;
+            }
+            else
+            {
+                var cuenta = dbContext.Cuentas.Find(deposito.CuentaDestino);
+                cuenta.Balance += deposito.MontoAPagar;
+                tarjeta.BalanceConsumido += deposito.MontoAPagar;
+                tarjeta.BalanceDisponible -= deposito.MontoAPagar;
+
+                dbContext.HistorialDepositos.Add(new HistorialDeposito
+                {
+                    CodigoDeposito = new Random().Next(10000000, 100000000).ToString(),
+                    TarjetaOrigenRetiro = deposito.TarjetaOrigen,
+                    NumeroCuentaDestinoDeposito = deposito.CuentaDestino,
+                    MontoDepositado = deposito.MontoAPagar,
+                    Fecha = DateTime.Now
+                });
+
+                dbContext.SaveChanges();
+            }
+            return true;
         }
     }
 }

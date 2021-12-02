@@ -43,6 +43,12 @@ namespace Presentation.Controllers
             return Json(balance);
         }
 
+        public JsonResult GetTarjetaBalanceDisponible(string tarjeta)
+        {
+            var balance = Bussiness.BussinesLogic.OperacionesTarjetas.GetBalanceDisponible(tarjeta);
+            return Json(balance);
+        }
+
         [HttpPost]
         public IActionResult PagoTarjeta(Bussiness.Model.BindingModel.PagoTarjetaBindingModel pago)
         {
@@ -70,8 +76,30 @@ namespace Presentation.Controllers
         public PartialViewResult PagosPorTarjeta(string tarjeta)
         {
             var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetHistorialPagos(tarjeta);
-            var hola = tarjetas.Count;
             return PartialView(tarjetas);
+        }
+
+        public IActionResult Deposito()
+        {
+            var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+            var cuentas = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+
+            if(tarjetas.Count == 0 || cuentas.Count == 0)
+            {
+                return RedirectToAction("NoTarjeta");
+            }
+
+            ViewBag.cuentas = cuentas;
+            ViewBag.tarjetas = tarjetas;
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Deposito(Bussiness.Model.BindingModel.PagoDepositoBindingModel deposito)
+        {
+            var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarDeposito(deposito);
+            return RedirectToAction("Deposito");
         }
 
         public IActionResult SinPagos()

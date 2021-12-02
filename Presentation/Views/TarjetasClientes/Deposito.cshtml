@@ -1,0 +1,43 @@
+﻿@model Bussiness.Model.BindingModel.PagoDepositoBindingModel
+
+<div class = "cuentasContainer">
+    @{
+        foreach(string cuenta in ViewBag.cuentas)
+        {
+            <input type="button" value="@cuenta" onclick="insertAccount(this.value);">
+        }
+    } 
+</div>
+
+<div class = "tarjetasContainer">
+    @{
+        foreach(string tarjeta in ViewBag.tarjetas)
+        {
+            <input type="button" value="@tarjeta" onclick="GetBalanceDisponible(this.value);">
+        }
+    } 
+</div>
+
+<form action="Deposito" method = "post">
+    
+        @Html.LabelFor(deposito => deposito.TarjetaOrigen);
+        @Html.EditorFor(deposito => deposito.TarjetaOrigen, new {htmlAttributes = new {@class="input-texto", id = "tarjetaDestino", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(deposito=> deposito.TarjetaOrigen, "", new {@class = "error-message"})
+
+        @Html.LabelFor(deposito => deposito.CuentaDestino);
+        @Html.EditorFor(deposito => deposito.CuentaDestino, new {htmlAttributes = new {@class="input-texto", id = "cuentaOrigen", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(deposito=> deposito.TarjetaOrigen, "", new {@class = "error-message"})
+
+        @Html.LabelFor(deposito => deposito.MontoTarjeta);
+        @Html.EditorFor(deposito => deposito.MontoTarjeta, new {htmlAttributes = new {@class="input-texto", id = "balanceTarjeta", @readonly = "readonly"} })
+        @Html.ValidationMessageFor(deposito=> deposito.MontoTarjeta, "", new {@class = "error-message"})
+
+        @Html.LabelFor(tarjeta => tarjeta.MontoAPagar);
+        @Html.EditorFor(tarjeta => tarjeta.MontoAPagar, new {htmlAttributes = new {@class="input-texto"} })
+        @Html.ValidationMessageFor(tarjeta=> tarjeta.MontoAPagar, "", new {@class = "error-message"})
+
+        <input type="submit" value="Realizar Pago a tarjeta" class="submit-button" />
+</form>
+
+<script src="~/js/Cuentas.js"></script>
+<script src="~/js/FetchTarjetas.js"></script>

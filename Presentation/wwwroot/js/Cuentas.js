@@ -1,9 +1,7 @@
-﻿
-// Agregar dinamicamente un numero de cuenta a un campo de formulario
-const insertAccount = (cuenta = "") => {
-    document.getElementById("cuentaOrigen").value = cuenta;
-}
+﻿// Agregar dinamicamente un numero de cuenta a un campo de formulario
+const insertAccount = (cuenta = "") => document.getElementById("cuentaOrigen").value = cuenta;
 
+// Agregar dinamicamente un numero de tarjeta a un campo de un formulario
 const insertTarjeta = (tarjeta = "") => document.getElementById("tarjetaDestino").value = tarjeta;
 
 // Peticion Fetch para obtener el balance actual de una cuenta particular de un usuario
@@ -16,7 +14,7 @@ const getBalance = (cuenta = "") => {
         })
 
         .then(function (balance) {
-            document.getElementById("cuentaOrigen").value = cuenta;
+            insertAccount(cuenta);
             document.getElementById("balance").value = balance;
         })
 }
@@ -31,7 +29,7 @@ const getBalanceTarjeta = (tarjeta = "") => {
 
         .then(function (balance) {
             document.getElementById("balanceTarjeta").value = balance;
-            document.getElementById("tarjetaDestino").value = tarjeta;
+            insertTarjeta(tarjeta);
         })
 }
 
@@ -60,8 +58,6 @@ const changeListTarjeta = (tarjeta = "") => {
         })
 
         .then((data) => {
-            console.log(data)
-            document.getElementById("contPagos").innerHTML = "";
             document.getElementById("contPagos").innerHTML = data;
         })
 }
