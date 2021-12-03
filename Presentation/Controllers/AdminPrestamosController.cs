@@ -11,6 +11,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Clients");
@@ -24,6 +29,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Clients");
@@ -48,6 +58,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var prestamo = Bussiness.BussinesLogic.CrudPrestamos.GetPrestamo(prestamoToUpdate);
                     return View(prestamo);
                 }
@@ -73,6 +88,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var prestamos = Bussiness.BussinesLogic.CrudPrestamos.GetPrestamos();
                     return View(prestamos);
                 }

@@ -1,5 +1,9 @@
 ﻿@model Bussiness.Model.BindingModel.PrestamoCreateBindingModel;
 
+@{
+    Layout = "_LayoutAdmin";
+}
+
 <form action="CreatePrestamo" method = "post">
 
     @Html.LabelFor(prestamo => prestamo.CodigoPrestamo);

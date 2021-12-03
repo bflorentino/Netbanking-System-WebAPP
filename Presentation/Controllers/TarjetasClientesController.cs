@@ -4,6 +4,23 @@ namespace Presentation.Controllers
 {
     public class TarjetasClientesController : Controller
     {
+        public IActionResult Index()
+        {
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
+        }
         public IActionResult VerTarjetas()
         {
             if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
@@ -14,6 +31,11 @@ namespace Presentation.Controllers
 
                     if(tarjetas.Count == 0)
                     {
+                        var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                        string foto = usuarioEnLinea.RutaFoto;
+                        string rutaFotoSinPerfil = "/IMG/user.png";
+                        ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                        ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                         return RedirectToAction("NoTarjeta");
                     }
                     return View(tarjetas);
@@ -29,6 +51,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Admin");
@@ -54,6 +81,11 @@ namespace Presentation.Controllers
                     {
                         return RedirectToAction("SinTarjetas");
                     }
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Admin");
@@ -86,6 +118,7 @@ namespace Presentation.Controllers
                         //{
 
                         //}
+
                         var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarTarjeta(pago);
                         return RedirectToAction("PagoTarjeta");
                     }
@@ -130,6 +163,11 @@ namespace Presentation.Controllers
                     {
                         return RedirectToAction("NoTarjeta");
                     }
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     ViewBag.cuentas = cuentas;
                     ViewBag.tarjetas = tarjetas;
                     return View();
@@ -156,6 +194,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Admin");

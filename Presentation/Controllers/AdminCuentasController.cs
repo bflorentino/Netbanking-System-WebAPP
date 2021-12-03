@@ -11,6 +11,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Clients");
@@ -24,6 +29,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Clients");
@@ -48,6 +58,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var cuentas = Bussiness.BussinesLogic.CrudCuentas.GetCuentas();
                     return View(cuentas);
                 }
@@ -62,6 +77,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 1)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var cuenta = Bussiness.BussinesLogic.CrudCuentas.GetCuenta(cuentaToUpdate);
                     return View(cuenta);
                 }
@@ -75,6 +95,11 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
+                var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                string foto = usuarioEnLinea.RutaFoto;
+                string rutaFotoSinPerfil = "/IMG/user.png";
+                ViewBag.Foto = rutaFotoSinPerfil;
+                ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                 Bussiness.BussinesLogic.CrudCuentas.UpdateCuenta(cuenta);
                 return RedirectToAction("ViewCuentas");
             }

@@ -7,7 +7,16 @@
 .MainNavBar {
     background-color: #194464;
     width: 100%;
+    float: left;
     position: fixed;
+    top: 0;
+    z-index:1;
+}
+
+#registrate{
+    text-align:center;
+    color: cornflowerblue;
+    text-decoration:none;
 }
 
 .hiper {

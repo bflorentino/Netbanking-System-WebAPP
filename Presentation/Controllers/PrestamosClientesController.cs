@@ -4,12 +4,36 @@ namespace Presentation.Controllers
 {
     public class PrestamosClientesController : Controller
     {
+
+        public IActionResult Index()
+        {
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
+        }
+
         public IActionResult VerPrestamos()
         {
             if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var prestamo = Bussiness.BussinesLogic.OperacionesPrestamos.GetPrestamoActivoAsociado();
 
                    if(prestamo != null)
@@ -33,6 +57,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var prestamo = Bussiness.BussinesLogic.OperacionesPrestamos.GetPrestamoActivoAsociado();
 
                     if(prestamo == null)
@@ -62,6 +91,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 return RedirectToAction("Index", "Admin");
@@ -84,6 +118,11 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetHistPrestamos();
                     ViewBag.prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetCodigosPrestamos();
                     return View(prestamos);

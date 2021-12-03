@@ -1,5 +1,9 @@
 ﻿@model Bussiness.Model.BindingModel.CreditCardEditBindingModel
 
+@{
+    Layout = "_LayoutAdmin";
+}
+
 <form action="EditTarjeta" method = "post">
 
     @Html.LabelFor(tarjeta => tarjeta.NumeroTarjeta);

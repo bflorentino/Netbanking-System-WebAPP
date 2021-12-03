@@ -1,25 +1,45 @@
-﻿@*@{
+﻿@{
     Layout = "_LayoutFree";
 }
-*@
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+   <link href="~/css/FormulariosAutenticacion.css"  rel="stylesheet" />
+
 @model Bussiness.Model.BindingModel.UsersCreateBindingModel
 
-<form action="RegistroUsuario" method = "post" enctype="multipart/form-data">
+<div id="Autenticacion">
 
-    @Html.LabelFor(usuario => usuario.Cedula);
-    @Html.EditorFor(usuario => usuario.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+<form action="RegistroUsuario" method = "post" enctype="multipart/form-data" id="form">
+
+     <div id="imgF">
+    <img src="~/IMG/lgob.png" id="form-img" />
+    </div>
+
+    <div>
+    @Html.LabelFor(usuario => usuario.Cedula)
+    @Html.EditorFor(usuario => usuario.Cedula, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(usuario => usuario.Cedula, "", new {@class = "error-message"})
+    </div>
 
-    @Html.LabelFor(usuario => usuario.NombreUsuario);
-    @Html.EditorFor(usuario => usuario.NombreUsuario, new {htmlAttributes = new {@class="input-texto"} })
+    <div>
+    @Html.LabelFor(usuario => usuario.NombreUsuario)
+
+    @Html.EditorFor(usuario => usuario.NombreUsuario, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(usuario => usuario.NombreUsuario, "", new {@class = "error-message"})
-    
-    @Html.LabelFor(usuario => usuario.PasswordHashed);
-    @Html.PasswordFor(usuario => usuario.PasswordHashed, new {htmlAttributes = new {@class="input-texto"} })
+    </div>
+
+    <div>
+    @Html.LabelFor(usuario => usuario.PasswordHashed)
+    @Html.PasswordFor(usuario => usuario.PasswordHashed, new {@class="input-text"} )
     @Html.ValidationMessageFor(usuario => usuario.PasswordHashed, "", new {@class = "error-message"})
+   </div>
 
     <input type="file" name="Foto" class = "input-texto" >
 
     <input type="submit" value="Registrarme" class="submit-button" />
 
 </form>
+
+</div>

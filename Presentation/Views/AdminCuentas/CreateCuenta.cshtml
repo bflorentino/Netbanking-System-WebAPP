@@ -1,5 +1,10 @@
 ﻿@model Bussiness.Model.BindingModel.CuentaCreateBindingModel;
 
+@{
+    Layout = "_LayoutAdmin";
+}
+
+
 <form action="CreateCuenta" method = "post">
 
         @Html.LabelFor(cuenta => cuenta.NumeroCuenta);
