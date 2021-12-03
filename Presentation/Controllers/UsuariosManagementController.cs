@@ -42,7 +42,7 @@ namespace Presentation.Controllers
                 string nombreFoto = Path.GetFileName(Foto.FileName);
                 string ruta = Path.Combine(WebRoot, nombreFoto);
                 Foto.CopyTo(new FileStream(ruta, FileMode.Create));
-                usuario.RutaFoto = ruta;
+                usuario.RutaFoto = nombreFoto;
             }
 
             Bussiness.BussinesLogic.ManageUsers.AddNewUser(usuario);

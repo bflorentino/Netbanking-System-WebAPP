@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+       <link rel="stylesheet" href="/css/NavBarMenuClientes.css" />
+</head>
+<body>
+    <div id="menuLateral" class="menu-collapsed">
+
+        @*Header*@
+        <header id="header">
+            <div id="titulo"> <span>Asociacion Goldman</span> </div>
+                <div id="menu-btn">
+                    <div class="btn-hamburguesa"></div>
+                    <div class="btn-hamburguesa"></div>
+                    <div class="btn-hamburguesa"></div>
+                </div>
+                </header>
+
+                @*Perfil*@
+                <div id="perfil">
+                    <div id="foto">
+                        <img src="@ViewBag.Foto" />
+                    </div>
+                    <div id="nombre">@ViewBag.Nombre</div>
+                </div>
+
+                @*Items del menu*@
+                <div id="menu-items">
+                    <div class="item">
+                        <a href="#">
+                            <div class="icon"><img src="/IMG/extracto-bancario.png"/></div>
+                            <div class="titulo"><span>Mis cuentas de ahorro</span></div>
+                        </a>
+                    </div>
+                     <div class="item separator"></div>
+                    <div class="item">
+                        <a href="#">
+                            <div class="icon"><img src="/IMG//Prestamos.png"/></div>
+                            <div class="titulo"><span>Mis prestamos</span></div>
+                        </a>
+                    </div>
+                    <div class="item separator"></div>
+                    <div class="item">
+                        <a href="#">
+                            <div class="icon"><img src="/IMG/tarjetas.png"/></div>
+                            <div class="titulo"><span>Mis cuentas de ahorro</span></div>
+                        </a>
+                    </div>
+@*                    
+                </div>
+
+        </div>
+@*        </nav>
+        <nav class="MainNavBar">
+            <a  class="hiper"> Cuentas</a>*@
+
+        @RenderBody()
+
+        <script src="~/js/menu.js"></script>
+   
+</body>
+</html>

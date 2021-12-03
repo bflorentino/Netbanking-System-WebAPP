@@ -10,7 +10,11 @@ namespace Presentation.Controllers
             {
                 if(Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
-                    ViewBag.Message = "Estas en el modulo de clientes";     
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     return View();
                 }
                 else
