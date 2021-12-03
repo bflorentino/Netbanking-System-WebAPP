@@ -131,6 +131,7 @@ namespace Bussiness.BussinesLogic
                              {
                                  CodigoDeposito = historialDep.CodigoDeposito,
                                  TarjetaOrigen = historialDep.TarjetaOrigenRetiro,
+                                 NumeroCuentaDestino = numeroCuenta,
                                  Monto = historialDep.MontoDepositado,
                                  Fecha = historialDep.Fecha
                              }).ToList();
@@ -146,12 +147,14 @@ namespace Bussiness.BussinesLogic
                          join cuentas in dbContext.Cuentas
                          on historialDep.NumeroCuentaDestinoDeposito equals numeroCuenta
                          join clienteCuentas in dbContext.ClientesCuentas
-                         on numeroCuenta equals clienteCuentas.NumeroCuenta
+                         on cuentas.NumeroCuenta equals clienteCuentas.NumeroCuenta
+                         where cuentas.NumeroCuenta == numeroCuenta
                          orderby historialDep.Fecha descending
                          select new Model.ViewModel.HistDepositos
                          {
                              CodigoDeposito = historialDep.CodigoDeposito,
                              TarjetaOrigen = historialDep.TarjetaOrigenRetiro,
+                             NumeroCuentaDestino = numeroCuenta,
                              Monto = historialDep.MontoDepositado,
                              Fecha = historialDep.Fecha
                          }).ToList();
@@ -174,6 +177,7 @@ namespace Bussiness.BussinesLogic
                          {
                              CodigoDeposito = historialDep.CodigoDeposito,
                              TarjetaOrigen = historialDep.TarjetaOrigenRetiro,
+                             NumeroCuentaDestino = cuentas.NumeroCuenta,
                              Monto = historialDep.MontoDepositado,
                              Fecha = historialDep.Fecha
                          }).ToList();

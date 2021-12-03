@@ -10,6 +10,10 @@ namespace Bussiness.Model.BindingModel
         [Required(ErrorMessage = "Debe de ingresar la cantidad de dinero a transferir")]
         public decimal Cantidad { get; set; }
 
+        [Display(Name = "Numero de cuenta de origen")]
+        [StringLength(20, MinimumLength = 20, ErrorMessage = "El numero de cuenta debe ser de 20 numeros")]
+        [RegularExpression("[0-9]{20}", ErrorMessage = "Dato invalido, se deben ingresar 20 digitos numericos")]
+        [Required(ErrorMessage = "Debe de ingresar el numero de cuenta desde el que se desea hacer la transferencia")]
         public string CuentaOrigen { get; set; }
 
         [Display(Name = "Numero de cuenta destino")]

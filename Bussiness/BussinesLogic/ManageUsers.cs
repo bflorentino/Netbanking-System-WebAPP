@@ -11,21 +11,25 @@ namespace Bussiness.BussinesLogic
         static readonly NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static Usuario UserOnline { get; set; }
  
-        public static void AddNewUser(Model.BindingModel.UsersCreateBindingModel usuario)
+        public static bool AddNewUser(Model.BindingModel.UsersCreateBindingModel usuario)
         {
-            // Aplicacion de hash a la contraseña
-            usuario.PasswordHashed = PasswordEncrypter.Compute256Hash(usuario.PasswordHashed);
-
-            dbContext.Usuarios.Add(new Usuario
+            if (IsUserCliente(usuario.Cedula))
             {
-                NombreUsuario = usuario.NombreUsuario,
-                PasswordHashed = usuario.PasswordHashed,
-                IdRol = 2,
-                Cedula = usuario.Cedula,
-                RutaFoto = usuario.RutaFoto
+                // Aplicacion de hash a la contraseña
+                usuario.PasswordHashed = PasswordEncrypter.Compute256Hash(usuario.PasswordHashed);
+
+                dbContext.Usuarios.Add(new Usuario
+                {
+                    NombreUsuario = usuario.NombreUsuario,
+                    PasswordHashed = usuario.PasswordHashed,
+                    IdRol = 2,
+                    Cedula = usuario.Cedula,
+                    RutaFoto = usuario.RutaFoto
+                }
+               );
+                dbContext.SaveChanges();
             }
-           ); 
-            dbContext.SaveChanges();
+            return false;
         }
 
        public static bool IsUserValid(Model.BindingModel.LoginUsuarioBindingModel usuario)
@@ -48,6 +52,13 @@ namespace Bussiness.BussinesLogic
         {
             Usuario user = GetUser(usuario);
             UserOnline = user;
+        }
+
+        private static bool IsUserCliente(string cedula)
+        {
+            // Verificar que un usuario sea cliente del banco
+            var usuario = dbContext.Clientes.Find(cedula);
+            return usuario != null;
         }
 
         public void LogoutApp()

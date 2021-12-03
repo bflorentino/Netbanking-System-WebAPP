@@ -1,18 +1,4 @@
 ﻿@model IEnumerable<Bussiness.Model.ViewModel.HistDepositos>
-   
-<input type="date" name="fechaInicial"  class="fechaInicial"/>
-<input type="date" name="fechaFinal"  class="fechaFinal"/>
-<input type="button" name="buscar" class="buscar"  value="Buscar"/>
-  
-<div class = "cuentasContainer">
-    @{
-        foreach(string cuenta in ViewBag.cuentas)
-        {
-            <input type="button" value="@cuenta" onclick="changeListDepositos(this.value);">
-        }
-    } 
-</div>
-
 
 <div id="depositos">
     <table class="table table-bordered">
@@ -48,5 +34,3 @@
     }
 </table>
 </div>
-
-<script src="~/js/PartialViews.js"></script>

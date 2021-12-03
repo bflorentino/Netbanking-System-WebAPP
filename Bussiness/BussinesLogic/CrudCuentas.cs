@@ -81,5 +81,16 @@ namespace Bussiness.BussinesLogic
 
             dbContext.SaveChanges();
         }
+
+        public static bool ClienteTieneCuenta(string cedula)
+        {
+            var cuenta = (from cuentas in dbContext.Cuentas 
+                         join clienteCuenta in dbContext.ClientesCuentas
+                         on cuentas.NumeroCuenta equals clienteCuenta.NumeroCuenta
+                         where clienteCuenta.Cedula == cedula
+                         select cuentas).ToList();
+
+            return cuenta.Count > 0;
+        }
     }
  }

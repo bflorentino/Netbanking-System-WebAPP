@@ -6,35 +6,59 @@ namespace Presentation.Controllers
     {
         public IActionResult VerTarjetas()
         {
-            var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetTarjetas();
-
-            if(tarjetas.Count == 0)
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
             {
-                return RedirectToAction("NoTarjeta");
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetTarjetas();
+
+                    if(tarjetas.Count == 0)
+                    {
+                        return RedirectToAction("NoTarjeta");
+                    }
+                    return View(tarjetas);
+                }
+                return RedirectToAction("Index", "Admin");
             }
-            return View(tarjetas);
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult NoTarjeta()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult PagoTarjeta()
-        {          
-            ViewBag.cuentas =  Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+        {
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    ViewBag.cuentas =  Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
          
-            if(ViewBag.cuentas.Count == 0)
-            {
-                return RedirectToAction("SinCuentas", "CuentasClientes");
-            }
+                    if(ViewBag.cuentas.Count == 0)
+                    {
+                        return RedirectToAction("SinCuentas", "CuentasClientes");
+                    }
             
-            ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
-            if (ViewBag.tarjetas.Count == 0)
-            {
-                return RedirectToAction("SinTarjetas");
+                    ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+                    if (ViewBag.tarjetas.Count == 0)
+                    {
+                        return RedirectToAction("SinTarjetas");
+                    }
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
             }
-            return View();
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public JsonResult GetTarjetaBalance(string tarjeta)
@@ -52,25 +76,39 @@ namespace Presentation.Controllers
         [HttpPost]
         public IActionResult PagoTarjeta(Bussiness.Model.BindingModel.PagoTarjetaBindingModel pago)
         {
-            ViewBag.cuentas = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
-            ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
-            if (ModelState.IsValid)
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
             {
-                //if (Bussiness.BussinesLogic.OperacionesTarjetas.PagarTarjeta(pago))
-                //{
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        //if (Bussiness.BussinesLogic.OperacionesTarjetas.PagarTarjeta(pago))
+                        //{
 
-                //}
-                var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarTarjeta(pago);
-                return View();
+                        //}
+                        var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarTarjeta(pago);
+                        return RedirectToAction("PagoTarjeta");
+                    }
+                    return View(pago);
+                }
+                return RedirectToAction("Index", "Admin");
             }
-            return View(pago);
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult VerHistPagos()
         {
-            var pagos = Bussiness.BussinesLogic.OperacionesTarjetas.GetHistorialPagos();
-            ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
-            return View(pagos);  
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var pagos = Bussiness.BussinesLogic.OperacionesTarjetas.GetHistorialPagos();
+                    ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+                    return View(pagos);  
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public PartialViewResult PagosPorTarjeta(string tarjeta)
@@ -81,30 +119,48 @@ namespace Presentation.Controllers
 
         public IActionResult Deposito()
         {
-            var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
-            var cuentas = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
-
-            if(tarjetas.Count == 0 || cuentas.Count == 0)
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
             {
-                return RedirectToAction("NoTarjeta");
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+                    var cuentas = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+
+                    if(tarjetas.Count == 0 || cuentas.Count == 0)
+                    {
+                        return RedirectToAction("NoTarjeta");
+                    }
+                    ViewBag.cuentas = cuentas;
+                    ViewBag.tarjetas = tarjetas;
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
             }
-
-            ViewBag.cuentas = cuentas;
-            ViewBag.tarjetas = tarjetas;
-
-            return View();
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
         public IActionResult Deposito(Bussiness.Model.BindingModel.PagoDepositoBindingModel deposito)
         {
-            var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarDeposito(deposito);
-            return RedirectToAction("Deposito");
+            if (ModelState.IsValid)
+            {
+                var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarDeposito(deposito);
+                return RedirectToAction("Deposito");
+            }
+            return View(deposito);
         }
 
         public IActionResult SinPagos()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
     }
 }

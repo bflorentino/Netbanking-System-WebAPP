@@ -12,34 +12,38 @@ namespace Bussiness.BussinesLogic
         static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static bool CreatePrestamo(Model.BindingModel.PrestamoCreateBindingModel  prestamo)
         {
-            if (VerificarPrestamoActivo(prestamo.Cedula))
+            // Verificar si el cleinte tiene o no cedula
+            if (CrudCuentas.ClienteTieneCuenta(prestamo.Cedula) == false)
             {
-            // Verificar si el cliente tiene un prestamo activo o no en el banco antes de agregar un prestamo a un cliente
                 return false;
             }
-            else
+          
+            // Verificar si el cliente tiene un prestamo activo o no en el banco antes de agregar un prestamo a un cliente
+            if (VerificarPrestamoActivo(prestamo.Cedula))
             {
-                dbContext.Add(new Prestamo
-                {
-                    CodigoPrestamo = prestamo.CodigoPrestamo,
-                    FechaInicio = DateTime.Now,
-                    MontoPrestado = prestamo.MontoPrestado,
-                    CuotasTotalesAPagar = prestamo.CuotasTotalesAPagar,
-                    CuotasPagadas = 0,
-                    PagoPorCuota = prestamo.PagoPorCuota,
-                    TasaInteres = prestamo.TasaInteres,
-                    Activo = "Si"
-                });
-
-                dbContext.Add(new ClientesPrestamo
-                {
-                    Cedula = prestamo.Cedula,
-                    CodigoPrestamo = prestamo.CodigoPrestamo
-                });
-
-               dbContext.SaveChanges();
-                return true;
+                return false;
             }
+ 
+            dbContext.Add(new Prestamo
+            {
+                CodigoPrestamo = prestamo.CodigoPrestamo,
+                FechaInicio = DateTime.Now,
+                MontoPrestado = prestamo.MontoPrestado,
+                CuotasTotalesAPagar = prestamo.CuotasTotalesAPagar,
+                CuotasPagadas = 0,
+                PagoPorCuota = prestamo.PagoPorCuota,
+                TasaInteres = prestamo.TasaInteres,
+                Activo = "Si"
+            });
+
+            dbContext.Add(new ClientesPrestamo
+            {
+                Cedula = prestamo.Cedula,
+                CodigoPrestamo = prestamo.CodigoPrestamo
+            });
+
+            dbContext.SaveChanges();
+            return true;
         }
 
         private static bool VerificarPrestamoActivo(string numeroCedula)

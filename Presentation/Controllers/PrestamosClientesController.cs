@@ -6,44 +6,67 @@ namespace Presentation.Controllers
     {
         public IActionResult VerPrestamos()
         {
-            var prestamo = Bussiness.BussinesLogic.OperacionesPrestamos.GetPrestamoActivoAsociado();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var prestamo = Bussiness.BussinesLogic.OperacionesPrestamos.GetPrestamoActivoAsociado();
 
-           if(prestamo != null)
-            {
-                ViewBag.message = null;
+                   if(prestamo != null)
+                    {
+                        ViewBag.message = null;
+                    }
+                    else
+                    {
+                        ViewBag.message = "Actualmente no tiene ningún préstamo activo con nosotros";
+                    }
+                    return View(prestamo);
+                }
+                return RedirectToAction("Index", "Admin");
             }
-            else
-            {
-                ViewBag.message = "Actualmente no tiene ningún préstamo activo con nosotros";
-            }
-            return View(prestamo);
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult PagoPrestamo()
         {
-            var prestamo = Bussiness.BussinesLogic.OperacionesPrestamos.GetPrestamoActivoAsociado();
-
-            if(prestamo == null)
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
             {
-                return RedirectToAction("SinPrestamo");
-            }
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var prestamo = Bussiness.BussinesLogic.OperacionesPrestamos.GetPrestamoActivoAsociado();
+
+                    if(prestamo == null)
+                    {
+                        return RedirectToAction("SinPrestamo");
+                    }
  
-            var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
-            ViewBag.cuentas = cuentasStrings;
+                    var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+                    ViewBag.cuentas = cuentasStrings;
 
-            Bussiness.Model.BindingModel.PagoPrestamoBindingModel pago = new Bussiness.Model.BindingModel.PagoPrestamoBindingModel
-            {
-                CodigoPrestamo = prestamo.CodigoPrestamo,
-                MontoAPagar = prestamo.PagoPorCuota,
-                MontoPrestado = prestamo.MontoPrestado
-            };
-
-            return View(pago);
+                    Bussiness.Model.BindingModel.PagoPrestamoBindingModel pago = new Bussiness.Model.BindingModel.PagoPrestamoBindingModel
+                    {
+                        CodigoPrestamo = prestamo.CodigoPrestamo,
+                        MontoAPagar = prestamo.PagoPorCuota,
+                        MontoPrestado = prestamo.MontoPrestado
+                    };
+                    return View(pago);
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult SinPrestamo()
         {
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         [HttpPost]
@@ -57,9 +80,18 @@ namespace Presentation.Controllers
 
         public IActionResult VerHistPrestamos()
         {
-            var prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetHistPrestamos();
-            ViewBag.prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetCodigosPrestamos();
-            return View(prestamos);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetHistPrestamos();
+                    ViewBag.prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetCodigosPrestamos();
+                    return View(prestamos);
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
+
         } 
 
         public PartialViewResult PagosPorPrestamo(string prestamo)

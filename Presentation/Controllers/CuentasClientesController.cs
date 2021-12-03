@@ -6,11 +6,22 @@ namespace Presentation.Controllers
     {
         public IActionResult VerCuentas()
         {
-            var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
-            ViewBag.cuentas = cuentasStrings;
-            return View();
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                   var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+                    ViewBag.cuentas = cuentasStrings;
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
-
+        
         public JsonResult GetCuentaBalance(string cuenta)
         {
             var balance = Bussiness.BussinesLogic.OperacionesCuentas.GetBalance(cuenta);
@@ -32,7 +43,7 @@ namespace Presentation.Controllers
                     }
                     return View();
                 }
-                return RedirectToAction("Index", "Clients");
+                return RedirectToAction("Index", "Admin");
             }
             return RedirectToAction("Login", "UsuariosManagement");
         }
@@ -42,33 +53,63 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var transferido = Bussiness.BussinesLogic.OperacionesCuentas.RealizarTransferencia(transferencia);
-                var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
-                ViewBag.cuentas = cuentasStrings;
-                return View();
+                return RedirectToAction("Transferencia");
             }
             return View(transferencia);
         }
         
         public IActionResult Retiros()
         {
-            var retiros = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialRetiros();
-            var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
-            ViewBag.cuentas = cuentasStrings;
-            return View(retiros);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var retiros = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialRetiros();
+                     var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+                     ViewBag.cuentas = cuentasStrings;
+                     return View(retiros);
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
 
         public IActionResult Depositos()
         {
-            var depositos = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialDepositos();
-            var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
-            ViewBag.cuentas = cuentasStrings;
-            return View(depositos);
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var depositos = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialDepositos();
+                    var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+                    ViewBag.cuentas = cuentasStrings;
+                    return View(depositos);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
+        }
+
+        public PartialViewResult DepositosPorCuenta(string cuenta)
+        {
+            var depositos = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialDepositos(cuenta); 
+            return PartialView(depositos);
         }
 
         public IActionResult SinCuentas()
         {
-            return View();  
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    return View();      
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
         }
     }
 }

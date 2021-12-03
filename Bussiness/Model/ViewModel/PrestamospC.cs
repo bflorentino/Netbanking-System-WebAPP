@@ -16,6 +16,7 @@ namespace Bussiness.Model.ViewModel
         [Display(Name = "Pago por cuota")]
         public decimal PagoPorCuota { get; set; }
 
+        [Display(Name="Pago restante")]
         public decimal PagoRestante { get; set; }
     }
 }

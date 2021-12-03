@@ -15,6 +15,7 @@ namespace Bussiness.Model.ViewModel
 
         [Display(Name ="Balance de la cuenta")]
         public decimal Balance { get; set; }
+
         public string Cedula { get; set; }
     }
 }
