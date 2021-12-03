@@ -21,6 +21,7 @@ namespace Data
         public decimal BalanceDisponible { get; set; }
         public decimal? BalanceConsumido { get; set; }
         public DateTime FechaExpedicion { get; set; }
+        public decimal? TopeCredito { get; set; }
 
         public virtual ICollection<ClientesTarjeta> ClientesTarjeta { get; set; }
         public virtual ICollection<HistorialDeposito> HistorialDepositos { get; set; }

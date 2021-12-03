@@ -36,7 +36,7 @@ namespace Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= BFLORENTINO\\SQLBRYAN;Database=NetBanking_Sys_WebApp;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=BFLORENTINO\\SQLBRYAN;Initial Catalog=NetBanking_Sys_WebApp;trusted_connection=true;");
             }
         }
 
@@ -416,6 +416,8 @@ namespace Data
                 entity.Property(e => e.FechaVencimiento)
                     .HasColumnType("date")
                     .HasColumnName("Fecha_Vencimiento");
+
+                entity.Property(e => e.TopeCredito).HasColumnType("decimal(13, 2)");
 
                 entity.Property(e => e.ValorDeValidacion).HasColumnName("Valor_De_Validacion");
             });

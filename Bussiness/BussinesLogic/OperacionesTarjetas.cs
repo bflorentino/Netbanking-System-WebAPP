@@ -99,6 +99,12 @@ namespace Bussiness.BussinesLogic
             {
                 // Actualización a la tarjeta de credito
                 var tarjeta = dbContext.Tarjetas.Find(pago.NumeroTarjeta);
+                
+                if(pago.MontoAPagar > tarjeta.TopeCredito)
+                {
+                    return false;
+                }
+
                 tarjeta.BalanceConsumido -= pago.MontoAPagar;
                 tarjeta.BalanceDisponible += pago.MontoAPagar;
 

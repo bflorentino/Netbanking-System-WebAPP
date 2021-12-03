@@ -19,6 +19,7 @@ namespace Bussiness.BussinesLogic
                 FechaVencimiento = tarjeta.FechaVencimiento,
                 BalanceDisponible = tarjeta.BalanceDisponible,
                 BalanceConsumido = 0,
+                TopeCredito = tarjeta.BalanceDisponible,
                 FechaExpedicion = DateTime.Now
             });
 
