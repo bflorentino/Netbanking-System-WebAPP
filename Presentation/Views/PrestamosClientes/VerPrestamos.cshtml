@@ -4,10 +4,16 @@
     Layout = "_LayoutClientes";
 }
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/Tables.css"/>
+
 @* @{
         if (ViewBag.message != null)
     {*@
-        <table class="table table-bordered">
+        <table class="content-table">
+            <thead>
             <tr>
                 <td>
                     @Html.DisplayNameFor(prestamo => prestamo.CodigoPrestamo)
@@ -22,12 +28,15 @@
                     @Html.DisplayNameFor(prestamo => prestamo.PagoRestante)
                 </td>
             </tr>
+            </thead>
+            <tbody>
                     <tr>
                         <td>@Html.DisplayFor(prestamo => prestamo.CodigoPrestamo)</td>
                         <td>@Html.DisplayFor(prestamo => prestamo.MontoPrestado)</td>
                         <td>@Html.DisplayFor(prestamo => prestamo.PagoPorCuota)</td>
                          <td>@Html.DisplayFor(prestamo=> prestamo.PagoRestante)</td>
                     </tr>
+                    </tbody>
         </table>
 @*    }*@
     

@@ -3,6 +3,12 @@
 @{
     Layout = "_LayoutClientes";
 }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/Tables.css"/>
+
+<h1>Historial de préstamos</h1>
 
     @{
     foreach(var item in ViewBag.prestamos)
@@ -12,7 +18,8 @@
     }
 
    <div id="contPagos">
-        <table class="table table-bordered">
+        <table class="content-table">
+            <thead>
             <tr>
                <td>
                   @Html.DisplayNameFor(pago=> pago.CodigoPrestamo)
@@ -24,6 +31,8 @@
                     @Html.DisplayNameFor(pago => pago.Monto)
                 </td>
             </tr>
+            </thead>
+            <tbody>
                         @{
                             foreach(var item in Model){
                     <tr>
@@ -33,6 +42,7 @@
                     </tr>
                             }
   }
+  </tbody>
         </table>
 </div>
 

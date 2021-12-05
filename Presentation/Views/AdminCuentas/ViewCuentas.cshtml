@@ -4,7 +4,15 @@
     Layout = "_LayoutAdmin";
 }
 
-<table class="table table-bordered">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/Tables.css"/>
+
+<h1>Administración de cuentas de ahorro</h1>
+
+<table class="content-table">
+    <thead>
     <tr>
         <td>
             @Html.DisplayNameFor(cuenta => cuenta.NumeroCuenta)
@@ -18,8 +26,12 @@
           <td>
             @Html.DisplayNameFor(cuenta => cuenta.FechaCreacion)
         </td>
+          <td>
+            Edición
+        </td>
     </tr>
- 
+    </thead>
+ <tbody>
     @{
         foreach(var cuenta in Model)
         {
@@ -32,4 +44,5 @@
             </tr>
         }
     }
+    </tbody>
 </table>

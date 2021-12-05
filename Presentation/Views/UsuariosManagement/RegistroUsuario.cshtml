@@ -25,7 +25,6 @@
 
     <div>
     @Html.LabelFor(usuario => usuario.NombreUsuario)
-
     @Html.EditorFor(usuario => usuario.NombreUsuario, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(usuario => usuario.NombreUsuario, "", new {@class = "error-message"})
     </div>

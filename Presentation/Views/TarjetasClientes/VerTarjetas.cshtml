@@ -4,7 +4,14 @@
     Layout = "_LayoutClientes";
 }
 
-<table class="table table-bordered">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/Tables.css"/>
+
+
+<table class="content-table">
+    <thead>
             <tr>
                 <td>
                     @Html.DisplayNameFor(tarjeta => tarjeta.BalanceConsumido)
@@ -14,6 +21,8 @@
                 </td>
 
             </tr>
+            </thead>
+            <tbody>
             @{
         foreach(var item in Model)
         {
@@ -24,4 +33,5 @@
          
         }
                 }
+                </tbody>
         </table>

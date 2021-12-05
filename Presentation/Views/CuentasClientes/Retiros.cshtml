@@ -4,12 +4,17 @@
     Layout = "_LayoutClientes";
 }
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/Tables.css"/>
+
 <input type="date" name="fechaInicial"  class="fechaInicial"/>
 <input type="date" name="fechaFinal"  class="fechaFinal"/>
 <input type="button" name="buscar" class="buscar" value="Buscar"/>
 
-
-        <table class="table table-bordered">
+        <table class="content-table">
+            <thead>
             <tr>
                 <td>
                     @Html.DisplayNameFor(retiro => retiro.CodigoRetiro)
@@ -24,7 +29,8 @@
                     @Html.DisplayNameFor(retiro => retiro.Fecha)
                 </td>
             </tr>     
-           
+           </thead>
+           <tbody>
                @{ foreach(var retiro in Model)
                 {
                    <tr>
@@ -35,5 +41,6 @@
                     </tr>
                     }   
                 }
+                </tbody>
             </table>
     
