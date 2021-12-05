@@ -28,7 +28,14 @@
                 </div>
 
                 @*Items del menu*@
-                <div id="menu-items">
+                <div id="menu-items">              
+                   <div class="item">
+                        <a asp-action="Index" asp-controller="Admin">
+                            <div class="icon"><img src="/IMG/Inicio.png"/></div>
+                            <div class="titulo"><span>Inicio</span></div>
+                        </a>
+                    </div>
+                     <div class="item separator"></div>
                     <div class="item">
                         <a href="#">
                             <div class="icon"><img src="/IMG/extracto-bancario.png"/></div>
@@ -56,7 +63,13 @@
                             <div class="titulo"><span>Administrar préstamos</span></div>
                         </a>
                     </div>
-                    
+                <div class="item separator"></div>
+                    <div class="item">
+                     <a asp-action="LogOut" asp-controller="UsuariosManagement">
+                            <div class="icon"><img src="/IMG/Logout.png"/></div>
+                            <div class="titulo"><span>Log Out</span></div>
+                        </a>
+                    </div>                   
                 </div>
         </div>
 

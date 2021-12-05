@@ -78,5 +78,11 @@ namespace Presentation.Controllers
             }
             return View(usuario);
         }
+
+        public IActionResult LogOut()
+        {
+            Bussiness.BussinesLogic.ManageUsers.LogoutApp();
+            return RedirectToAction("Login");
+        }
     }
 }

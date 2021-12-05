@@ -2,7 +2,7 @@
     --width: 300px;
     --padding: 10px;
     --bgcolor: #194464;
-    --hovercolor: rgb(23, 23, 23);
+    --hovercolor: rgba(0, 0, 0, 0.2);
     --width-Collapsed: 50px;
 }
 
@@ -141,7 +141,7 @@ body {
 #menuLateral #menu-items .item.separator{
     height: 1px;
     border-bottom: solid 1px var(--hovercolor);
-    margin: 15px;
+    margin: 0;
 }
 
 .menu-expanded{

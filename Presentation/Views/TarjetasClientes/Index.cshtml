@@ -1,3 +1,33 @@
 ﻿@{
     Layout = "_LayoutClientes";
 }
+
+<link rel="stylesheet" href="/css/Cards.css"/>
+
+<div class="container">
+
+    <div class="card">
+       <img src="/IMG/VerTarjetas.png"/>
+       <h4>Mis Tarjetas de crédito</h4>   
+        @Html.ActionLink("Ver Tarjetas ", "VerTarjetas", "TarjetasClientes")
+    </div>
+
+    <div class="card">
+       <img src="/IMG/PagarTarjeta.png"/>
+       <h4>Pagar tarjeta</h4>
+        @Html.ActionLink("Realizar Pago", "PagoTarjeta", "TarjetasClientes")
+    </div>
+
+    <div class="card">
+       <img src="/IMG/HistorialPrestamos.png"/>
+       <h4>Historial de pagos</h4>
+        @Html.ActionLink("Ver historial de pagos", "VerHistPagos", "TarjetasClientes")   
+    </div>
+
+    <div class="card">
+       <img src="/IMG/RealizarDeposito.png"/>
+       <h4>Realizar Depósito</h4>   
+        @Html.ActionLink("Realizar un deposito", "Deposito", "TarjetasClientes")
+    </div>
+
+</div>

@@ -29,27 +29,40 @@
 
                 @*Items del menu*@
                 <div id="menu-items">
+                   <div class="item">
+                        <a asp-action="Index" asp-controller="Clients">
+                            <div class="icon"><img src="/IMG/Inicio.png"/></div>
+                            <div class="titulo"><span>Inicio</span></div>
+                        </a>
+                    </div>
+                     <div class="item separator"></div>
                     <div class="item">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="CuentasClientes">
                             <div class="icon"><img src="/IMG/extracto-bancario.png"/></div>
                             <div class="titulo"><span>Mis cuentas de ahorro</span></div>
                         </a>
                     </div>
                      <div class="item separator"></div>
                     <div class="item">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="PrestamosClientes">
                             <div class="icon"><img src="/IMG//Prestamos.png"/></div>
                             <div class="titulo"><span>Mis prestamos</span></div>
                         </a>
                     </div>
                     <div class="item separator"></div>
                     <div class="item">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="TarjetasClientes">
                             <div class="icon"><img src="/IMG/tarjetas.png"/></div>
-                            <div class="titulo"><span>Mis cuentas de ahorro</span></div>
+                            <div class="titulo"><span>Mis tarjetas de crédito</span></div>
                         </a>
                     </div>
-                    
+               <div class="item separator"></div>
+                    <div class="item">
+                     <a asp-action="LogOut" asp-controller="UsuariosManagement">
+                            <div class="icon"><img src="/IMG/Logout.png"/></div>
+                            <div class="titulo"><span>Log Out</span></div>
+                        </a>
+                    </div>
                 </div>
         </div>
 

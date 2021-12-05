@@ -2,5 +2,19 @@
     Layout = "_LayoutAdmin";
 }
 
-@Html.ActionLink("Nuevo Prestamo", "CreatePrestamo", "AdminPrestamos");
-@Html.ActionLink("Ver Prestamos", "ViewPrestamos", "AdminPrestamos");
+<link rel="stylesheet" href="/css/Cards.css"/>
+
+<div class="container">
+
+    <div class="card">
+       <img src="/IMG/NuevoPrestamo.png"/>
+       <h4>Nuevo Prestamo</h4>   
+        @Html.ActionLink("Nuevo Prestamo", "CreatePrestamo", "AdminPrestamos");
+    </div>
+
+    <div class="card">
+       <img src="/IMG/VerPrestamos.png"/>
+       <h4>Ver Prestamos</h4>
+        @Html.ActionLink("Ver Prestamos", "ViewPrestamos", "AdminPrestamos");
+    </div>
+</div>

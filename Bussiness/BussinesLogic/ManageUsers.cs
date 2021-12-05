@@ -61,7 +61,7 @@ namespace Bussiness.BussinesLogic
             return usuario != null;
         }
 
-        public void LogoutApp()
+        public static void LogoutApp()
         {
             UserOnline = null;
         }

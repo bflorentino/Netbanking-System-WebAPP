@@ -2,5 +2,22 @@
     Layout = "_LayoutAdmin";
 }
 
-@Html.ActionLink("Nueva Tarjeta de Credito", "CreateTarjeta", "AdminTarjetas")
-@Html.ActionLink("Ver Tarjetas", "ViewTarjetas", "AdminTarjetas")
+<link rel="stylesheet" href="/css/Cards.css"/>
+
+<div class="container">
+
+    <div class="card">
+       <img src="/IMG/VerTarjetas.png"/>
+       <h4>Tarjetas de crédito</h4>   
+        @Html.ActionLink("Ver Tarjetas", "ViewTarjetas", "AdminTarjetas")
+    </div>
+
+    <div class="card">
+       <img src="/IMG/NuevaTarjeta.png"/>
+       <h4>Nueva Tarjeta de crédito</h4>
+        @Html.ActionLink("Nueva Tarjeta de Credito", "CreateTarjeta", "AdminTarjetas")
+    </div>
+
+
+</div>
+

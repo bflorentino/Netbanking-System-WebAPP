@@ -2,5 +2,21 @@
     Layout = "_LayoutAdmin";
 }
 
-@Html.ActionLink("Ver cuentas", "ViewCuentas", "AdminCuentas")
-@Html.ActionLink("Crear cuenta", "CreateCuenta", "AdminCuentas");
+<link rel="stylesheet" href="/css/Cards.css"/>
+
+<div class="container">
+
+    <div class="card">
+       <img src="/IMG/VerCuentas.png"/>
+       <h4>Cuentas de ahorro</h4>   
+        @Html.ActionLink("Ver cuentas", "ViewCuentas", "AdminCuentas")
+    </div>
+
+    <div class="card">
+       <img src="/IMG/NuevaCuenta.png"/>
+       <h4>Nueva Cuenta de ahorro</h4>
+        @Html.ActionLink("Crear cuenta", "CreateCuenta", "AdminCuentas");
+    </div>
+
+</div>
+
