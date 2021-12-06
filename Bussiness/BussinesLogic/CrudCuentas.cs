@@ -10,22 +10,30 @@ namespace Bussiness.BussinesLogic
     {
         //static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
         static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
-        public static void CreateCuenta(Model.BindingModel.CuentaCreateBindingModel cuenta)
+        public static bool CreateCuenta(Model.BindingModel.CuentaCreateBindingModel cuenta)
         {
-            dbContext.Add(new Cuenta
+            try
             {
-                NumeroCuenta = cuenta.NumeroCuenta,
-                Balance = cuenta.Balance,
-                FechaCreacion = DateTime.Now,
-            });
+                dbContext.Add(new Cuenta
+                {
+                    NumeroCuenta = cuenta.NumeroCuenta,
+                    Balance = cuenta.Balance,
+                    FechaCreacion = DateTime.Now,
+                });
 
-            dbContext.Add(new ClientesCuenta
+                dbContext.Add(new ClientesCuenta
+                {
+                    Cedula = cuenta.Cedula,
+                    NumeroCuenta = cuenta.NumeroCuenta
+                });
+
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
             {
-                Cedula = cuenta.Cedula,
-                NumeroCuenta = cuenta.NumeroCuenta
-            });
-
-            dbContext.SaveChanges();
+                return false;
+            }
         }
 
         public static List<Model.ViewModel.Cuenta> GetCuentas()
@@ -72,14 +80,21 @@ namespace Bussiness.BussinesLogic
             return cuenta;
         }
 
-        public static void UpdateCuenta(Model.BindingModel.CuentaEditBindingModel cuenta)
+        public static bool UpdateCuenta(Model.BindingModel.CuentaEditBindingModel cuenta)
         {
-            var account = dbContext.Cuentas.Where(c => c.NumeroCuenta == cuenta.NumeroCuenta).FirstOrDefault();
+            try
+            {
+                var account = dbContext.Cuentas.Where(c => c.NumeroCuenta == cuenta.NumeroCuenta).FirstOrDefault();
 
-            // Edicion de la cuenta
-            account.Balance = cuenta.Balance;
-
-            dbContext.SaveChanges();
+                // Edicion de la cuenta
+                account.Balance = cuenta.Balance;
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         public static bool ClienteTieneCuenta(string cedula)

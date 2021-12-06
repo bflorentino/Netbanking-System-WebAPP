@@ -46,8 +46,9 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-               Bussiness.BussinesLogic.CrudPrestamos.CreatePrestamo(prestamo);
-                return RedirectToAction("ViewPrestamos");
+               var registrado = Bussiness.BussinesLogic.CrudPrestamos.CreatePrestamo(prestamo);
+               ViewBag.Response = registrado ? "El prestamo ha sido ingresado de manera satisfactoria" : "Error al registrar prestamo";
+                return View();
             }
             return View(prestamo);
         }
@@ -76,7 +77,8 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.CrudPrestamos.UpdatePrestamo(prestamo);
+                var actualizado = Bussiness.BussinesLogic.CrudPrestamos.UpdatePrestamo(prestamo);
+                ViewBag.Response = actualizado ? null : "Error al actualizar registro";
                 return RedirectToAction("ViewPrestamos");
             }
             return View(prestamo);

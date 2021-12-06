@@ -46,7 +46,8 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.CrudCuentas.CreateCuenta(cuenta);
+              var registrado =  Bussiness.BussinesLogic.CrudCuentas.CreateCuenta(cuenta);
+                ViewBag.Response = registrado ? "Se ha registrado el nuevo prestamo de manera satisfactoria" : "Error al registrar prestamo";
                 return View();
             }
             return View(cuenta);
@@ -100,8 +101,9 @@ namespace Presentation.Controllers
                 string rutaFotoSinPerfil = "/IMG/user.png";
                 ViewBag.Foto = rutaFotoSinPerfil;
                 ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
-                Bussiness.BussinesLogic.CrudCuentas.UpdateCuenta(cuenta);
-                return RedirectToAction("ViewCuentas");
+                var actualizado =  Bussiness.BussinesLogic.CrudCuentas.UpdateCuenta(cuenta);
+                ViewBag.Response = actualizado ? null : "Error al actualizar el registro";
+                return View();
             }
             return View(cuenta);
         }

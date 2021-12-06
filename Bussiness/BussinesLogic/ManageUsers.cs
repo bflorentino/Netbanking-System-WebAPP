@@ -13,23 +13,30 @@ namespace Bussiness.BussinesLogic
  
         public static bool AddNewUser(Model.BindingModel.UsersCreateBindingModel usuario)
         {
-            if (IsUserCliente(usuario.Cedula))
+            try
             {
-                // Aplicacion de hash a la contraseña
-                usuario.PasswordHashed = PasswordEncrypter.Compute256Hash(usuario.PasswordHashed);
-
-                dbContext.Usuarios.Add(new Usuario
+                if (IsUserCliente(usuario.Cedula))
                 {
-                    NombreUsuario = usuario.NombreUsuario,
-                    PasswordHashed = usuario.PasswordHashed,
-                    IdRol = 2,
-                    Cedula = usuario.Cedula,
-                    RutaFoto = usuario.RutaFoto
+                    // Aplicacion de hash a la contraseña
+                    var UPasswordHashed = PasswordEncrypter.Compute256Hash(usuario.PasswordHashed);
+                    dbContext.Usuarios.Add(new Usuario
+                    {
+                        NombreUsuario = usuario.NombreUsuario,
+                        PasswordHashed = UPasswordHashed,
+                        IdRol = 2,
+                        Cedula = usuario.Cedula,
+                        RutaFoto = usuario.RutaFoto
+                    }
+                   );
+                    dbContext.SaveChanges();
+                    return true;
                 }
-               );
-                dbContext.SaveChanges();
+                return false;
             }
-            return false;
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
        public static bool IsUserValid(Model.BindingModel.LoginUsuarioBindingModel usuario)

@@ -1,0 +1,84 @@
+﻿
+body {
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.data-container {
+    width: 80%;
+    /*    max-width: 800px;*/
+    background: #fff;
+    margin: auto;
+    margin-top:100px;
+}
+
+.form-data label, .form-data .input-text {
+    display: block;
+}
+
+.cuentasContainer {
+    width: 30%;
+    float: left;
+    border-right: 2px solid black;
+    height: 100%;
+}
+
+    .cuentasContainer input {
+        margin: 10px;
+        border: none;
+        padding: 20px;
+        background-color: #fff;
+        font-size: 20px;
+    }
+
+.cuentasContainer input:hover {
+      cursor: pointer;
+      background-color: #194464;
+      color: #fff;
+ }
+
+.form-data {
+  width: 60%;
+  height: 100%;
+  float: left;
+  margin-left: 25px;
+}
+
+.form-data label {
+   width: 45%;
+ }
+
+  .form-data .input-text {
+    width: 50%;
+    padding: 10px;
+    font-size: 1em;
+  }
+
+    .form-data .field {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+
+    .form-data .submit-button {
+        width: 100%;
+        background: #194464;
+        padding: 10px;
+        border: none;
+        color: #FFF;
+        font-size: 1em;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+.form-title {
+    margin-top: 0;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+.cuentasContainer h1 {
+    font-size: 20px;
+    padding: 10px;
+}

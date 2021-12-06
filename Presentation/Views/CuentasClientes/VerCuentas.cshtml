@@ -2,9 +2,16 @@
     Layout = "_LayoutClientes";
 }
 
-<input name = "BalanceCuenta" class="balance" id="balance" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
+<link rel="stylesheet" href="/css/dataFormClientes.css"/>
+
+<div class="data-container">
 
 <div class = "cuentasContainer">
+            <h1>Seleccione una cuenta de ahorro</h1>
     @{
 
         foreach(string cuenta in ViewBag.cuentas)
@@ -13,6 +20,16 @@
         }
     } 
 </div>
+
+<form class="form-data">
+       <h1>Balance de la cuenta</h1>
+<div class="field">
+<input name = "BalanceCuenta" class="input-text" id="balance" />
+</div>
+</form>
+
+</div>
+
 
 <script>
 

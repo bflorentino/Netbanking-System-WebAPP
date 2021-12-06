@@ -53,4 +53,19 @@
         </div>
     </div>
 </form>
+
+@{
+    @if (ViewBag.Response != null)
+{
+        <div class="modal-cont show" id="modalResponse">
+        <div class="modal">
+        <h1>Respuesta del servidor</h1>
+        <p>@ViewBag.Response</p>
+        <input  type="button" value="Cerrar" class="no pop" id="cerrarResponse"> 
+        </div>
+    </div>
+}
+}
+
+
     <script src="~/js/Popup.js"></script>

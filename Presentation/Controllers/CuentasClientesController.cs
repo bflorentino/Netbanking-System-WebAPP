@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using System;
 
 namespace Presentation.Controllers
 {
@@ -79,14 +81,21 @@ namespace Presentation.Controllers
         [HttpPost]
         public IActionResult Transferencia(Bussiness.Model.BindingModel.TransferenciaBindingModel transferencia)
         {
-            if (ModelState.IsValid)
-            {
+                var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
                 var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
                 string foto = usuarioEnLinea.RutaFoto;
+                ViewBag.cuentas = cuentasStrings;
                 string rutaFotoSinPerfil = "/IMG/user.png";
                 ViewBag.Foto = foto ?? rutaFotoSinPerfil;
                 ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
-                return RedirectToAction("Transferencia");
+
+            if (ModelState.IsValid)
+            {
+                var transferido = Bussiness.BussinesLogic.OperacionesCuentas.RealizarTransferencia(transferencia);
+
+                ViewBag.Response = transferido ? "La transferencia se ha realizado exitosamente" : 
+                    "Error al realizar transferencia.Asegurese de tener balance suficiente en su cuenta de ahorro seleccionada ";
+                return View();
             }
             return View(transferencia);
         }
@@ -158,6 +167,24 @@ namespace Presentation.Controllers
                 return RedirectToAction("Index", "Admin");
             }
             return RedirectToAction("Login", "UsuariosManagement");
+        }
+
+        public PartialViewResult DepositosEntreFecha(DateTime FechaIn, DateTime FechaFin, string cuenta)
+        {
+            var depositos = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialDepositos(FechaIn, FechaFin, cuenta);
+            return PartialView(depositos);
+        }
+    
+        public PartialViewResult RetirosEntreFechas(DateTime FechaIn, DateTime FechaFin, string cuenta)
+        {
+            var retiros = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialRetiros(FechaIn, FechaFin, cuenta);
+            return PartialView(retiros);
+        }
+
+        public PartialViewResult RetirosPorCuenta(string cuenta)
+        {
+            var retiros = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialRetiros(cuenta);
+            return PartialView(retiros);
         }
     }
 }

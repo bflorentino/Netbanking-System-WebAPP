@@ -46,7 +46,8 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.CrudTarjetas.CreateTarjeta(tarjeta);
+                var registrado = Bussiness.BussinesLogic.CrudTarjetas.CreateTarjeta(tarjeta);
+                ViewBag.Response = registrado ? "La nueva tarjeta ha sido ingresado de manera satisfactoria" : "Error al registrar tarjeta";
                 return RedirectToAction("ViewTarjetas");
             }
 
@@ -77,8 +78,9 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.CrudTarjetas.UpdateTarjeta(tarjeta);
-                return RedirectToAction("ViewTarjetas");
+               var actualizado =  Bussiness.BussinesLogic.CrudTarjetas.UpdateTarjeta(tarjeta);
+               ViewBag.Response = actualizado ? null : "Error al registrar cliente";
+               return RedirectToAction("ViewTarjetas");
             }
             return View(tarjeta);
         }

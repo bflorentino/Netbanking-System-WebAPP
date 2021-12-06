@@ -4,48 +4,74 @@
     Layout = "_LayoutClientes";
 }
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/PoPupWindow.css" />
+<link rel="stylesheet" href="/css/dataFormClientes.css"/>
 
-<div class = "cuentasContainer">
-    @{
-        foreach(string cuenta in ViewBag.cuentas)
-        {
-            <input type="button" value="@cuenta" onclick="insertAccount(this.value);">
-        }
-    } 
-</div>
-@*
-<script>
-    const insertAccount = (cuenta = "") => document.getElementById("cuentaOrigen").value = cuenta;
-</script>
-*@
-<form action="Transferencia" method = "post">
-    
-        @Html.LabelFor(transf => transf.CuentaOrigen);
-        @Html.EditorFor(transf=> transf.CuentaOrigen, new {htmlAttributes = new {@class="input-texto", id = "cuentaOrigen", @readonly = "readonly"} })
-        @Html.ValidationMessageFor(transf => transf.CuentaOrigen, "", new {@class = "error-message"})
+<div class="data-container">
 
-        @Html.LabelFor(transf => transf.Cuenta);
-        @Html.EditorFor(transf=> transf.Cuenta, new {htmlAttributes = new {@class="input-texto"} })
-        @Html.ValidationMessageFor(transf => transf.Cuenta, "", new {@class = "error-message"})
-
-        @Html.LabelFor(transf => transf.Cantidad);
-        @Html.EditorFor(transf=> transf.Cantidad, new {htmlAttributes = new {@class="input-texto"} })
-        @Html.ValidationMessageFor(transf => transf.Cantidad, "", new {@class = "error-message"})
-
-    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
-
-        <div class="modal-cont" id="modal-cont">
-        <div class="modal">
-        <h1>Nuevo Cliente</h1>
-        <br />
-        <p>¿Desea realizar la transferencia? 
-        </p>
-        <br />
-        <input type="submit" value="SI" class="yes pop" id="enviar"> 
-        <input type="button"  value="NO" class="no pop" id="cerrar"/>
+    <div class = "cuentasContainer">
+        <h1>Seleccione una cuenta de ahorro</h1>
+        @{
+            foreach(string cuenta in ViewBag.cuentas)
+            {
+                <input type="button" value="@cuenta" onclick="insertAccount(this.value);">
+            }
+        } 
+ </div>
+  
+ <div class="form-data">
+    <form action="Transferencia" method = "post">
+    <h1 class="form-title">Transferencia Bancaria</h1>
+        <div class="field">
+            @Html.LabelFor(transf => transf.CuentaOrigen)
+            @Html.EditorFor(transf=> transf.CuentaOrigen, new {htmlAttributes = new {@class="input-text", id = "cuentaOrigen", @readonly = "readonly"} })
+            @Html.ValidationMessageFor(transf => transf.CuentaOrigen, "", new {@class = "error-message"})
         </div>
+
+        <div class="field">
+            @Html.LabelFor(transf => transf.Cuenta)
+            @Html.EditorFor(transf=> transf.Cuenta, new {htmlAttributes = new {@class="input-text"} })
+            @Html.ValidationMessageFor(transf => transf.Cuenta, "", new {@class = "error-message"})
+         </div>
+         
+         <div class="field">
+         @Html.LabelFor(transf => transf.Cantidad)
+            @Html.EditorFor(transf=> transf.Cantidad, new {htmlAttributes = new {@class="input-text"} })
+            @Html.ValidationMessageFor(transf => transf.Cantidad, "", new {@class = "error-message"})
+            </div>
+
+        <input type="button" value="Realizar transferencia" class="submit-button" id="open" />
+
+            <div class="modal-cont" id="modal-cont">
+            <div class="modal">
+            <h1>Nuevo Cliente</h1>
+            <br />
+            <p>¿Desea realizar la transferencia? 
+            </p>
+            <br />
+            <input type="submit" value="SI" class="yes pop" id="enviar"> 
+            <input type="button"  value="NO" class="no pop" id="cerrar"/>
+            </div>
+        </div>
+    </form>
+
     </div>
-</form>
+</div>
+
+    @{
+        @if (ViewBag.Response != null)
+    {
+            <div class="modal-cont show" id="modalResponse">
+            <div class="modal">
+            <h1>Respuesta del servidor</h1>
+            <p>@ViewBag.Response</p>
+            <input  type="button" value="Cerrar" class="no pop" id="cerrarResponse"> 
+            </div>
+    </div>
+}
+}
 <script src="/js/Cuentas.js"></script>
 <script src="~/js/Popup.js"></script>

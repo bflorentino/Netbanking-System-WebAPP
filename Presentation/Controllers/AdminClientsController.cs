@@ -35,6 +35,7 @@ namespace Presentation.Controllers
                     string rutaFotoSinPerfil = "/IMG/user.png";
                     ViewBag.Foto = rutaFotoSinPerfil;
                     ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
+                    //ViewBag.Response = "";
                     return View();
                 }
                 return RedirectToAction("Index", "Clients");
@@ -47,8 +48,9 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.CrudClientes.CreateCliente(model) ;
-                return RedirectToAction("ViewClientes");
+                var registrado = Bussiness.BussinesLogic.CrudClientes.CreateCliente(model);
+                ViewBag.Response = registrado? "El cliente ha sido ingresado de manera satisfactoria" : "Error al registrar cliente";
+                return View();
             }
             return View(model);
         }
@@ -77,7 +79,8 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                Bussiness.BussinesLogic.CrudClientes.updateCliente(cliente);
+               var actualizado =  Bussiness.BussinesLogic.CrudClientes.updateCliente(cliente);
+               ViewBag.Response = !actualizado? null:  "Error al actualizar el registro";
                 return RedirectToAction("ViewClientes");
             }
             return View(cliente);

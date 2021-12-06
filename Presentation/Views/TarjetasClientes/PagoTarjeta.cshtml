@@ -6,16 +6,25 @@
 
 <link rel="stylesheet" href="/css/PoPupWindow.css" />
 
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
+<link rel="stylesheet" href="/css/dataFormClientes.css"/>
+
+<div class="data-container">
+
 <div class = "cuentasContainer">
+    <h1>Seleccione una cuenta de ahorro</h1>
     @{
         foreach(string cuenta in ViewBag.cuentas)
         {
             <input type="button" value="@cuenta" onclick="getBalance(this.value);">
         }
     } 
-</div>
 
-<div class = "tarjetasContainer">
+    <h1>Seleccione una tarjeta de crédito</h1>
     @{
         foreach(string tarjeta in ViewBag.tarjetas)
         {
@@ -25,28 +34,41 @@
 </div>
 
 <form action="PagoTarjeta" method = "post">
-    
-        @Html.LabelFor(card => card.NumeroCuenta);
-        @Html.EditorFor(card => card.NumeroCuenta, new {htmlAttributes = new {@class="input-texto", id = "cuentaOrigen", @readonly = "readonly"} })
+    <div class="form-data">
+        <h1>Pago de tarjeta</h1>
+        <div class="field">
+        @Html.LabelFor(card => card.NumeroCuenta)
+        @Html.EditorFor(card => card.NumeroCuenta, new {htmlAttributes = new {@class="input-text", id = "cuentaOrigen", @readonly = "readonly"} })
         @Html.ValidationMessageFor(card=> card.NumeroCuenta, "", new {@class = "error-message"})
+        </div>
 
-        @Html.LabelFor(card => card.BalanceCuenta);
-        @Html.EditorFor(card => card.BalanceCuenta, new {htmlAttributes = new {@class="input-texto", id = "balance", @readonly = "readonly"} })
+        <div class="field">
+        @Html.LabelFor(card => card.BalanceCuenta)
+        @Html.EditorFor(card => card.BalanceCuenta, new {htmlAttributes = new {@class="input-text", id = "balance", @readonly = "readonly"} })
         @Html.ValidationMessageFor(card=> card.BalanceCuenta, "", new {@class = "error-message"})
+        @Html.ValidationMessageFor(card=> card.BalanceCuenta, "", new {@class = "error-message"})
+        </div>
 
-        @Html.LabelFor(card => card.NumeroTarjeta);
-        @Html.EditorFor(card => card.NumeroTarjeta, new {htmlAttributes = new {@class="input-texto", id = "tarjetaDestino", @readonly = "readonly"} })
+        <div class="field">
+        @Html.LabelFor(card => card.NumeroTarjeta)
+        @Html.EditorFor(card => card.NumeroTarjeta, new {htmlAttributes = new {@class="input-text", id = "tarjetaDestino", @readonly = "readonly"} })
         @Html.ValidationMessageFor(card=> card.NumeroTarjeta, "", new {@class = "error-message"})
+        </div>
 
-        @Html.LabelFor(card => card.BalanceConsumidoTarjeta);
-        @Html.EditorFor(card => card.BalanceConsumidoTarjeta, new {htmlAttributes = new {@class="input-texto", id = "balanceTarjeta", @readonly = "readonly"} })
-        @Html.ValidationMessageFor(card=> card.BalanceConsumidoTarjeta, "", new {@class = "error-message"})
+        <div class="field">
+            @Html.LabelFor(card => card.BalanceConsumidoTarjeta)
+            @Html.EditorFor(card => card.BalanceConsumidoTarjeta, new {htmlAttributes = new {@class="input-text", id = "balanceTarjeta", @readonly = "readonly"} })
+            @Html.ValidationMessageFor(card=> card.BalanceConsumidoTarjeta, "", new {@class = "error-message"})
+        </div>
 
-        @Html.LabelFor(card => card.MontoAPagar);
-        @Html.EditorFor(card => card.MontoAPagar, new {htmlAttributes = new {@class="input-texto", id = "balanceTarjeta"} })
-        @Html.ValidationMessageFor(card=> card.MontoAPagar, "", new {@class = "error-message"})
+        <div class="field">
+            @Html.LabelFor(card => card.MontoAPagar)
+            @Html.EditorFor(card => card.MontoAPagar, new {htmlAttributes = new {@class="input-text", id = "balanceTarjeta"} })
+            @Html.ValidationMessageFor(card=> card.MontoAPagar, "", new {@class = "error-message"})
+        </div>
 
-    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
+    <input type="button" value="Realizar Pago" class="submit-button" id="open" />
+    </div>
 
         <div class="modal-cont" id="modal-cont">
         <div class="modal">
@@ -60,6 +82,21 @@
         </div>
     </div>
 </form>
+</div>
+
+
+@{
+    @if (ViewBag.Response != null)
+{
+        <div class="modal-cont show" id="modalResponse">
+        <div class="modal">
+        <h1>Respuesta del servidor</h1>
+        <p>@ViewBag.Response</p>
+        <input  type="button" value="Cerrar" class="no pop" id="cerrarResponse"> 
+        </div>
+    </div>
+}
+}
 
 <script src="~/js/Cuentas.js"></script>
 <script src="~/js/Popup.js"></script>

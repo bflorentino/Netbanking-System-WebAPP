@@ -36,7 +36,7 @@ namespace Presentation.Controllers
                 NombreUsuario = Request.Form["NombreUsuario"]
             };
 
-            if (Foto != null) 
+            if (Foto != null)
             {
                 string WebRoot = _env.WebRootPath;
                 string nombreFoto = Path.GetFileName(Foto.FileName);
@@ -45,9 +45,21 @@ namespace Presentation.Controllers
                 usuario.RutaFoto = nombreFoto;
             }
 
-            Bussiness.BussinesLogic.ManageUsers.AddNewUser(usuario);
+            var registrado = Bussiness.BussinesLogic.ManageUsers.AddNewUser(usuario);
+            ViewBag.Response = "No fue posible registrarse. Intente con otro nombre de usuario o asegurese de ser cliente de la entidad bancaria";
+            
+            if (registrado)
+            {
+                Bussiness.Model.BindingModel.LoginUsuarioBindingModel user = new Bussiness.Model.BindingModel.LoginUsuarioBindingModel
+                {
+                    NombreUsuario = usuario.NombreUsuario,
+                    Password = usuario.PasswordHashed
+                };
+                Bussiness.BussinesLogic.ManageUsers.SetUserOnline(user);
+                return RedirectToAction("Index", "Clients");
+            }
 
-            return RedirectToAction("RegistroUsuario");
+            return View();
         }
         
         public IActionResult Login()

@@ -10,8 +10,10 @@ namespace Bussiness.BussinesLogic
     {
         //static readonly NetBanking_Sys_WebAppContext dbContext = new NetBanking_Sys_WebAppContext();
         static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
-        public static void CreateTarjeta(Model.BindingModel.CreditCardCreateBindingModel tarjeta)
+        public static bool CreateTarjeta(Model.BindingModel.CreditCardCreateBindingModel tarjeta)
         {
+            try
+            {
             dbContext.Add(new Tarjeta
             {
                 NumeroTarjeta = tarjeta.NumeroTarjeta,
@@ -29,7 +31,13 @@ namespace Bussiness.BussinesLogic
                 NumeroTarjeta = tarjeta.NumeroTarjeta
             });
 
-            dbContext.SaveChanges();    
+            dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
        public static List<Model.ViewModel.Tarjeta> GetTarjetas()
@@ -73,11 +81,19 @@ namespace Bussiness.BussinesLogic
             return tarjeta;
         }
         
-        public static void UpdateTarjeta(Model.BindingModel.CreditCardEditBindingModel tarjeta)
+        public static bool UpdateTarjeta(Model.BindingModel.CreditCardEditBindingModel tarjeta)
         {
-            var card = dbContext.Tarjetas.Where(x => x.NumeroTarjeta == tarjeta.NumeroTarjeta).FirstOrDefault();
-            card.BalanceDisponible = tarjeta.BalanceDisponible;
-            dbContext.SaveChanges();
+            try
+            {
+                var card = dbContext.Tarjetas.Where(x => x.NumeroTarjeta == tarjeta.NumeroTarjeta).FirstOrDefault();
+                card.BalanceDisponible = tarjeta.BalanceDisponible;
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

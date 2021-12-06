@@ -21,6 +21,7 @@ namespace Presentation.Controllers
             }
             return RedirectToAction("Login", "UsuariosManagement");
         }
+
         public IActionResult VerTarjetas()
         {
             if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
@@ -79,7 +80,7 @@ namespace Presentation.Controllers
                     ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
                     if (ViewBag.tarjetas.Count == 0)
                     {
-                        return RedirectToAction("SinTarjetas");
+                        return RedirectToAction("NoTarjeta");
                     }
                     var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
                     string foto = usuarioEnLinea.RutaFoto;
@@ -112,15 +113,19 @@ namespace Presentation.Controllers
             {
                 if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
                 {
+                    ViewBag.cuentas = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+                    ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
+
                     if (ModelState.IsValid)
                     {
-                        //if (Bussiness.BussinesLogic.OperacionesTarjetas.PagarTarjeta(pago))
-                        //{
-
-                        //}
-
                         var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarTarjeta(pago);
-                        return RedirectToAction("PagoTarjeta");
+                        ViewBag.Response = pagado ? "El pago se ha procesado correctamente" : "Error al procesar pago";
+                        return View();
                     }
                     return View(pago);
                 }
@@ -180,10 +185,22 @@ namespace Presentation.Controllers
         [HttpPost]
         public IActionResult Deposito(Bussiness.Model.BindingModel.PagoDepositoBindingModel deposito)
         {
+            var tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+            var cuentas = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+            var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+            string foto = usuarioEnLinea.RutaFoto;
+            string rutaFotoSinPerfil = "/IMG/user.png";
+            ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+            ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
+            ViewBag.cuentas = cuentas;
+            ViewBag.tarjetas = tarjetas;
+
+
             if (ModelState.IsValid)
             {
                 var pagado = Bussiness.BussinesLogic.OperacionesTarjetas.PagarDeposito(deposito);
-                return RedirectToAction("Deposito");
+                ViewBag.Response = pagado ? "El deposito se ha procesado correctamente" : "Error al procesar depósito";
+                return View();
             }
             return View(deposito);
         }

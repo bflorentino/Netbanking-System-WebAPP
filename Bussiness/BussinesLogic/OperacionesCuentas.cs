@@ -32,18 +32,24 @@ namespace Bussiness.BussinesLogic
         public static bool RealizarTransferencia(Model.BindingModel.TransferenciaBindingModel transferencia)
         {
             // Realizar transferencia bancaria
-            var cuentaOrigen = dbContext.Cuentas.Where(x => x.NumeroCuenta == transferencia.CuentaOrigen).FirstOrDefault();
-
-            if(transferencia.Cantidad <= cuentaOrigen.Balance)
+            try
             {
-                var cuentaDestino = dbContext.Cuentas.Where(x => x.NumeroCuenta == transferencia.Cuenta).FirstOrDefault();
-                cuentaDestino.Balance += transferencia.Cantidad;
-                cuentaOrigen.Balance -= transferencia.Cantidad;
+                var cuentaOrigen = dbContext.Cuentas.Where(x => x.NumeroCuenta == transferencia.CuentaOrigen).FirstOrDefault();
+                if(transferencia.Cantidad <= cuentaOrigen.Balance)
+                {
+                    var cuentaDestino = dbContext.Cuentas.Where(x => x.NumeroCuenta == transferencia.Cuenta).FirstOrDefault();
+                    cuentaDestino.Balance += transferencia.Cantidad;
+                    cuentaOrigen.Balance -= transferencia.Cantidad;
 
-                dbContext.SaveChanges();
-                return true;
+                    dbContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 return false;
             }

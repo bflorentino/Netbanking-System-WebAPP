@@ -1,1 +1,70 @@
 ﻿
+body{
+    display: flex;
+}
+
+.data-container {
+    width: 95%;
+    max-width: 800px;
+    background: #fff;
+    margin: auto;    
+}
+
+.form-data label, .form-data .input-text {
+    display: block;
+}
+
+.cuentasContainer{
+    width: 30%;
+    align-items: center;
+    border-right: 2px solid black;
+}
+
+.cuentasContainer input{
+    margin: 10px;
+    border: none;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.cuentasContainer input:hover{
+    cursor: pointer;
+}
+
+.form-data{
+    width: 70%;
+}
+
+.form-data label{
+    width: 30%;
+}
+
+.form-data .input-text{
+    width: 70%;
+    padding: 10px;
+    font-size: 1em;
+}
+
+ .form-data .field{
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 20px;
+     align-items: center;
+ }
+
+ .form-data .submit-button {
+    width: 100%;
+    background: #194464;
+    padding: 10px;
+    border: none;
+    color: #FFF;
+    font-size: 1em;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.form-title {
+    margin-top: 0;
+    font-size: 1.7em;
+    text-align: center;
+}

@@ -17,13 +17,15 @@ namespace Bussiness.BussinesLogic
             {
                 return false;
             }
-          
+        
             // Verificar si el cliente tiene un prestamo activo o no en el banco antes de agregar un prestamo a un cliente
             if (VerificarPrestamoActivo(prestamo.Cedula))
             {
                 return false;
             }
- 
+
+            try
+            {
             dbContext.Add(new Prestamo
             {
                 CodigoPrestamo = prestamo.CodigoPrestamo,
@@ -43,7 +45,12 @@ namespace Bussiness.BussinesLogic
             });
 
             dbContext.SaveChanges();
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private static bool VerificarPrestamoActivo(string numeroCedula)
@@ -102,17 +109,26 @@ namespace Bussiness.BussinesLogic
             return loan;
         }
 
-        public static void UpdatePrestamo(Model.BindingModel.PrestamoEditBindingModel prestamo)
+        public static bool UpdatePrestamo(Model.BindingModel.PrestamoEditBindingModel prestamo)
         {
-            var loan = dbContext.Prestamos.Where(x => x.CodigoPrestamo == prestamo.CodigoPrestamo).FirstOrDefault();
+            try
+            {
+                var loan = dbContext.Prestamos.Where(x => x.CodigoPrestamo == prestamo.CodigoPrestamo).FirstOrDefault();
 
-            loan.MontoPrestado = prestamo.MontoPrestado;
-            loan.CuotasTotalesAPagar = prestamo.CuotasTotalesAPagar;
-            loan.CuotasPagadas = prestamo.CuotasPagadas;
-            loan.PagoPorCuota = prestamo.PagoPorCuota;
-            loan.TasaInteres = prestamo.TasaInteres;
+                loan.MontoPrestado = prestamo.MontoPrestado;
+                loan.CuotasTotalesAPagar = prestamo.CuotasTotalesAPagar;
+                loan.CuotasPagadas = prestamo.CuotasPagadas;
+                loan.PagoPorCuota = prestamo.PagoPorCuota;
+                loan.TasaInteres = prestamo.TasaInteres;
 
-            dbContext.SaveChanges();
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
 }

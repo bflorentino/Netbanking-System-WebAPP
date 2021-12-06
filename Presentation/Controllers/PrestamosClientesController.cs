@@ -107,9 +107,20 @@ namespace Presentation.Controllers
         public IActionResult PagoPrestamo(Bussiness.Model.BindingModel.PagoPrestamoBindingModel pago)
         {
             var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
+            var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+            string foto = usuarioEnLinea.RutaFoto;
             ViewBag.cuentas = cuentasStrings;
-            var pagado = Bussiness.BussinesLogic.OperacionesPrestamos.PagarPrestamo(pago.NumeroCuentaOrigen, pago.BalanceCuenta, pago.MontoAPagar);
-            return RedirectToAction("PagoPrestamo");
+            string rutaFotoSinPerfil = "/IMG/user.png";
+            ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+            ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
+
+            if (ModelState.IsValid)
+            {
+                var pagado = Bussiness.BussinesLogic.OperacionesPrestamos.PagarPrestamo(pago.NumeroCuentaOrigen, pago.BalanceCuenta, pago.MontoAPagar);
+                ViewBag.Response = pagado ? "El pago se ha procesado correctamente" : "Error al realizar pago";
+                return View();
+            }
+            return View(pago);
         }
 
         public IActionResult VerHistPrestamos()
