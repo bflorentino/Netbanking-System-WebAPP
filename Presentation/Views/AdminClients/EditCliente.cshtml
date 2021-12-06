@@ -4,38 +4,66 @@
     Layout = "_LayoutAdmin";
 }
 
-<h1>Editar cliente</h1>
+<link rel="stylesheet" href="/css/DataForm.css" />
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
 
-<form action="EditCliente" method = "post">
+<form action="EditCliente" method = "post" class="form-data">
 
+<h1 class="form-title">Editar cliente</h1>
+<div class="field">
     @Html.LabelFor(cliente => cliente.Cedula);
-    @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto", @readonly="readonly"} })
+    @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-text", @readonly="readonly"} })
     @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
+</div>
 
+<div class="field">
     @Html.LabelFor(cliente => cliente.Nombre);
-    @Html.EditorFor(cliente => cliente.Nombre, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.EditorFor(cliente => cliente.Nombre, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Nombre, "", new {@class = "error-message"})
+ </div>
 
+ <div class="field">
     @Html.LabelFor(cliente => cliente.Apellido);
-    @Html.EditorFor(cliente => cliente.Apellido, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.EditorFor(cliente => cliente.Apellido, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Apellido, "", new {@class = "error-message"})
+ </div>
 
-    @Html.LabelFor(cliente => cliente.FechaNacimiento);
-    @Html.EditorFor(cliente => cliente.FechaNacimiento, new {htmlAttributes = new {@class="input-texto"} })
-    @Html.ValidationMessageFor(cliente => cliente.FechaNacimiento, "", new {@class = "error-message"})
+<div class="field">
+@Html.LabelFor(cliente => cliente.FechaNacimiento);
+@Html.EditorFor(cliente => cliente.FechaNacimiento, new {htmlAttributes = new {@class="input-text"} })
+@Html.ValidationMessageFor(cliente => cliente.FechaNacimiento, "", new {@class = "error-message"})
+</div>
 
+<div class="field">
     @Html.LabelFor(cliente => cliente.Direccion);
-    @Html.EditorFor(cliente => cliente.Direccion, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.EditorFor(cliente => cliente.Direccion, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Direccion, "", new {@class = "error-message"})
+</div>
 
+<div class="field">
     @Html.LabelFor(cliente => cliente.Telefono);
-    @Html.EditorFor(cliente => cliente.Telefono, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.EditorFor(cliente => cliente.Telefono, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Telefono, "", new {@class = "error-message"})
+</div>
 
+<div class="field">
     @Html.LabelFor(cliente => cliente.CorreoElectronico);
-    @Html.EditorFor(cliente => cliente.CorreoElectronico, new {htmlAttributes = new {@class="input-texto"} })
+    @Html.EditorFor(cliente => cliente.CorreoElectronico, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.CorreoElectronico, "", new {@class = "error-message"})
+</div>
 
-    <input type="submit" value="Guardar nueva información" class="submit-button" />
+    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
 
+        <div class="modal-cont" id="modal-cont">
+        <div class="modal">
+        <h1>Nuevo Cliente</h1>
+        <br />
+        <p>¿Desea guardar los cambios? 
+        </p>
+        <br />
+        <input type="submit" value="SI" class="yes pop" id="enviar"> 
+        <input type="button"  value="NO" class="no pop" id="cerrar"/>
+        </div>
+    </div>
 </form>
+    <script src="~/js/Popup.js"></script>

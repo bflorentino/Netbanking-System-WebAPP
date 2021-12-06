@@ -67,7 +67,7 @@
                     @Html.DisplayFor(card => tarjeta.BalanceConsumido)
                 </td>
                 <td>
-                 @Html.ActionLink("Editar", "EditTarjeta", "AdminTarjetas", new {tarjetaToUpdate = tarjeta.NumeroTarjeta},new {@class = "btn-btn-primary btn-sm"})
+                 @Html.ActionLink("Editar", "EditTarjeta", "AdminTarjetas", new {tarjetaToUpdate = tarjeta.NumeroTarjeta})
                 </td>
             </tr>
         }

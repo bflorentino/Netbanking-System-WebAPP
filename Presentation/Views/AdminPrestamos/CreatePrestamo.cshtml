@@ -4,33 +4,60 @@
     Layout = "_LayoutAdmin";
 }
 
-<form action="CreatePrestamo" method = "post">
+<link rel="stylesheet" href="/css/DataForm.css" />
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
 
-    @Html.LabelFor(prestamo => prestamo.CodigoPrestamo);
-    @Html.EditorFor(prestamo => prestamo.CodigoPrestamo, new {htmlAttributes = new {@class="input-texto"} })
+<form action="CreatePrestamo" method = "post" class="form-data">
+        <h1 class="form-title">Nuevo préstamo</h1>
+    <div class="field">
+    @Html.LabelFor(prestamo => prestamo.CodigoPrestamo)
+    @Html.EditorFor(prestamo => prestamo.CodigoPrestamo, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(prestamo => prestamo.CodigoPrestamo, "", new {@class = "error-message"})
+    </div>
 
-    @Html.LabelFor(prestamo => prestamo.MontoPrestado);
-    @Html.EditorFor(prestamo => prestamo.MontoPrestado, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(prestamo => prestamo.MontoPrestado)
+    @Html.EditorFor(prestamo => prestamo.MontoPrestado, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(prestamo => prestamo.MontoPrestado, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(prestamo => prestamo.CuotasTotalesAPagar);
-    @Html.EditorFor(prestamo => prestamo.CuotasTotalesAPagar, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(prestamo => prestamo.CuotasTotalesAPagar)
+    @Html.EditorFor(prestamo => prestamo.CuotasTotalesAPagar, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(prestamo => prestamo.CuotasTotalesAPagar, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(prestamo => prestamo.PagoPorCuota);
-    @Html.EditorFor(prestamo => prestamo.PagoPorCuota, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(prestamo => prestamo.PagoPorCuota)
+    @Html.EditorFor(prestamo => prestamo.PagoPorCuota, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(prestamo => prestamo.PagoPorCuota, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(prestamo => prestamo.TasaInteres);
-    @Html.EditorFor(prestamo => prestamo.TasaInteres, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(prestamo => prestamo.TasaInteres)
+    @Html.EditorFor(prestamo => prestamo.TasaInteres, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(prestamo => prestamo.TasaInteres, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(prestamo => prestamo.Cedula);
-    @Html.EditorFor(prestamo => prestamo.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(prestamo => prestamo.Cedula)
+    @Html.EditorFor(prestamo => prestamo.Cedula, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(prestamo => prestamo.Cedula, "", new {@class = "error-message"})
 
+</div>
 
-    <input type="submit" value="Crear Prestamo" class="submit-button" />
+    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
 
+        <div class="modal-cont" id="modal-cont">
+        <div class="modal">
+        <h1>Nuevo Cliente</h1>
+        <br />
+        <p>¿Desea registrar el nuevo préstamo? 
+        </p>
+        <br />
+        <input type="submit" value="SI" class="yes pop" id="enviar"> 
+        <input type="button"  value="NO" class="no pop" id="cerrar"/>
+        </div>
+    </div>
 </form>
+    <script src="~/js/Popup.js"></script>

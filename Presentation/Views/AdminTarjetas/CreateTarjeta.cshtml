@@ -4,29 +4,53 @@
     Layout = "_LayoutAdmin";
 }
 
+<link rel="stylesheet" href="/css/DataForm.css" />
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
 
-<form action="CreateTarjeta" method = "post">
-
-    @Html.LabelFor(tarjeta => tarjeta.NumeroTarjeta);
-    @Html.EditorFor(tarjeta => tarjeta.NumeroTarjeta, new {htmlAttributes = new {@class="input-texto"} })
+<form action="CreateTarjeta" method = "post" class= "form-data">
+        <h1 class="form-title">Nueva Tarjeta de crédito</h1>
+ <div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.NumeroTarjeta)
+    @Html.EditorFor(tarjeta => tarjeta.NumeroTarjeta, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.NumeroTarjeta, "", new {@class = "error-message"})
+ </div>
 
-     @Html.LabelFor(tarjeta => tarjeta.Cedula);
-    @Html.EditorFor(tarjeta => tarjeta.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+ <div class="field">
+     @Html.LabelFor(tarjeta => tarjeta.Cedula)
+    @Html.EditorFor(tarjeta => tarjeta.Cedula, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.Cedula, "", new {@class = "error-message"})
+ </div>
 
- @Html.LabelFor(tarjeta => tarjeta.ValorDeValidacion);
-    @Html.EditorFor(tarjeta => tarjeta.ValorDeValidacion, new {htmlAttributes = new {@class="input-texto"} })
+ <div class="field">
+ @Html.LabelFor(tarjeta => tarjeta.ValorDeValidacion)
+    @Html.EditorFor(tarjeta => tarjeta.ValorDeValidacion, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.ValorDeValidacion, "", new {@class = "error-message"})
+ </div>
 
- @Html.LabelFor(tarjeta => tarjeta.BalanceDisponible);
-    @Html.EditorFor(tarjeta => tarjeta.BalanceDisponible, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+ @Html.LabelFor(tarjeta => tarjeta.BalanceDisponible)
+    @Html.EditorFor(tarjeta => tarjeta.BalanceDisponible, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.BalanceDisponible, "", new {@class = "error-message"})
+</div>
 
- @Html.LabelFor(tarjeta => tarjeta.FechaVencimiento);
-    @Html.EditorFor(tarjeta => tarjeta.FechaVencimiento, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+ @Html.LabelFor(tarjeta => tarjeta.FechaVencimiento)
+    @Html.EditorFor(tarjeta => tarjeta.FechaVencimiento, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.FechaVencimiento, "", new {@class = "error-message"})
+</div>
 
-    <input type="submit" value="Crear Tarjeta" class="submit-button" />
+    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
 
+        <div class="modal-cont" id="modal-cont">
+        <div class="modal">
+        <h1>Nuevo Cliente</h1>
+        <br />
+        <p>¿Desea registrar la nueva tarjeta de crédito? 
+        </p>
+        <br />
+        <input type="submit" value="SI" class="yes pop" id="enviar"> 
+        <input type="button"  value="NO" class="no pop" id="cerrar"/>
+        </div>
+    </div>
 </form>
+    <script src="~/js/Popup.js"></script>

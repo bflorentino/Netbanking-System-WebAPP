@@ -1,0 +1,54 @@
+﻿*{
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+}
+
+.form-data{
+    width: 95%;
+    max-width: 500px;
+    background: #fff;
+    margin:auto;
+    padding: 20px;
+}
+
+.form-title {
+    margin-top: 0;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+.form-data label, .form-data .input-text{
+    display: block;
+}
+
+.form-data label{
+    width: 30%;
+}
+
+.form-data .input-text{
+    width: 70%;
+    padding: 10px;
+    font-size: 1em;
+}
+
+ .form-data .field{
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 20px;
+     align-items: center;
+ }
+
+.form-data .submit-button {
+    width: 100%;
+    background: #194464;
+    padding: 10px;
+    border: none;
+    color: #FFF;
+    font-size: 1em;
+    margin-top: 10px;
+    cursor: pointer;
+}

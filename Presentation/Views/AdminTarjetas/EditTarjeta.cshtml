@@ -4,36 +4,65 @@
     Layout = "_LayoutAdmin";
 }
 
-<form action="EditTarjeta" method = "post">
+<link rel="stylesheet" href="/css/DataForm.css" />
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
 
-    @Html.LabelFor(tarjeta => tarjeta.NumeroTarjeta);
-    @Html.EditorFor(tarjeta => tarjeta.NumeroTarjeta, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+<form action="EditTarjeta" method = "post" class="form-data">
+        <h1 class="form-title">Editar Tarjeta de ahorro</h1>
+<div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.NumeroTarjeta)
+    @Html.EditorFor(tarjeta => tarjeta.NumeroTarjeta, new {htmlAttributes = new {@class="input-text", @readonly = "readonly"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.NumeroTarjeta, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(tarjeta => tarjeta.Cedula);
-    @Html.EditorFor(tarjeta => tarjeta.Cedula, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+<div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.Cedula)
+    @Html.EditorFor(tarjeta => tarjeta.Cedula, new {htmlAttributes = new {@class="input-text", @readonly = "readonly"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.Cedula, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(tarjeta => tarjeta.FechaExpedicion);
-    @Html.EditorFor(tarjeta => tarjeta.FechaExpedicion, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+<div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.FechaExpedicion)
+    @Html.EditorFor(tarjeta => tarjeta.FechaExpedicion, new {htmlAttributes = new {@class="input-text", @readonly = "readonly"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.FechaExpedicion, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(tarjeta => tarjeta.ValorDeValidacion);
-    @Html.EditorFor(tarjeta => tarjeta.ValorDeValidacion, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
+<div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.ValorDeValidacion)
+    @Html.EditorFor(tarjeta => tarjeta.ValorDeValidacion, new {htmlAttributes = new {@class="input-text", @readonly = "readonly"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.ValorDeValidacion, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(tarjeta => tarjeta.BalanceDisponible);
-    @Html.EditorFor(tarjeta => tarjeta.BalanceDisponible, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.BalanceDisponible)
+    @Html.EditorFor(tarjeta => tarjeta.BalanceDisponible, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.BalanceDisponible, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(tarjeta => tarjeta.BalanceConsumido);
+<div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.BalanceConsumido)
     @Html.EditorFor(tarjeta => tarjeta.BalanceConsumido, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.BalanceConsumido, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(tarjeta => tarjeta.FechaVencimiento);
+<div class="field">
+    @Html.LabelFor(tarjeta => tarjeta.FechaVencimiento)
     @Html.EditorFor(tarjeta => tarjeta.FechaVencimiento, new {htmlAttributes = new {@class="input-texto", @readonly = "readonly"} })
     @Html.ValidationMessageFor(tarjeta => tarjeta.FechaVencimiento, "", new {@class = "error-message"})
+</div>
 
-    <input type="submit" value="Editar Tarjeta" class="submit-button" />
+    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
 
+        <div class="modal-cont" id="modal-cont">
+        <div class="modal">
+        <h1>Nuevo Cliente</h1>
+        <br />
+        <p>¿Desea guardar los cambios? 
+        </p>
+        <br />
+        <input type="submit" value="SI" class="yes pop" id="enviar"> 
+        <input type="button"  value="NO" class="no pop" id="cerrar"/>
+        </div>
+    </div>
 </form>
+    <script src="~/js/Popup.js"></script>

@@ -4,38 +4,66 @@
     Layout = "_LayoutAdmin";
 }
 
-<h1>Registrar nuevo cliente</h1>
+<link rel="stylesheet" href="/css/DataForm.css" />
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
 
-<form action="" method = "post">
+<form action="" method = "post" class="form-data">
 
-    @Html.LabelFor(cliente => cliente.Cedula);
-    @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto"} })
-    @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
+ <h1 class="form-title">Registrar Nuevo Cliente</h1>
 
-    @Html.LabelFor(cliente => cliente.Nombre);
-    @Html.EditorFor(cliente => cliente.Nombre, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(cliente => cliente.Cedula)
+    @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-text"} })
+    @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"}) 
+</div>
+
+<div class="field">
+    @Html.LabelFor(cliente => cliente.Nombre)
+    @Html.EditorFor(cliente => cliente.Nombre, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Nombre, "", new {@class = "error-message"})
+ </div>
 
-    @Html.LabelFor(cliente => cliente.Apellido);
-    @Html.EditorFor(cliente => cliente.Apellido, new {htmlAttributes = new {@class="input-texto"} })
+ <div class="field">
+    @Html.LabelFor(cliente => cliente.Apellido)
+    @Html.EditorFor(cliente => cliente.Apellido, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Apellido, "", new {@class = "error-message"})
+</div>
 
-    @Html.LabelFor(cliente => cliente.FechaNacimiento);
-    @Html.EditorFor(cliente => cliente.FechaNacimiento, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+    @Html.LabelFor(cliente => cliente.FechaNacimiento)
+    @Html.EditorFor(cliente => cliente.FechaNacimiento, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.FechaNacimiento, "", new {@class = "error-message"})
-
-    @Html.LabelFor(cliente => cliente.Direccion);
-    @Html.EditorFor(cliente => cliente.Direccion, new {htmlAttributes = new {@class="input-texto"} })
+</div>
+<div class="field">
+    @Html.LabelFor(cliente => cliente.Direccion)
+    @Html.EditorFor(cliente => cliente.Direccion, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Direccion, "", new {@class = "error-message"})
-
-        @Html.LabelFor(cliente => cliente.Telefono);
-    @Html.EditorFor(cliente => cliente.Telefono, new {htmlAttributes = new {@class="input-texto"} })
+</div>
+<div class="field">
+    @Html.LabelFor(cliente => cliente.Telefono)
+    @Html.EditorFor(cliente => cliente.Telefono, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.Telefono, "", new {@class = "error-message"})
-
-    @Html.LabelFor(cliente => cliente.CorreoElectronico);
-    @Html.EditorFor(cliente => cliente.CorreoElectronico, new {htmlAttributes = new {@class="input-texto"} })
+</div>
+<div class="field">
+    @Html.LabelFor(cliente => cliente.CorreoElectronico)
+    @Html.EditorFor(cliente => cliente.CorreoElectronico, new {htmlAttributes = new {@class="input-text"} })
     @Html.ValidationMessageFor(cliente => cliente.CorreoElectronico, "", new {@class = "error-message"})
+</div>
+    <input type="button" value="Registrar cliente" class="submit-button" id="open"/>
 
-    <input type="submit" value="Registrar cliente" class="submit-button" />
+    <div class="modal-cont" id="modal-cont">
+        <div class="modal">
+        <h1>Nuevo Cliente</h1>
+        <br />
+        <p>¿Está seguro de que desea registrar el nuevo cliente? Verifique que su información sea correcta,
+            ya que su cédula no podrá ser modificada luego.
+        </p>
+        <br />
+        <input type="submit" value="SI" class="yes pop" id="enviar">
+        <input  type="button" value="NO" class="no pop" id="cerrar"> 
+        </div>
+    </div>
 
 </form> 
+
+<script src="~/js/Popup.js"></script>

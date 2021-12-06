@@ -47,7 +47,7 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 Bussiness.BussinesLogic.CrudTarjetas.CreateTarjeta(tarjeta);
-                return View();
+                return RedirectToAction("ViewTarjetas");
             }
 
             return View(tarjeta);

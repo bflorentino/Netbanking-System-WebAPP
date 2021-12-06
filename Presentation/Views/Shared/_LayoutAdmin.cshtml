@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
        <link rel="stylesheet" href="/css/NavBarMenuClientes.css" />
+         <link rel="stylesheet" href="/css/Generales.css"/>
 </head>
 <body>
     <div id="menuLateral" class="menu-collapsed">
@@ -37,28 +38,28 @@
                     </div>
                      <div class="item separator"></div>
                     <div class="item">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="AdminClients">
                             <div class="icon"><img src="/IMG/extracto-bancario.png"/></div>
                             <div class="titulo"><span>Administrar clientes</span></div>
                         </a>
                     </div>
                      <div class="item separator"></div>
                     <div class="item">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="AdminCuentas">
                             <div class="icon"><img src="/IMG//Prestamos.png"/></div>
                             <div class="titulo"><span>Administrar Cuentas de ahorro</span></div>
                         </a>
                     </div>
                     <div class="item separator"></div>
                     <div class="item">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="AdminTarjetas">
                             <div class="icon"><img src="/IMG/tarjetas.png"/></div>
                             <div class="titulo"><span>Administrar tarjetas de credito</span></div>
                         </a>
                     </div>
                     <div class="item separator"></div>
                     <div class="item">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="AdminPrestamos">
                             <div class="icon"><img src="/IMG/tarjetas.png"/></div>
                             <div class="titulo"><span>Administrar préstamos</span></div>
                         </a>

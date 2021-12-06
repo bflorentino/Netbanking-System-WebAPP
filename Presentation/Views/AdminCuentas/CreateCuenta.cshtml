@@ -4,21 +4,40 @@
     Layout = "_LayoutAdmin";
 }
 
+<link rel="stylesheet" href="/css/DataForm.css" />
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
 
-<form action="CreateCuenta" method = "post">
-
-        @Html.LabelFor(cuenta => cuenta.NumeroCuenta);
-        @Html.EditorFor(cliente => cliente.NumeroCuenta, new {htmlAttributes = new {@class="input-texto"} })
+<form action="CreateCuenta" method = "post" class="form-data">
+<h1 class="form-title">Nueva Cuenta de ahorro</h1>
+<div class="field">
+        @Html.LabelFor(cuenta => cuenta.NumeroCuenta)
+        @Html.EditorFor(cliente => cliente.NumeroCuenta, new {htmlAttributes = new {@class="input-text"} })
         @Html.ValidationMessageFor(cliente => cliente.NumeroCuenta, "", new {@class = "error-message"})
+</div>
 
-        @Html.LabelFor(cuenta => cuenta.Balance);
-        @Html.EditorFor(cliente => cliente.Balance, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+        @Html.LabelFor(cuenta => cuenta.Balance)
+        @Html.EditorFor(cliente => cliente.Balance, new {htmlAttributes = new {@class="input-text"} })
         @Html.ValidationMessageFor(cliente => cliente.Balance, "", new {@class = "error-message"})
+</div>
 
-        @Html.LabelFor(cuenta => cuenta.Cedula);
-        @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-texto"} })
+<div class="field">
+        @Html.LabelFor(cuenta => cuenta.Cedula)
+        @Html.EditorFor(cliente => cliente.Cedula, new {htmlAttributes = new {@class="input-text"} })
         @Html.ValidationMessageFor(cliente => cliente.Cedula, "", new {@class = "error-message"})
+</div>
+    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
 
-        <input type="submit" value="Registrar Cuenta" class="submit-button" />
-
+        <div class="modal-cont" id="modal-cont">
+        <div class="modal">
+        <h1>Nuevo Cliente</h1>
+        <br />
+        <p>¿Desea crear la nueva cuenta de ahorro? 
+        </p>
+        <br />
+        <input type="submit" value="SI" class="yes pop" id="enviar"/> 
+        <input type="button" value="NO" class="no pop" id="cerrar"> 
+        </div>
+    </div>
 </form>
+    <script src="~/js/Popup.js"></script>

@@ -4,6 +4,8 @@
     Layout = "_LayoutClientes";
 }
 
+<link rel="stylesheet" href="/css/PoPupWindow.css" />
+
 <div class = "cuentasContainer">
     @{
         foreach(string cuenta in ViewBag.cuentas)
@@ -40,8 +42,21 @@
         @Html.EditorFor(tarjeta => tarjeta.MontoAPagar, new {htmlAttributes = new {@class="input-texto"} })
         @Html.ValidationMessageFor(tarjeta=> tarjeta.MontoAPagar, "", new {@class = "error-message"})
 
-        <input type="submit" value="Realizar Pago a tarjeta" class="submit-button" />
+    <input type="button" value="Editar Cuenta" class="submit-button" id="open" />
+
+        <div class="modal-cont" id="modal-cont">
+        <div class="modal">
+        <h1>Nuevo Cliente</h1>
+        <br />
+        <p>¿Desea realizar el depósito? 
+        </p>
+        <br />
+        <input type="submit" value="SI" class="yes pop" id="enviar"> 
+        <input type="button"  value="NO" class="no pop" id="cerrar"/>
+        </div>
+    </div>
 </form>
 
 <script src="~/js/Cuentas.js"></script>
 <script src="~/js/FetchTarjetas.js"></script>
+<script src="~/js/Popup.js"></script>
