@@ -18,6 +18,7 @@ namespace Bussiness.BussinesLogic
                            where ManageUsers.UserOnline.Cedula == clientestarjetas.Cedula
                            select new Model.ViewModel.VerTarjeta
                            {
+                               NumeroTarjeta = clientestarjetas.NumeroTarjeta,
                               BalanceConsumido = (decimal)cards.BalanceConsumido,
                               MontoDisponible = cards.BalanceDisponible
                            }).ToList();

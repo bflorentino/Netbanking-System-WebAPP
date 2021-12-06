@@ -8,21 +8,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/css/Tables.css"/>
+<link rel="stylesheet" href="~/css/Filtering.css" />
 
-<input type="date" name="fechaInicial"  class="fechaInicial" id="fechaIn"/>
-<input type="date" name="fechaFinal"  class="fechaFinal" id="fechaFin"/>
-<input type="button" name="buscar" class="buscar" value="Buscar" onclick="GetRetirosPorFecha()"/>
-
-<div class = "cuentasContainer">d
+<div class = "filter">
+    <h1>Filtrar por número de cuenta</h1>
     @{
         foreach(string cuenta in ViewBag.cuentas)
         {
-            <input type="button" value="@cuenta" onclick="changeListRetiros(this.value);">
+            <input type="button" value="@cuenta" class="" onclick="changeListRetiros(this.value);">
         }
     } 
 </div>
 
+<h1 class="histTitle">Historial de retiros</h1>
+
+<div class="dateFilter">
+<input type="date" name="fechaInicial"  class="fechaInicial" id="fechaIn"/>
+<input type="date" name="fechaFinal"  class="fechaFinal" id="fechaFin"/>
+<input type="button" name="buscar" class="buscar" value="Buscar" onclick="GetRetirosPorFecha()"/>
 <input type="hidden" id="acc"/>
+</div>
+
+<h4  id="valorCuenta"></h4>
 
 <div id="depositos">
         <table class="content-table">

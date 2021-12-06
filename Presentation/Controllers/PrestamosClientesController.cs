@@ -4,7 +4,6 @@ namespace Presentation.Controllers
 {
     public class PrestamosClientesController : Controller
     {
-
         public IActionResult Index()
         {
             if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
@@ -42,7 +41,7 @@ namespace Presentation.Controllers
                     }
                     else
                     {
-                        ViewBag.message = "Actualmente no tiene ningún préstamo activo con nosotros";
+                        return RedirectToAction("SinPrestamo");
                     }
                     return View(prestamo);
                 }
@@ -123,6 +122,8 @@ namespace Presentation.Controllers
             return View(pago);
         }
 
+
+
         public IActionResult VerHistPrestamos()
         {
             if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
@@ -136,6 +137,12 @@ namespace Presentation.Controllers
                     ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetHistPrestamos();
                     ViewBag.prestamos = Bussiness.BussinesLogic.OperacionesPrestamos.GetCodigosPrestamos();
+
+                    if (prestamos.Count == 0)
+                    {
+                        return RedirectToAction("SinPrestamo");
+                    }
+
                     return View(prestamos);
                 }
                 return RedirectToAction("Index", "Admin");

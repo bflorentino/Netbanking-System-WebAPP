@@ -7,18 +7,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/css/Tables.css"/>
+<link rel="stylesheet" href ="~/css/Filtering.css"/>
 
-<h1>Historial de préstamos</h1>
 
+<div class="filter">
+    <h1>Filtrar Historial por préstamo</h1>
     @{
     foreach(var item in ViewBag.prestamos)
     {
         <input type="button" value="@item"  onclick="changeList(this.value);"/>
     }
     }
+</div>
 
-   <div id="contPagos">
-        <table class="content-table">
+   <h1 class="histTitle">Historial de préstamos</h1>
+   <div id="contPagos" class="contPagos">
+        <table class="content-table">   
             <thead>
             <tr>
                <td>

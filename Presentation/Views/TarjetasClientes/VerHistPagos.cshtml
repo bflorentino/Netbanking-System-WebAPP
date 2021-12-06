@@ -8,14 +8,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/css/Tables.css"/>
+<link rel="stylesheet" href=~/css/Filtering.css/>
 
+<div class="filter">
+    <h1>Filtrar por tarjeta de crédito</h1>
  @{
     foreach(var item in ViewBag.tarjetas)
     {
         <input type="button" value="@item"  onclick="changeListTarjeta(this.value);"/>
     }
-    }
+}
+</div>
 
+<h1 class="histTitle">Historial de pagos a tarjeta</h1>
     <div id="contPagos">
         <table class="content-table">
             <thead>

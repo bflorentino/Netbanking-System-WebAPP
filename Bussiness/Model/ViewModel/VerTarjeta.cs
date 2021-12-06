@@ -7,6 +7,9 @@ namespace Bussiness.Model.ViewModel
 {
     public class VerTarjeta
     {
+        [Display(Name = "Numero de tarjeta")]
+        public string NumeroTarjeta { get; set; }
+
         [Display(Name ="Balance consumido")]
         public decimal BalanceConsumido { get; set; }
 

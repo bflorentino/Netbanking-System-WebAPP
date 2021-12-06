@@ -66,8 +66,9 @@ namespace Bussiness.BussinesLogic
                               join cuentas in dbContext.Cuentas
                               on historialRet.NumeroCuentaOrigenRetiro equals numeroCuenta
                               join clienteCuentas in dbContext.ClientesCuentas
-                              on numeroCuenta equals clienteCuentas.NumeroCuenta
-                              where historialRet.Fecha >= fechaInicial && historialRet.Fecha <= fechaFinal
+                              on cuentas.NumeroCuenta equals clienteCuentas.NumeroCuenta
+                              where cuentas.NumeroCuenta == numeroCuenta &&
+                              (historialRet.Fecha >= fechaInicial && historialRet.Fecha <= fechaFinal)
                               orderby historialRet.Fecha descending
                               select new Model.ViewModel.HistRetiros
                               {
@@ -82,13 +83,15 @@ namespace Bussiness.BussinesLogic
 
         public static List<Model.ViewModel.HistRetiros> GetHistorialRetiros(string numeroCuenta)
         {
+
             // Busqueda de todos los retiros hechos por el cliente sin importar la fecha en una determinada cuenta
-           var retiros = (from historialRet in dbContext.HistorialRetiros
+            var retiros = (from historialRet in dbContext.HistorialRetiros
                        join cuentas in dbContext.Cuentas
                        on historialRet.NumeroCuentaOrigenRetiro equals numeroCuenta
                        join clienteCuentas in dbContext.ClientesCuentas
-                       on numeroCuenta equals clienteCuentas.NumeroCuenta
-                       orderby historialRet.Fecha descending
+                       on cuentas.NumeroCuenta equals clienteCuentas.NumeroCuenta
+                       where cuentas.NumeroCuenta == numeroCuenta
+                        orderby historialRet.Fecha descending
                        select new Model.ViewModel.HistRetiros
                        {
                            CodigoRetiro = historialRet.CodigoRetiro,
@@ -130,8 +133,9 @@ namespace Bussiness.BussinesLogic
                              join cuentas in dbContext.Cuentas
                              on historialDep.NumeroCuentaDestinoDeposito equals numeroCuenta
                              join clienteCuentas in dbContext.ClientesCuentas
-                             on numeroCuenta equals clienteCuentas.NumeroCuenta
-                             where historialDep.Fecha >= fechaInicial && historialDep.Fecha <= fechaFinal
+                             on cuentas.NumeroCuenta equals clienteCuentas.NumeroCuenta
+                             where cuentas.NumeroCuenta == numeroCuenta && 
+                             (historialDep.Fecha >= fechaInicial && historialDep.Fecha <= fechaFinal)
                              orderby historialDep.Fecha descending
                              select new Model.ViewModel.HistDepositos
                              {

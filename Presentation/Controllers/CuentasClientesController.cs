@@ -37,6 +37,12 @@ namespace Presentation.Controllers
                     ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
                     var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
                     ViewBag.cuentas = cuentasStrings;
+
+                    if (cuentasStrings.Count == 0)
+                    {
+                        return RedirectToAction("SinCuentas");
+                    }
+
                     return View();
                 }
                 else
@@ -114,7 +120,13 @@ namespace Presentation.Controllers
                     var retiros = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialRetiros();
                      var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
                      ViewBag.cuentas = cuentasStrings;
-                     return View(retiros);
+
+                    if (cuentasStrings.Count == 0)
+                    {
+                        return RedirectToAction("SinCuentas");
+                    }
+
+                    return View(retiros);
                 }
                 return RedirectToAction("Index", "Admin");
             }
@@ -135,6 +147,12 @@ namespace Presentation.Controllers
                     var depositos = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialDepositos();
                     var cuentasStrings = Bussiness.BussinesLogic.OperacionesCuentas.GetCuentasAsociadas();
                     ViewBag.cuentas = cuentasStrings;
+
+                    if (cuentasStrings.Count == 0)
+                    {
+                        return RedirectToAction("SinCuentas");
+                    }
+
                     return View(depositos);
                 }
                 else
@@ -169,7 +187,7 @@ namespace Presentation.Controllers
             return RedirectToAction("Login", "UsuariosManagement");
         }
 
-        public PartialViewResult DepositosEntreFecha(DateTime FechaIn, DateTime FechaFin, string cuenta)
+        public PartialViewResult DepositosEntreFechas(DateTime FechaIn, DateTime FechaFin, string cuenta)
         {
             var depositos = Bussiness.BussinesLogic.OperacionesCuentas.GetHistorialDepositos(FechaIn, FechaFin, cuenta);
             return PartialView(depositos);

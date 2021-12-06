@@ -8,16 +8,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/css/Tables.css"/>
+<link rel="stylesheet" href=~/css/Filtering.css/>
 
-<h1>Historial de depósitos</h1>
-
-<input type="date" name="fechaInicial"  class="fechaInicial"/>
-<input type="date" name="fechaFinal"  class="fechaFinal"/>
-<input type="button" name="buscar" class="buscar"  value="Buscar"/>
-
-<input type="hidden" id="acc"/>
-  
-<div class = "cuentasContainer">
+<div class = "filter">
+    <h1>Filtrar por número de cuenta</h1>
     @{
         foreach(string cuenta in ViewBag.cuentas)
         {
@@ -25,6 +19,17 @@
         }
     } 
 </div>
+
+<h1 class="histTitle">Historial de depósitos</h1>
+
+<div class="dateFilter">
+<input type="date" name="fechaInicial"  class="fechaInicial" id="fechaIn"/>
+<input type="date" name="fechaFinal"  class="fechaFinal" id="fechaFin"/>
+<input type="button" name="buscar" class="buscar"  value="Buscar" onclick="GetDepositosPorFecha()"/>
+<input type="hidden" id="acc"/>
+</div>
+
+<h4  id="valorCuenta"></h4>
 
 <div id="depositos">
     <table class="content-table">

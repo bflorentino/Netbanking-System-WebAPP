@@ -27,33 +27,3 @@
     padding: 20px;
     font-family: 'Source Sans Pro', sans-serif;
 }
-
-/*#logoBanco{
-    width:4%;
-    vertical-align: middle;
-}
-*/
-
-/*.desplegable {
-    display: none;
-    opacity: 0;
-    top: 100%;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    transition: opacity 1.5s;
-}*/
-
-/*    .desplegable li {
-        width: 150px;
-    }
-
-  .desplegable li a {
-    line-height: 120%;
-        padding: 10px 15px;
-        }*/
-
-/*ul li:hover ul {
-    display: block;
-    opacity: 1;
-}*/

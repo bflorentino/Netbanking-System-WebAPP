@@ -142,6 +142,12 @@ namespace Presentation.Controllers
                 {
                     var pagos = Bussiness.BussinesLogic.OperacionesTarjetas.GetHistorialPagos();
                     ViewBag.tarjetas = Bussiness.BussinesLogic.OperacionesTarjetas.GetNumeroTarjetas();
+
+                    if(pagos.Count == 0)
+                    {
+                        return RedirectToAction("NoPagos");
+                    }
+
                     return View(pagos);  
                 }
                 return RedirectToAction("Index", "Admin");
@@ -182,6 +188,24 @@ namespace Presentation.Controllers
             return RedirectToAction("Login", "UsuariosManagement");
         }
 
+        public IActionResult NoPagos()
+        {
+            if (Bussiness.BussinesLogic.ManageUsers.UserOnline != null)
+            {
+                if (Bussiness.BussinesLogic.ManageUsers.UserOnline.IdRol == 2)
+                {
+                    var usuarioEnLinea = Bussiness.BussinesLogic.ManageUsers.UserOnline;
+                    string foto = usuarioEnLinea.RutaFoto;
+                    string rutaFotoSinPerfil = "/IMG/user.png";
+                    ViewBag.Foto = foto ?? rutaFotoSinPerfil;
+                    ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
+                    return View();
+                }
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Login", "UsuariosManagement");
+        }
+
         [HttpPost]
         public IActionResult Deposito(Bussiness.Model.BindingModel.PagoDepositoBindingModel deposito)
         {
@@ -194,7 +218,6 @@ namespace Presentation.Controllers
             ViewBag.Nombre = usuarioEnLinea.NombreUsuario;
             ViewBag.cuentas = cuentas;
             ViewBag.tarjetas = tarjetas;
-
 
             if (ModelState.IsValid)
             {

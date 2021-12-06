@@ -9,17 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/css/Tables.css"/>
 
-
 <table class="content-table">
     <thead>
             <tr>
+                <td>
+                    @Html.DisplayNameFor(tarjeta => tarjeta.NumeroTarjeta)
+                </td>
                 <td>
                     @Html.DisplayNameFor(tarjeta => tarjeta.BalanceConsumido)
                 </td>
                  <td>
                     @Html.DisplayNameFor(tarjeta => tarjeta.MontoDisponible)
                 </td>
-
             </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
         foreach(var item in Model)
         {
         <tr>
+        <td>@Html.DisplayFor(card=> item.NumeroTarjeta)</td>
         <td>@Html.DisplayFor(card=> item.BalanceConsumido)</td>
         <td>@Html.DisplayFor(card=> item.MontoDisponible)</td>
          </tr>

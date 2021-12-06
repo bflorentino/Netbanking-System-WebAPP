@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Bussiness.Model.ViewModel.HistPrestamos>
 
     <div class="contPagos">
-        <table class="table table-bordered">
+        <table class="content-table">
+            <thead>
             <tr>
                <td>
                   @Html.DisplayNameFor(pago=> pago.CodigoPrestamo)
@@ -13,14 +14,18 @@
                     @Html.DisplayNameFor(pago => pago.Monto)
                 </td>
             </tr>
-                        @{
-                            foreach(var item in Model){
+            </thead>
+            <tbody>
+
+                    @{
+                       foreach(var item in Model){
                     <tr>
                       <td>@Html.DisplayFor(pago => item.CodigoPrestamo)</td>
                         <td>@Html.DisplayFor(pago=> item.Fecha)</td>
                         <td>@Html.DisplayFor(pago => item.Monto)</td>
                     </tr>
-                            }
+            }
   }
+            </tbody>
         </table>
         </div>

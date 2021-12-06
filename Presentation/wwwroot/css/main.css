@@ -1,0 +1,45 @@
+﻿.body {
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.banner-image {
+    width: 100%;
+    height: 700px;
+}
+
+.representacion {
+    margin-left: 100px;
+}
+
+.imagen-referencial {
+    margin-top: 25px;
+    float: left;
+    width: 30%;
+    height: 350px;
+}
+
+    .imagen-referencial img {
+        width: 100%;
+        height: 100%;
+    }
+
+.texto {
+    margin-left: 100px;
+    width: 90%;
+    text-align: justify;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+    .texto h1 {
+        font-size: 35px;
+    }
+
+    .texto p {
+        font-size: 18px;
+    }

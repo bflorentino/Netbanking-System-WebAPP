@@ -1,0 +1,42 @@
+﻿.filter {
+    width: 25%;
+    float: left;
+    border-right: 2px solid black;
+    height: 100%;
+    margin-left: 180px;
+    margin-top: 150px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+    .filter input {
+        border: none;
+        border-bottom:solid 2px #000;
+        width: 200px;
+        padding: 20px;
+        background-color: #fff;
+        font-size: 15px;
+        margin-left:50px;
+    }
+
+ .histTitle{
+    margin-left: 450px;
+}
+
+.filter input:hover {
+     cursor: pointer;
+    background-color: #194464;
+    color: #fff;
+ }
+
+.filter h1{
+    font-size: 22px;
+}
+
+.dateFilter{
+    margin-bottom: 45px;
+}
+
+.dateFilter input{
+    padding: 5px 25px;
+    margin-right:35px;
+}
