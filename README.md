@@ -6,7 +6,7 @@ Proyecto final para la materia de programación 2 con el profesor Juan Rosario.
 
 Luego de crear la base de datos en SQL Server, debes de ingresar el siguiente comando en el Package Manager Console, posicionándote en el proyecto Data:
 
-Scaffold-DbContext "Server= tu servidor;Initial Catalog=NetBanking_Sys_WebApp;Trusted_Connection=True; Microsoft.EntityFrameworkCore.SqlServer
+Scaffold-DbContext "Server= tu servidor;Initial Catalog=NetBanking_Sys_WebApp;Trusted_Connection=True; Microsoft.EntityFrameworkCore.SqlServer -force
 
 *Nota:* En caso de que utilices una contraseña y un usuario en SQL Server, debes de agregarlos, modificando la parte de Trusted_Connection.
 
