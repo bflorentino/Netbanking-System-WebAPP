@@ -2,9 +2,19 @@
 
 Proyecto final para la materia de programación 2 con el profesor Juan Rosario.
 
+## Si quieres probar la App:
+
+Luego de crear la base de datos en SQL Server, debes de ingresar el siguiente comando en el Package Manager Console, posicionándote en el proyecto Data:
+
+Scaffold-DbContext "Server= tu servidor;Initial Catalog=NetBanking_Sys_WebApp;Trusted_Connection=True; Microsoft.EntityFrameworkCore.SqlServer
+
+*Nota:* En caso de que utilices una contraseña y un usuario en SQL Server, debes de agregarlos, modificando la parte de Trusted_Connection.
+
+Este enofoque de trabajo es el enfoque llamado Database First Aproach, en el que primero tenemos la base de datos y a partir de ella creamos nuestro modelo de datos con Entity Framework.
+
 ## Datos Generales sobre el proyecto
 
-Es una aplicación web de netbanking, en la cual el objetivo es emular las actividades de un banco a través de un sistema web. En la misma, se ofrecen 3 productos: cuentas de ahorro, tarjetas de crédito y préstamos. La aplicación fue construida con 2 módulos: uno para administradores y otro para clientes del banco.
+Esta es una aplicación web de netbanking, en la cual el objetivo es emular las actividades de un banco a través de un sistema web. En la misma, se ofrecen 3 productos: cuentas de ahorro, tarjetas de crédito y préstamos. La aplicación fue construida con 2 módulos: uno para administradores y otro para clientes del banco.
 
 Para manejar el acceso a módulos se aplicaron roles en la base de datos, para facilitar el acceso a los mismos.
 
