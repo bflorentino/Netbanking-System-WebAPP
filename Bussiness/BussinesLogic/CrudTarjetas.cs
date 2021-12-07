@@ -12,8 +12,8 @@ namespace Bussiness.BussinesLogic
         static NetBanking_Sys_WebAppContext dbContext = Contexto.GetContexto().Ctxto;
         public static bool CreateTarjeta(Model.BindingModel.CreditCardCreateBindingModel tarjeta)
         {
-            try
-            {
+            //try
+            //{
             dbContext.Add(new Tarjeta
             {
                 NumeroTarjeta = tarjeta.NumeroTarjeta,
@@ -34,11 +34,11 @@ namespace Bussiness.BussinesLogic
             dbContext.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
+        //}
 
        public static List<Model.ViewModel.Tarjeta> GetTarjetas()
         {
